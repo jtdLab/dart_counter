@@ -1,22 +1,34 @@
 // CORE
 
+import 'package:dart_counter/presentation/core/page_view_page_route.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_in_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
 
 // TODO rename to flow or all to flows to wrapper? some log navigation events of page view
-class AuthWrapper extends HookWidget {
+class AuthWrapper extends StatefulWidget {
   const AuthWrapper({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<AuthWrapper> createState() => _AuthWrapperState();
+}
+
+class _AuthWrapperState extends State<AuthWrapper> {
+  late final PageController pageController;
+  late final AutoRouteObserver? observer;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+    observer = RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
+    observer?.didPush(PageViewRoute<SignInPage>(), null);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final appRouteObserver =
-        RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
-
-    final pageController = usePageController();
-
     return ListenableProvider.value(
       value: pageController,
       child: PageView(
@@ -25,11 +37,7 @@ class AuthWrapper extends HookWidget {
           SignInPage(),
           SignUpPage(),
         ],
-        onPageChanged: (index) => _onPageChanged(
-          context,
-          index,
-          appRouteObserver,
-        ),
+        onPageChanged: (index) => _onPageChanged(context, index),
       ),
     );
   }
@@ -37,30 +45,23 @@ class AuthWrapper extends HookWidget {
   void _onPageChanged(
     BuildContext context,
     int newIndex,
-    AutoRouteObserver? observer,
   ) {
-    final Route oldRoute;
-    final Route newRoute;
     if (newIndex == 0) {
-      oldRoute = CupertinoPageRoute(
-        builder: (context) => Container(),
-        settings: const RouteSettings(name: 'SignUpPageRoute'),
-      );
-      newRoute = CupertinoPageRoute(
-        builder: (context) => Container(),
-        settings: const RouteSettings(name: 'SignInPageRoute'),
+      observer?.didReplace(
+        oldRoute: PageViewRoute<SignUpPage>(),
+        newRoute: PageViewRoute<SignInPage>(),
       );
     } else {
-      oldRoute = CupertinoPageRoute(
-        builder: (context) => Container(),
-        settings: const RouteSettings(name: 'SignInPageRoute'),
-      );
-      newRoute = CupertinoPageRoute(
-        builder: (context) => Container(),
-        settings: const RouteSettings(name: 'SignUpPageRoute'),
+      observer?.didReplace(
+        oldRoute: PageViewRoute<SignInPage>(),
+        newRoute: PageViewRoute<SignUpPage>(),
       );
     }
+  }
 
-    observer?.didReplace(oldRoute: oldRoute, newRoute: newRoute);
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
   }
 }
