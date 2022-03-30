@@ -1,5 +1,5 @@
 // CORE
-import 'package:dart_counter/presentation/core/auto_route_page_view.dart';
+
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_in_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
@@ -12,17 +12,10 @@ class AuthWrapper extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AutoRoutePageView();
-
-    /**
-     * final appRouteObserver =
+    final appRouteObserver =
         RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
-     */
 
-    /**
-     * 
     final pageController = usePageController();
-  
 
     return ListenableProvider.value(
       value: pageController,
@@ -32,58 +25,42 @@ class AuthWrapper extends HookWidget {
           SignInPage(),
           SignUpPage(),
         ],
-        onPageChanged: (index) {
-          if (index == 0) {
-            context.router.replace(const SignInPageRoute());
-          } else {
-            context.router.replace(const SignUpPageRoute());
-          }
-
-          /**
-          *  final oldRoute;
-          final newRoute;
-          if (index == 0) {
-            oldRoute = const SignUpPageRoute();
-            newRoute = const SignInPageRoute();
-          } else {
-            oldRoute = const SignInPageRoute();
-            newRoute = const SignUpPageRoute();
-          }
-
-          appRouteObserver?.didReplace(
-            oldRoute: 
-            newRoute: null,
-          );
-          */
-        },
+        onPageChanged: (index) => _onPageChanged(
+          context,
+          index,
+          appRouteObserver,
+        ),
       ),
     );
-  
-     */
-  }
-}
- 
-
-/**
- * class AuthWrapper extends StatefulWidget {
-  const AuthWrapper({Key? key}) : super(key: key);
-
-  @override
-  State<AuthWrapper> createState() => _AuthWrapperState();
-}
-
-class _AuthWrapperState extends State<AuthWrapper> {
-  @override
-  void initState() {
-    super.initState();
-    //context.router.push(const SignUpPageRoute());
-    print(context.router.stack);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return const AutoRoutePageView();
+  void _onPageChanged(
+    BuildContext context,
+    int newIndex,
+    AutoRouteObserver? observer,
+  ) {
+    final Route oldRoute;
+    final Route newRoute;
+    if (newIndex == 0) {
+      oldRoute = CupertinoPageRoute(
+        builder: (context) => Container(),
+        settings: const RouteSettings(name: 'SignUpPageRoute'),
+      );
+      newRoute = CupertinoPageRoute(
+        builder: (context) => Container(),
+        settings: const RouteSettings(name: 'SignInPageRoute'),
+      );
+    } else {
+      oldRoute = CupertinoPageRoute(
+        builder: (context) => Container(),
+        settings: const RouteSettings(name: 'SignInPageRoute'),
+      );
+      newRoute = CupertinoPageRoute(
+        builder: (context) => Container(),
+        settings: const RouteSettings(name: 'SignUpPageRoute'),
+      );
+    }
+
+    observer?.didReplace(oldRoute: oldRoute, newRoute: newRoute);
   }
 }
-
- */

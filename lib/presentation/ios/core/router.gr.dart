@@ -47,20 +47,6 @@ class _$_Router extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    SignInPageRoute.name: (routeData) {
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: const SignInPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
-    SignUpPageRoute.name: (routeData) {
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: const SignUpPage(),
-          opaque: true,
-          barrierDismissible: false);
-    },
     ForgotPasswordInitialPageRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
@@ -429,14 +415,7 @@ class _$_Router extends RootStackRouter {
             path: '/unauthenticated-flow',
             children: [
               RouteConfig(AuthWrapperRoute.name,
-                  path: '',
-                  parent: UnauthenticatedFlowRoute.name,
-                  children: [
-                    RouteConfig(SignInPageRoute.name,
-                        path: 'sign-in-page', parent: AuthWrapperRoute.name),
-                    RouteConfig(SignUpPageRoute.name,
-                        path: 'sign-up-page', parent: AuthWrapperRoute.name)
-                  ]),
+                  path: '', parent: UnauthenticatedFlowRoute.name),
               RouteConfig(ForgotPasswordModalRoute.name,
                   path: 'forgot-password-modal',
                   parent: UnauthenticatedFlowRoute.name,
@@ -701,8 +680,7 @@ class AuthenticatedFlowRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [AuthWrapper]
 class AuthWrapperRoute extends PageRouteInfo<void> {
-  const AuthWrapperRoute({List<PageRouteInfo>? children})
-      : super(AuthWrapperRoute.name, path: '', initialChildren: children);
+  const AuthWrapperRoute() : super(AuthWrapperRoute.name, path: '');
 
   static const String name = 'AuthWrapperRoute';
 }
@@ -715,22 +693,6 @@ class ForgotPasswordModalRoute extends PageRouteInfo<void> {
             path: 'forgot-password-modal', initialChildren: children);
 
   static const String name = 'ForgotPasswordModalRoute';
-}
-
-/// generated route for
-/// [SignInPage]
-class SignInPageRoute extends PageRouteInfo<void> {
-  const SignInPageRoute() : super(SignInPageRoute.name, path: 'sign-in-page');
-
-  static const String name = 'SignInPageRoute';
-}
-
-/// generated route for
-/// [SignUpPage]
-class SignUpPageRoute extends PageRouteInfo<void> {
-  const SignUpPageRoute() : super(SignUpPageRoute.name, path: 'sign-up-page');
-
-  static const String name = 'SignUpPageRoute';
 }
 
 /// generated route for

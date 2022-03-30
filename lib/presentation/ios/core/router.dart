@@ -91,14 +91,6 @@ const youReallyWantToCancelGameDialog = CustomRoute(
           initial: true,
           customRouteBuilder: modalParentRouteBuilder,
           page: AuthWrapper,
-          children: [
-            CustomRoute(
-              page: SignInPage,
-            ),
-            CustomRoute(
-              page: SignUpPage,
-            ),
-          ],
         ),
         CustomRoute(
           customRouteBuilder: expandedModalRouteBuilder,
