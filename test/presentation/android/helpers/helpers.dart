@@ -1,3 +1,3 @@
 export 'devices.dart';
-export 'mocks.dart';
+export 'mock_router_provider.dart';
 export 'pump_app.dart';

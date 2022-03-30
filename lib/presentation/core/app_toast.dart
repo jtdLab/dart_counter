@@ -1,17 +1,18 @@
-// CORE
-import 'package:dart_counter/presentation/ios/core/core.dart';
-
-// OTHER
+import 'package:dart_counter/core/injection.dart';
+import 'package:dart_counter/presentation/core/app_assets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:injectable/injectable.dart';
 
-// TODO remove moved to core/app_toast.dart
+@lazySingleton
+class AppToast {
+  AppToast();
 
-// TODO fontSize + fontFamiliy
-extension ToastX on Widget {
-  /// Displays a toast with [msg] on the bottom of the screen.
-  void showToast(
+  /// Returns instance registered inside getIt.
+  factory AppToast.getIt() => getIt<AppToast>();
+
+  void show(
     String msg, {
-    double fontSize = 16, 
+    double fontSize = 16,
   }) =>
       Fluttertoast.showToast(
         msg: msg,

@@ -2,7 +2,10 @@
 export 'package:dart_counter/presentation/core/core.dart';
 
 // Material widgets
-export 'package:flutter/material.dart' hide Router;
+export 'package:flutter/material.dart' hide Router, Theme;
+
+// Theme
+export 'theme.dart';
 
 // Routing
 export 'router.dart';

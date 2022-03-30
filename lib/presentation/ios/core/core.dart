@@ -7,6 +7,9 @@ export 'package:flutter/cupertino.dart' hide Orientation, Router;
 // Material widgets
 export 'package:flutter/material.dart' show Colors, ReorderableListView;
 
+// Theme
+export 'theme.dart';
+
 // Routing
 export 'router.dart';
 

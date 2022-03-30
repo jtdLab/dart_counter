@@ -7,7 +7,7 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
-import '../../../../flutter_test_config.dart';
+import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
 
 class MockForgotPasswordBloc
@@ -15,78 +15,73 @@ class MockForgotPasswordBloc
     implements ForgotPasswordBloc {}
 
 void main() {
-  late ForgotPasswordBloc mockForgotPasswordBloc;
+  late ForgotPasswordBloc forgotPasswordBloc;
 
   setUp(() {
-    mockForgotPasswordBloc = MockForgotPasswordBloc();
+    forgotPasswordBloc = MockForgotPasswordBloc();
   });
 
-  group('#Golden#', () {
-    testGoldens(
-        'GIVEN empty email '
-        'GIVEN showErrorMessages is false '
-        'THEN ForgotPasswordInitialPage should look correct on iPhones.',
-        (tester) async {
-      // Arrange
-      final email = EmailAddress.empty();
-      const showErrorMessages = false;
-      final state = ForgotPasswordState.initial(
-        email: email,
-        showErrorMessages: showErrorMessages,
-      );
-      whenListen(
-        mockForgotPasswordBloc,
-        Stream.value(state),
-        initialState: state,
-      );
+  group('#ForgotPasswordInitialPage#', () {
+    group('#Golden#', () {
+      testGoldens(
+          'GIVEN empty email '
+          'GIVEN showErrorMessages is false '
+          'THEN ForgotPasswordInitialPage should look correct on iPhones.',
+          (tester) async {
+        // Arrange
+        final email = EmailAddress.empty();
+        const showErrorMessages = false;
 
-      // Act
-      const ForgotPasswordInitialPage underTest = ForgotPasswordInitialPage();
-      final builder = DeviceBuilder()
-        ..overrideDevicesForAllScenarios(devices: iPhones)
-        ..addScenario(
-          widget: cupertinoAppWrapper(
-            BlocProvider(
-              create: (context) => mockForgotPasswordBloc,
-              child: underTest,
-            ),
+        whenListenTo(
+          forgotPasswordBloc,
+          ForgotPasswordState.initial(
+            email: email,
+            showErrorMessages: showErrorMessages,
           ),
-          name: 'ForgotPasswordInitialPage',
         );
-      await tester.pumpDeviceBuilder(builder);
 
-      // Assert
-      await screenMatchesGolden(tester, 'forgot_password_initial_page_mobile');
+        // Act
+        const underTest = ForgotPasswordInitialPage();
+        final builder = DeviceBuilder()
+          ..overrideDevicesForAllScenarios(devices: iPhones)
+          ..addScenario(
+            widget: appWrapper(
+              BlocProvider(
+                create: (context) => forgotPasswordBloc,
+                child: underTest,
+              ),
+            ),
+            name: 'ForgotPasswordInitialPage',
+          );
+        await tester.pumpDeviceBuilder(builder);
+
+        // Assert
+        await screenMatchesGolden(
+            tester, 'forgot_password_initial_page_mobile');
+      });
     });
-  });
-  group('#Visual#', () {
+
     for (final phone in iPhones) {
       group('#${phone.name}#', () {
         testWidgets(
-          'Contains ForgotPasswordInitialView.',
+          'Renders ForgotPasswordInitialView.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
 
-            final email = EmailAddress.empty();
-            const showErrorMessages = false;
-            final state = ForgotPasswordState.initial(
-              email: email,
-              showErrorMessages: showErrorMessages,
-            );
-            whenListen(
-              mockForgotPasswordBloc,
-              Stream.value(state),
-              initialState: state,
+            whenListenTo(
+              forgotPasswordBloc,
+              ForgotPasswordState.initial(
+                email: EmailAddress.empty(),
+                showErrorMessages: false,
+              ),
             );
 
             // Act
-            const ForgotPasswordInitialPage underTest =
-                ForgotPasswordInitialPage();
-            await tester.pumpApp(underTest);
-            await tester.pumpWidget(
+            const underTest = ForgotPasswordInitialPage();
+            await tester.pumpApp(
               BlocProvider(
-                create: (context) => mockForgotPasswordBloc,
+                create: (context) => forgotPasswordBloc,
                 child: underTest,
               ),
             );

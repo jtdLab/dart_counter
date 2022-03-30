@@ -1,4 +1,5 @@
 // CORE
+import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -11,7 +12,6 @@ class ForgotPasswordInitialPage extends StatelessWidget {
   const ForgotPasswordInitialPage({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,14 @@ class ForgotPasswordInitialPage extends StatelessWidget {
     BuildContext context,
     ForgotPasswordSubmitFailure failure,
   ) {
+    final appToast = AppToast.getIt();
+
     failure.authFailure.maybeWhen(
-      invalidEmail: () => showToast(
+      invalidEmail: () => appToast.show(
         context.l10n.errorInvalidEmailAddress.toUpperCase(),
       ),
       // TODO display other errors better
-      orElse: () => showToast(
+      orElse: () => appToast.show(
         'AutFailure happended',
       ),
     );

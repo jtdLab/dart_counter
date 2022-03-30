@@ -2,7 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:logging/logging.dart';
 
-class AppRouteObserver extends AutoRouterObserver {
+class AppRouteObserver extends AutoRouteObserver {
   final log = Logger('AppRouteObserver');
 
   @override

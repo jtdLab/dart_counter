@@ -3,7 +3,8 @@ import 'package:dart_counter/presentation/android/core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 extension PumpApp on WidgetTester {
-  // TODO doc
+  /**
+   * // TODO doc
   /// Wraps [widget] into [MaterialApp] and pumps it.
   ///
   /// Developer can specificy [locale]. Defaults to the first supported locale of the original app.
@@ -12,4 +13,5 @@ extension PumpApp on WidgetTester {
   Future<void> pumpApp(Widget widget, [Locale? locale]) {
     return pumpWidget(App());
   }
+   */
 }

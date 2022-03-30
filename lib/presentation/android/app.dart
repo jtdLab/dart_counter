@@ -2,6 +2,8 @@ import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/android/core/core.dart';
 import 'package:dart_counter/presentation/core/route_observer.dart';
 
+import 'core/core.dart';
+
 // TODO impl
 class App extends StatelessWidget {
   const App({
@@ -18,9 +20,6 @@ class App extends StatelessWidget {
         builder: (context) {
           return MaterialApp.router(
             title: 'DartCounter',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             routeInformationParser: router.defaultRouteParser(),
@@ -31,6 +30,7 @@ class App extends StatelessWidget {
                   ),
               navigatorObservers: () => [AppRouteObserver()],
             ),
+            theme: Theme.light(),
           );
         },
       ),

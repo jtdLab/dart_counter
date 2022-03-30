@@ -62,6 +62,8 @@ import 'package:dart_counter/presentation/ios/authenticated/training/post_traini
 import 'package:dart_counter/presentation/ios/authenticated/training/training_flow.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/auth_wrapper.dart';
+import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_in_page.dart';
+import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/forgot_password_modal.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
@@ -89,6 +91,15 @@ const youReallyWantToCancelGameDialog = CustomRoute(
           initial: true,
           customRouteBuilder: modalParentRouteBuilder,
           page: AuthWrapper,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: SignInPage,
+            ),
+            CustomRoute(
+              page: SignUpPage,
+            ),
+          ],
         ),
         CustomRoute(
           customRouteBuilder: expandedModalRouteBuilder,

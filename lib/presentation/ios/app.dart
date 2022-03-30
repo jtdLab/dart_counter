@@ -7,11 +7,8 @@ import 'package:dart_counter/presentation/core/route_observer.dart';
 
 // TODO rename to app flow ?? and move outside core
 class App extends StatelessWidget {
-  final Widget? home;
-
   const App({
     Key? key,
-    this.home,
   }) : super(key: key);
 
   @override
@@ -23,7 +20,6 @@ class App extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return CupertinoApp.router(
-            builder: (_, widget) => home ?? widget!,
             /**
           *  builder: (context, widget) {
             final style = TextStyle(
@@ -54,18 +50,7 @@ class App extends StatelessWidget {
                   ),
               navigatorObservers: () => [AppRouteObserver()],
             ),
-            theme: const CupertinoThemeData(
-              primaryColor: AppColors.black,
-              primaryContrastingColor: AppColors.white,
-              scaffoldBackgroundColor: AppColors.white,
-              textTheme: CupertinoTextThemeData(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  //fontSize: maxFontSizeNormal(context),
-                  color: AppColors.black,
-                ),
-              ),
-            ),
+            theme: Theme.light(),
           );
         },
       ),

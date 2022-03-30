@@ -1,15 +1,24 @@
-import 'package:dart_counter/presentation/ios/app.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'app_wrapper.dart';
+
 extension PumpApp on WidgetTester {
   // TODO doc
-  /// Wraps [widget] into [CupertinoApp] and pumps it.
+  /// Wraps [widget] into testable app environment.
   ///
   /// Developer can specificy [locale]. Defaults to the first supported locale of the original app.
-  ///
-  /// The theme of the original app is used.
-  Future<void> pumpApp(Widget widget, [Locale? locale]) {
-    return pumpWidget(App());
+  Future<void> pumpApp(
+    Widget widget, [
+    Locale? locale,
+    CupertinoThemeData? theme,
+  ]) {
+    return pumpWidget(
+      appWrapper(
+        widget,
+        locale: locale,
+        theme: theme,
+      ),
+    );
   }
 }
