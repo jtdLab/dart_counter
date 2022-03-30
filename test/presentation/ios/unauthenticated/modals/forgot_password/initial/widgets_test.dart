@@ -48,7 +48,75 @@ void main() {
           },
         );
 
-        // TODO groupe locale tests?
+        testWidgets(
+          'Renders forgot password text.',
+          (tester) async {
+            // Arrange
+            await tester.binding.setSurfaceSize(phone.size);
+
+            // Act
+            const underTest = ForgotPasswordInitialView();
+            await tester.pumpApp(
+              BlocProvider.value(
+                value: forgotPasswordBloc,
+                child: underTest,
+              ),
+            );
+
+            // Assert
+            expect(
+              find.byKey(ForgotPasswordInitialView.forgotPasswordTextKey),
+              findsOneWidget,
+            );
+          },
+        );
+
+        testWidgets(
+          'Renders email text field.',
+          (tester) async {
+            // Arrange
+            await tester.binding.setSurfaceSize(phone.size);
+
+            // Act
+            const underTest = ForgotPasswordInitialView();
+            await tester.pumpApp(
+              BlocProvider.value(
+                value: forgotPasswordBloc,
+                child: underTest,
+              ),
+            );
+
+            // Assert
+            expect(
+              find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
+              findsOneWidget,
+            );
+          },
+        );
+
+        testWidgets(
+          'Renders confirm button.',
+          (tester) async {
+            // Arrange
+            await tester.binding.setSurfaceSize(phone.size);
+
+            // Act
+            const underTest = ForgotPasswordInitialView();
+            await tester.pumpApp(
+              BlocProvider.value(
+                value: forgotPasswordBloc,
+                child: underTest,
+              ),
+            );
+
+            // Assert
+            expect(
+              find.byKey(ForgotPasswordInitialView.confirmButtonKey),
+              findsOneWidget,
+            );
+          },
+        );
+
         group('GIVEN locale is en', () {
           const locale = Locale('en');
 
@@ -73,10 +141,8 @@ void main() {
             },
           );
 
-          // TODO test other text of screen
-          /**
-           *   testWidgets(
-            'THEN renders app text field with "EMAIL ADDRESS".',
+          testWidgets(
+            'THEN renders text "EMAIL ADDRESS".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -92,13 +158,30 @@ void main() {
               );
 
               // Assert
-              final emailTextField = tester.widget(
-                find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
-              ) as AppTextField;
-              expect(emailTextField.placeholder, 'EMAIL ADDRESS');
+              expect(find.text('EMAIL ADDRESS'), findsOneWidget);
             },
           );
-           */
+
+          testWidgets(
+            'THEN renders text "CONFIRM".',
+            (tester) async {
+              // Arrange
+              await tester.binding.setSurfaceSize(phone.size);
+
+              // Act
+              const underTest = ForgotPasswordInitialView();
+              await tester.pumpApp(
+                BlocProvider.value(
+                  value: forgotPasswordBloc,
+                  child: underTest,
+                ),
+                locale,
+              );
+
+              // Assert
+              expect(find.text('CONFIRM'), findsOneWidget);
+            },
+          );
         });
 
         group('GIVEN locale is de', () {
@@ -124,10 +207,9 @@ void main() {
               expect(find.text('PASSWORT VERGESSEN?'), findsOneWidget);
             },
           );
-          // TODO test other text of screen
-          /**
-           * testWidgets(
-            'THEN renders app text field with "EMAIL ADRESSE".',
+
+          testWidgets(
+            'THEN renders text "E-MAIL".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -143,13 +225,30 @@ void main() {
               );
 
               // Assert
-              final emailTextField = tester.widget(
-                find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
-              ) as AppTextField;
-              expect(emailTextField.placeholder, 'EMAIL ADRESSE');
+              expect(find.text('E-MAIL'), findsOneWidget);
             },
           );
-           */
+
+          testWidgets(
+            'THEN renders text "BESTÄTIGEN".',
+            (tester) async {
+              // Arrange
+              await tester.binding.setSurfaceSize(phone.size);
+
+              // Act
+              const underTest = ForgotPasswordInitialView();
+              await tester.pumpApp(
+                BlocProvider.value(
+                  value: forgotPasswordBloc,
+                  child: underTest,
+                ),
+                locale,
+              );
+
+              // Assert
+              expect(find.text('BESTÄTIGEN'), findsOneWidget);
+            },
+          );
         });
 
         testWidgets(

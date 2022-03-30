@@ -43,7 +43,7 @@ class ForgotPasswordInitialPage extends StatelessWidget {
       ),
       // TODO display other errors better
       orElse: () => appToast.show(
-        'AutFailure happended',
+        context.l10n.errorUnexpected.toUpperCase(),
       ),
     );
   }
