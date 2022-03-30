@@ -9,6 +9,6 @@ Widget appWrapper(
       locale: locale ?? AppLocalizations.supportedLocales.first,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: theme ?? Theme.light(),
+      theme: theme ?? Theme.theme(),
       home: child,
     );

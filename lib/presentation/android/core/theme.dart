@@ -8,5 +8,7 @@ class Theme {
       );
 
   // TODO
-  static ThemeData dark() => light();
+  static ThemeData dark() => ThemeData(
+        primarySwatch: Colors.red,
+      );
 }

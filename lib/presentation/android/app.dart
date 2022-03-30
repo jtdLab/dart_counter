@@ -31,6 +31,7 @@ class App extends StatelessWidget {
               navigatorObservers: () => [AppRouteObserver()],
             ),
             theme: Theme.light(),
+            darkTheme: Theme.dark(),
           );
         },
       ),

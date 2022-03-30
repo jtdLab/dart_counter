@@ -4,18 +4,28 @@ import 'package:flutter/cupertino.dart';
 class Theme {
   const Theme();
 
-  static CupertinoThemeData light() => const CupertinoThemeData(
-        primaryColor: AppColors.black,
-        primaryContrastingColor: AppColors.white,
-        scaffoldBackgroundColor: AppColors.white,
+  static CupertinoThemeData theme() => const CupertinoThemeData(
+        primaryColor: CupertinoDynamicColor.withBrightness(
+          color: AppColors.black,
+          darkColor: AppColors.white,
+        ),
+        primaryContrastingColor: CupertinoDynamicColor.withBrightness(
+          color: AppColors.white,
+          darkColor: AppColors.black,
+        ),
+        scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
+          color: AppColors.white,
+          darkColor: AppColors.black,
+        ),
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
             fontFamily: 'SF-Pro',
-            color: AppColors.black,
+            color: CupertinoDynamicColor.withBrightness(
+              color: AppColors.black,
+              darkColor: AppColors.white,
+            ),
             fontWeight: FontWeight.w800,
           ),
         ),
       );
-
-  static CupertinoThemeData dark() => light();
 }
