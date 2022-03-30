@@ -76,6 +76,8 @@ void main() {
 
   group('#Methods#', () {
     group('#createGame#', () {
+      final initialSnapshot = OnlineGameSnapshot.dummy();
+
       blocTest<CreateOnlineGameCubit, CreateOnlineGameState>(
         'GIVEN create game fails '
         'THEN emit [CreateOnlineGameFailure].',
@@ -101,14 +103,14 @@ void main() {
           when(
             () => mockPlayOnlineService.createGame(),
           ).thenAnswer(
-            (_) async => right(OnlineGameSnapshot.dummy()),
+            (_) async => right(initialSnapshot),
           );
 
           return CreateOnlineGameCubit(mockPlayOnlineService);
         },
         act: (cubit) => cubit.createGame(),
-        expect: () => const [
-          CreateOnlineGameState.success(),
+        expect: () => [
+          CreateOnlineGameState.success(initialSnapshot: initialSnapshot),
         ],
       );
     });
