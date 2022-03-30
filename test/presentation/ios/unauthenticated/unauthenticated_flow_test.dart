@@ -11,7 +11,7 @@ import '../helpers/helpers.dart';
 
 // TODO the auth section is not implemented perfectly when think about routing there is used a pageview so the route structur gets fcked up a bit
 void main() {
-  late AuthBloc mockAuthBloc;
+  late AuthBloc authBloc;
   late Router router;
 
   setUp(() {
@@ -19,10 +19,10 @@ void main() {
     router = Router();
     //getIt.registerSingleton<Router>(router);
 
-    mockAuthBloc = MockAuthBloc();
-    getIt.registerSingleton<AuthBloc>(mockAuthBloc);
+    authBloc = MockAuthBloc();
+    getIt.registerSingleton<AuthBloc>(authBloc);
     whenListen(
-      mockAuthBloc,
+      authBloc,
       Stream.value(const AuthState.unauthenticated()),
       initialState: const AuthState.unauthenticated(),
     );

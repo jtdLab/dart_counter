@@ -10,10 +10,6 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
 
-class MockForgotPasswordBloc
-    extends MockBloc<ForgotPasswordEvent, ForgotPasswordState>
-    implements ForgotPasswordBloc {}
-
 void main() {
   late ForgotPasswordBloc forgotPasswordBloc;
 

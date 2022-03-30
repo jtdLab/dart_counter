@@ -4,18 +4,15 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/forgot_password_modal.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../core/helpers/helpers.dart';
 import '../../../helpers/helpers.dart';
 
-class MockForgotPasswordBloc
-    extends MockBloc<ForgotPasswordEvent, ForgotPasswordState>
-    implements ForgotPasswordBloc {}
-
 void main() {
-  late ForgotPasswordBloc mockForgotPasswordBloc;
+  late ForgotPasswordBloc forgotPasswordBloc;
 
   setUp(() async {
-    mockForgotPasswordBloc = MockForgotPasswordBloc();
-    getIt.registerSingleton<ForgotPasswordBloc>(mockForgotPasswordBloc);
+    forgotPasswordBloc = MockForgotPasswordBloc();
+    getIt.registerSingleton<ForgotPasswordBloc>(forgotPasswordBloc);
   });
 
   tearDown(() async {
