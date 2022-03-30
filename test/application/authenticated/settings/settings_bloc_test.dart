@@ -16,45 +16,12 @@ void main() {
   });
 
   group('#Constructors#', () {
-    group('#Standard#', () {
-      test('Initial state set to SettingsInitial with localeChanged false.',
-          () {
-        // Act
-        final underTest = SettingsBloc(mockAuthService);
-
-        // Assert
-        expect(
-          underTest.state,
-          const SettingsState.initial(localeChanged: false),
-        );
-      });
-    });
-
     group('#GetIt#', () {
       test(
           'GIVEN SettingsBloc is not registered inside getIt '
           'THEN throw error.', () {
         // Act & Assert
         expect(() => SettingsBloc.getIt(), throwsA(anything));
-      });
-
-      test(
-          'GIVEN SettingsBloc is registered inside getIt '
-          'THEN initial state set to SettingsInitial with localeChanged false.',
-          () {
-        // Arrange
-        getIt.registerFactoryParam(
-          (param1, _) => SettingsBloc(mockAuthService),
-        );
-
-        // Act
-        final underTest = SettingsBloc.getIt();
-
-        // Assert
-        expect(
-          underTest.state,
-          const SettingsState.initial(localeChanged: false),
-        );
       });
 
       test(
@@ -78,22 +45,8 @@ void main() {
   });
 
   group('#Events#', () {
-    group('#LocaleChanged#', () {
-      blocTest<SettingsBloc, SettingsState>(
-        'GIVEN current state is SettingsInitial with localeChanged false '
-        'THEN emit [SettingsInitial, SettingsInitial].',
-        build: () => SettingsBloc(mockAuthService),
-        seed: () => const SettingsState.initial(localeChanged: false),
-        act: (bloc) => bloc.add(const SettingsEvent.localeChanged()),
-        expect: () => [
-          const SettingsState.initial(localeChanged: true),
-          const SettingsState.initial(localeChanged: false),
-        ],
-      );
-    });
-
     group('#SignOutPressed#', () {
-      blocTest<SettingsBloc, SettingsState>(
+      blocTest<SettingsBloc, void>(
         'Sign out.',
         setUp: () {
           when(() => mockAuthService.signOut()).thenAnswer(
