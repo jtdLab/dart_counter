@@ -10,7 +10,7 @@ import 'package:dart_counter/presentation/ios/app.dart' as ios_app;
 import 'package:dart_counter/presentation/ios/core/router.dart' as ios_router;
 import 'package:flutter_test/flutter_test.dart';
 
-import 'helpers/helpers.dart';
+import '../helpers/helpers.dart';
 
 void main() {
   group('#App#', () {
