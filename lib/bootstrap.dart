@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/app_bloc_observer.dart';
-import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 
@@ -24,11 +23,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         () async {
           final app = await builder();
           runApp(
-            MultiProvider(
-              providers: [
-                Provider.value(value: Platform.getIt()),
-                Provider.value(value: AppToast.getIt()),
-              ],
+            Provider.value(
+              value: Platform.getIt(),
               child: app,
             ),
           );

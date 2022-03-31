@@ -15,6 +15,7 @@ class AppScope<T extends StackRouter> extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<T>.value(value: router),
+        Provider.value(value: AppToast.getIt()),
         BlocProvider(
           create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
         ),
