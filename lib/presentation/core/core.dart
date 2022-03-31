@@ -32,6 +32,9 @@ export 'package:flutter_hooks/flutter_hooks.dart' hide Dispose;
 // Responsive text
 export 'package:auto_size_text/auto_size_text.dart';
 
+// Toast
+export 'app_toast.dart';
+
 // Modals
 export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 

@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_counter/application/core/app_bloc_observer.dart';
+import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
+
+import 'presentation/core/core.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final logger = Logger('Bootstrap');
@@ -19,7 +21,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
           );
 
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async {
+          final app = await builder();
+          runApp(
+            MultiProvider(
+              providers: [
+                Provider.value(value: Platform.getIt()),
+                Provider.value(value: AppToast.getIt()),
+              ],
+              child: app,
+            ),
+          );
+        },
         blocObserver: AppBlocObserver(),
         eventTransformer: sequential(),
       );

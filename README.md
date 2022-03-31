@@ -308,3 +308,6 @@ flutter pub add golden_toolkit
  und gibt noch andere goldens test s
 
  // Should loggers be injected via DI 
+
+// TODO colors and stuff
+ https://blog.prototypr.io/designing-a-dark-mode-for-your-ios-app-the-ultimate-guide-6b043303b941

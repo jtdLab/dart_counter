@@ -3,8 +3,8 @@ import 'package:dart_counter/core/injection.dart';
 import 'package:dart_counter/presentation/android/app.dart' as android_app;
 import 'package:dart_counter/presentation/android/core/router.dart'
     as android_router;
-import 'package:dart_counter/presentation/core/app.dart';
-import 'package:dart_counter/presentation/core/platform.dart';
+import 'package:dart_counter/presentation/core/app/app.dart';
+import 'package:dart_counter/core/platform.dart';
 import 'package:dart_counter/presentation/core/presentation_error.dart';
 import 'package:dart_counter/presentation/ios/app.dart' as ios_app;
 import 'package:dart_counter/presentation/ios/core/router.dart' as ios_router;

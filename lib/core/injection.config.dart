@@ -170,7 +170,7 @@ import '../infrastructure/user/fake_user_service.dart' as _i49;
 import '../infrastructure/user/user_service.dart' as _i106;
 import '../presentation/android/core/router.dart' as _i75;
 import '../presentation/core/app_toast.dart' as _i5;
-import '../presentation/core/platform.dart' as _i73;
+import 'platform.dart' as _i73;
 import '../presentation/ios/core/router.dart' as _i76;
 
 const String _test = 'test';

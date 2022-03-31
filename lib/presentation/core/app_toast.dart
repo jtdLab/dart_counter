@@ -1,5 +1,5 @@
-import 'package:dart_counter/core/injection.dart';
-import 'package:dart_counter/presentation/core/app_assets.dart';
+import 'package:dart_counter/presentation/core/core.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 
@@ -23,4 +23,10 @@ class AppToast {
         textColor: AppColors.white,
         fontSize: fontSize,
       );
+}
+
+extension AppToastX on BuildContext {
+  void showToast(String msg, {double fontSize = 16}) {
+    read<AppToast>().show(msg, fontSize: fontSize);
+  }
 }

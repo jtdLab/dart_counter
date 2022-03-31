@@ -13,14 +13,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = Router.getIt();
+    final router = context.read<Router>();
 
-    return BlocProvider(
-      create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
-      child: Builder(
-        builder: (context) {
-          return CupertinoApp.router(
-            /**
+    return CupertinoApp.router(
+      /**
           *  builder: (context, widget) {
             final style = TextStyle(
               fontWeight: FontWeight.w800,
@@ -40,20 +36,17 @@ class App extends StatelessWidget {
             );
           },
           */
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            routeInformationParser: router.defaultRouteParser(),
-            routerDelegate: router.delegate(
-              initialRoutes: context.read<AuthBloc>().state.when(
-                    authenticated: () => [const AuthenticatedFlowRoute()],
-                    unauthenticated: () => [const UnauthenticatedFlowRoute()],
-                  ),
-              navigatorObservers: () => [AppRouteObserver()],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      routeInformationParser: router.defaultRouteParser(),
+      routerDelegate: router.delegate(
+        initialRoutes: context.read<AuthBloc>().state.when(
+              authenticated: () => [const AuthenticatedFlowRoute()],
+              unauthenticated: () => [const UnauthenticatedFlowRoute()],
             ),
-            theme: Theme.theme(),
-          );
-        },
+        navigatorObservers: () => [AppRouteObserver()],
       ),
+      theme: Theme.theme(),
     );
   }
 }

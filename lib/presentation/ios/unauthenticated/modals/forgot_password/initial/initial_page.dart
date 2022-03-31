@@ -1,5 +1,4 @@
 // CORE
-import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // BLOCS
@@ -35,14 +34,12 @@ class ForgotPasswordInitialPage extends StatelessWidget {
     BuildContext context,
     ForgotPasswordSubmitFailure failure,
   ) {
-    final appToast = AppToast.getIt();
-
     failure.authFailure.maybeWhen(
-      invalidEmail: () => appToast.show(
+      invalidEmail: () => context.showToast(
         context.l10n.errorInvalidEmailAddress.toUpperCase(),
       ),
       // TODO display other errors better
-      orElse: () => appToast.show(
+      orElse: () => context.showToast(
         context.l10n.errorUnexpected.toUpperCase(),
       ),
     );
