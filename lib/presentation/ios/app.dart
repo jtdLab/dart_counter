@@ -5,7 +5,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/core/route_observer.dart';
 
-// TODO rename to app flow ?? and move outside core
 class App extends StatelessWidget {
   const App({
     Key? key,

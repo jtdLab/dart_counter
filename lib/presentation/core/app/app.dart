@@ -12,6 +12,8 @@ import 'package:flutter/widgets.dart';
 part 'widgets.dart';
 
 /// The root widget of the application.
+///
+/// Handels which app widget is used depending on the platform the application runs on.
 class App extends StatelessWidget {
   const App({
     Key? key,
