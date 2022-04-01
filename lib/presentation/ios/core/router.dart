@@ -3,6 +3,7 @@ import 'package:dart_counter/application/authenticated/play/shared/in_game/check
 import 'package:dart_counter/application/authenticated/play/shared/in_game/checkout_details/checkout_details_state.dart';
 import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import 'package:dart_counter/domain/play/abstract_player_snapshot.dart';
+import 'package:dart_counter/presentation/core/platform_router.dart';
 import 'package:dart_counter/presentation/ios/authenticated/contact/contact_page.dart';
 import 'package:dart_counter/presentation/ios/authenticated/friends/friends_flow.dart';
 import 'package:dart_counter/presentation/ios/authenticated/friends/overview/modals/more/more_modal.dart';
@@ -380,7 +381,7 @@ class _Router extends _$_Router {}
 /// The ios router.
 @ios
 @lazySingleton
-class Router extends _Router {
+class Router extends _Router implements PlatformRouter {
   Router();
 
   factory Router.getIt() => getIt<Router>();

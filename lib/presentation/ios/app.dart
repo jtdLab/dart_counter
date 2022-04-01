@@ -5,7 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/core/route_observer.dart';
 
-class App extends StatelessWidget {
+class App extends PlatformApp {
   const App({
     Key? key,
   }) : super(key: key);

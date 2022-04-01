@@ -4,6 +4,7 @@ import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/android/app.dart' as android;
 import 'package:dart_counter/presentation/android/core/core.dart' as android;
 import 'package:dart_counter/presentation/core/core.dart';
+import 'package:dart_counter/presentation/core/platform_router.dart';
 import 'package:dart_counter/presentation/core/presentation_error.dart';
 import 'package:dart_counter/presentation/ios/app.dart' as ios;
 import 'package:dart_counter/presentation/ios/core/core.dart' as ios;

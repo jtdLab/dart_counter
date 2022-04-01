@@ -1,9 +1,9 @@
 part of 'app.dart';
 
 /// Injects common application wide dependencies into the widget tree.
-class AppScope<T extends StackRouter> extends StatelessWidget {
+class AppScope<T extends PlatformRouter> extends StatelessWidget {
   final T router;
-  final Widget app;
+  final PlatformApp app;
 
   const AppScope({
     Key? key,

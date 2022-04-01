@@ -45,7 +45,7 @@ void main() {
             child: underTest,
           ),
         );
-        await tester.takeException();
+        tester.takeException();
 
         // Assert
         final appScope =
@@ -77,7 +77,7 @@ void main() {
             child: underTest,
           ),
         );
-        await tester.takeException();
+        tester.takeException();
 
         // Assert
         final appScope =

@@ -49,3 +49,9 @@ export 'package:cached_network_image/cached_network_image.dart';
 
 // Font awesome
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// Platform app widget
+export 'platform_app.dart';
+
+// Platform router widget
+export 'platform_router.dart';
