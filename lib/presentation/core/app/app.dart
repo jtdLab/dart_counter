@@ -24,13 +24,17 @@ class App extends StatelessWidget {
     final platform = context.read<Platform>();
 
     if (platform.isAndroid) {
+      final router = android.Router.getIt();
+
       return AppScope(
-        router: android.Router(),
+        router: router,
         app: const android.App(),
       );
     } else if (platform.isIOS) {
+      final router = ios.Router.getIt();
+
       return AppScope(
-        router: ios.Router(),
+        router: router,
         app: const ios.App(),
       );
     } else {

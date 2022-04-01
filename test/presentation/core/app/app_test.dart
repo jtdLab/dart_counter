@@ -1,14 +1,13 @@
-import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/core/injection.dart';
-import 'package:dart_counter/presentation/android/app.dart' as android_app;
-import 'package:dart_counter/presentation/android/core/router.dart'
-    as android_router;
-import 'package:dart_counter/presentation/core/app/app.dart';
 import 'package:dart_counter/core/platform.dart';
+import 'package:dart_counter/presentation/android/app.dart' as android;
+import 'package:dart_counter/presentation/android/core/router.dart' as android;
+import 'package:dart_counter/presentation/core/app/app.dart';
 import 'package:dart_counter/presentation/core/presentation_error.dart';
-import 'package:dart_counter/presentation/ios/app.dart' as ios_app;
-import 'package:dart_counter/presentation/ios/core/router.dart' as ios_router;
+import 'package:dart_counter/presentation/ios/app.dart' as ios;
+import 'package:dart_counter/presentation/ios/core/router.dart' as ios;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import '../helpers/helpers.dart';
 
@@ -16,90 +15,101 @@ void main() {
   group('#App#', () {
     late Platform platform;
 
-    setUp(() {
-      // Register dependencies
-      platform = MockPlatform();
-      getIt.registerSingleton<Platform>(platform);
+    late App underTest;
 
-      // Config default behaviour of dependencies
+    setUp(() {
+      // Init dependencies
+      platform = MockPlatform();
       when(() => platform.isAndroid).thenReturn(false);
       when(() => platform.isIOS).thenReturn(false);
+
+      // Init widget under test
+      underTest = const App();
     });
 
-    tearDown(() async {
-      await getIt.reset();
-    });
+    testWidgets(
+      'GIVEN android router '
+      'WHEN platform is android '
+      'THEN render AppScope with the given router and the android app.',
+      (tester) async {
+        // Arrange
+        final router = android.Router();
+        getIt.registerSingleton(router);
 
-    group('GIVEN platform is android', () {
-      late AuthBloc authBloc;
-      late android_router.Router router;
-
-      setUp(() {
-        // Platform is android
         when(() => platform.isAndroid).thenReturn(true);
 
-        authBloc = MockAuthBloc();
-        getIt.registerSingleton<AuthBloc>(authBloc);
-        whenListenTo(authBloc, const AuthState.unauthenticated());
+        // Act
+        await tester.pumpWidget(
+          Provider.value(
+            value: platform,
+            child: underTest,
+          ),
+        );
+        await tester.takeException();
 
-        router = android_router.Router();
-        getIt.registerSingleton<android_router.Router>(router);
-      });
+        // Assert
+        final appScope =
+            tester.firstWidget<AppScope>(find.byType(AppScope<android.Router>));
+        expect(appScope.router, router);
+        expect(appScope.app, isA<android.App>());
 
-      testWidgets(
-        'THEN contains android App.',
-        (tester) async {
-          // Act
-          const underTest = App();
-          await tester.pumpWidget(underTest);
+        addTearDown(() {
+          getIt.unregister(instance: router);
+        });
+      },
+    );
 
-          // Assert
-          expect(find.byType(android_app.App), findsOneWidget);
-        },
-      );
-    });
+    testWidgets(
+      'GIVEN ios router '
+      'WHEN platform is ios '
+      'THEN render AppScope with the given router and the ios app.',
+      (tester) async {
+        // Arrange
+        final router = ios.Router();
+        getIt.registerSingleton(router);
 
-    group('GIVEN platform is ios', () {
-      late AuthBloc authBloc;
-      late ios_router.Router router;
-
-      setUp(() {
-        // Platform is ios
         when(() => platform.isIOS).thenReturn(true);
 
-        authBloc = MockAuthBloc();
-        getIt.registerSingleton<AuthBloc>(authBloc);
-        whenListenTo(authBloc, const AuthState.unauthenticated());
+        // Act
+        await tester.pumpWidget(
+          Provider.value(
+            value: platform,
+            child: underTest,
+          ),
+        );
+        await tester.takeException();
 
-        router = ios_router.Router();
-        getIt.registerSingleton<ios_router.Router>(router);
-      });
+        // Assert
+        final appScope =
+            tester.firstWidget<AppScope>(find.byType(AppScope<ios.Router>));
+        expect(appScope.router, router);
+        expect(appScope.app, isA<ios.App>());
 
-      testWidgets(
-        'THEN contains ios App.',
-        (tester) async {
-          // Act
-          const underTest = App();
-          await tester.pumpWidget(underTest);
+        addTearDown(() {
+          getIt.unregister(instance: router);
+        });
+      },
+    );
 
-          // Assert
-          expect(find.byType(ios_app.App), findsOneWidget);
-        },
-      );
-    });
+    testWidgets(
+      'WHEN platform is not android or ios '
+      'THEN throw PlatformNotSupportedError.',
+      (tester) async {
+        // Arrange
+        when(() => platform.isAndroid).thenReturn(false);
+        when(() => platform.isIOS).thenReturn(false);
 
-    group('GIVEN platform is not android or ios', () {
-      testWidgets(
-        'THEN throw PlatformNotSupportedError.',
-        (tester) async {
-          // Act
-          const underTest = App();
-          await tester.pumpWidget(underTest);
+        // Act
+        await tester.pumpWidget(
+          Provider.value(
+            value: platform,
+            child: underTest,
+          ),
+        );
 
-          // Assert
-          expect(tester.takeException(), isA<PlatformNotSupportedError>());
-        },
-      );
-    });
+        // Assert
+        expect(tester.takeException(), isA<PlatformNotSupportedError>());
+      },
+    );
   });
 }
