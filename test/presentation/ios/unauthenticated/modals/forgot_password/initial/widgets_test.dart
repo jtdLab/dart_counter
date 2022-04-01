@@ -63,7 +63,7 @@ void main() {
       await tester.pumpDeviceBuilder(builder);
 
       // Assert
-      await screenMatchesGolden(tester, 'forgot_password_initial_page_mobile');
+      await screenMatchesGolden(tester, 'forgot_password_initial_view_mobile');
     });
 
     for (final phone in iPhones) {

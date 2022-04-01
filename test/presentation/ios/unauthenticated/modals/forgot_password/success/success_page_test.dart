@@ -1,8 +1,6 @@
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../helpers/helpers.dart';
-
 void main() {
   group('#ForgotPasswordSuccessPage#', () {
     late ForgotPasswordSuccessPage underTest;
@@ -16,7 +14,7 @@ void main() {
       'Renders ForgotPasswordSuccessView.',
       (tester) async {
         // Act
-        await tester.pumpApp(underTest);
+        await tester.pumpWidget(underTest);
         tester.takeException();
 
         // Assert

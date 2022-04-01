@@ -35,7 +35,7 @@ void main() {
       // Assert
       await screenMatchesGolden(
         tester,
-        'forgot_password_success_page_mobile',
+        'forgot_password_success_view_mobile',
       );
     });
 

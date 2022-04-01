@@ -1,7 +1,6 @@
 import 'package:dart_counter/application/unauthenticated/forgot_password/forgot_password_bloc.dart';
 import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
-import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,16 +29,17 @@ void main() {
       underTest = const ForgotPasswordInitialPage();
     });
 
+    Widget bootstrap() => BlocProvider.value(
+          value: forgotPasswordBloc,
+          child: underTest,
+        );
+
     testWidgets(
       'Renders ForgotPasswordInitialView.',
       (tester) async {
         // Act
-        await tester.pumpApp(
-          BlocProvider(
-            create: (context) => forgotPasswordBloc,
-            child: underTest,
-          ),
-        );
+        await tester.pumpWidget(bootstrap());
+        tester.takeException();
 
         // Assert
         expect(find.byType(ForgotPasswordInitialView), findsOneWidget);
@@ -82,6 +82,13 @@ void main() {
     group('GIVEN locale is en', () {
       const locale = Locale('en');
 
+      late AppToast appToast;
+
+      setUp(() {
+        appToast = MockAppToast();
+        getIt.registerSingleton<AppToast>(appToast);
+      });
+
       tearDown(() async {
         await getIt.reset();
       });
@@ -90,9 +97,6 @@ void main() {
         'Calls show toast when submit fails with invalid email.',
         (tester) async {
           // Arrange
-          final appToast = MockAppToast();
-          getIt.registerSingleton<AppToast>(appToast);
-
           whenListen(
             forgotPasswordBloc,
             Stream.value(
@@ -121,9 +125,6 @@ void main() {
         'Calls show toast when submit fails with other error.',
         (tester) async {
           // Arrange
-          final appToast = MockAppToast();
-          getIt.registerSingleton<AppToast>(appToast);
-
           whenListen(
             forgotPasswordBloc,
             Stream.value(
@@ -152,6 +153,13 @@ void main() {
     group('GIVEN locale is de', () {
       const locale = Locale('de');
 
+      late AppToast appToast;
+
+      setUp(() {
+        appToast = MockAppToast();
+        getIt.registerSingleton<AppToast>(appToast);
+      });
+
       tearDown(() async {
         await getIt.reset();
       });
@@ -160,9 +168,6 @@ void main() {
         'Calls show toast when submit fails with invalid email.',
         (tester) async {
           // Arrange
-          final appToast = MockAppToast();
-          getIt.registerSingleton<AppToast>(appToast);
-
           whenListen(
             forgotPasswordBloc,
             Stream.value(
@@ -191,9 +196,6 @@ void main() {
         'Calls show toast when submit fails with other error.',
         (tester) async {
           // Arrange
-          final appToast = MockAppToast();
-          getIt.registerSingleton<AppToast>(appToast);
-
           whenListen(
             forgotPasswordBloc,
             Stream.value(
