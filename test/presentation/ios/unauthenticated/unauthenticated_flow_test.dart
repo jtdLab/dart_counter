@@ -1,55 +1,25 @@
-void main() {} // TODO
-
-/* import 'package:auto_route/auto_route.dart';
-import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-import 'package:dart_counter/core/injection.dart';
-import 'package:dart_counter/presentation/ios/app.dart';
-import 'package:dart_counter/presentation/ios/core/router.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/unauthenticated_flow.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../core/helpers/helpers.dart';
-import '../helpers/helpers.dart';
 
-// TODO the auth section is not implemented perfectly when think about routing there is used a pageview so the route structur gets fcked up a bit
 void main() {
-  late AuthBloc authBloc;
-  late Router router;
+  group('#UnauthenticatedFlow#', () {
+    late UnauthenticatedFlow underTest;
 
-  setUp(() {
-    // Register dependencies
-    router = Router();
-    //getIt.registerSingleton<Router>(router);
+    setUp(() {
+      underTest = const UnauthenticatedFlow();
+    });
 
-    authBloc = MockAuthBloc();
-    getIt.registerSingleton<AuthBloc>(authBloc);
-    whenListen(
-      authBloc,
-      Stream.value(const AuthState.unauthenticated()),
-      initialState: const AuthState.unauthenticated(),
-    );
-  });
+    Widget bootstrap() => routableWrapper(underTest, MockRouter());
 
-  tearDown(() async {
-    await getIt.reset();
-  });
-
-  /*  // TODO maybe test for auth wrapper instead of auto router becaus auth wrapper should be initial page ?
-  testWidgets(
-    'Contains AutoRouter.',
-    (tester) async {
+    testWidgets('Renders AutoRouter.', (tester) async {
       // Act
-      const underTest = App();
-      await tester.pumpWidget(underTest);
-      router.navigate(
-        const UnauthenticatedFlowRoute(children: [AuthWrapperRoute()]),
-      );
-      await tester.pump();
+      await tester.pumpWidget(bootstrap());
 
       // Assert
       expect(find.byType(AutoRouter), findsOneWidget);
-    },
-  );
- */
+    });
+  });
 }
- */

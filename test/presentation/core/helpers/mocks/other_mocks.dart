@@ -1,5 +1,4 @@
 import 'package:dart_counter/presentation/core/core.dart';
-import 'package:dart_counter/presentation/core/platform_router.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -15,3 +14,5 @@ class MockPlatformApp extends PlatformApp {
     throw UnimplementedError();
   }
 }
+
+class MockRouteData extends Mock implements RouteData {}

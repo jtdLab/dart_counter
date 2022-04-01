@@ -3,3 +3,4 @@ export 'package:mocktail/mocktail.dart';
 
 export 'mocks/mocks.dart';
 export 'when_listen_to.dart';
+export 'routable_wrapper.dart';
