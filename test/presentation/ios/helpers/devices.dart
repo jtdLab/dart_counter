@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:golden_toolkit/golden_toolkit.dart';
 
+// TODO enable small devices 
+
 /// A opinionated set of iPhones for testing.
 final List<Device> iPhones = [
   //const Device(size: Size(320, 568), name: 'iPhone SE 1st'),

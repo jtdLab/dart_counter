@@ -1,4 +1,4 @@
-import 'package:dart_counter/presentation/ios/core/router.dart';
+import 'package:dart_counter/presentation/android/core/router.dart';
 import 'package:mocktail/mocktail.dart';
 
 export 'package:mocktail/mocktail.dart';

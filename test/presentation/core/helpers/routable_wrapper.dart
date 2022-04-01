@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/src/matcher/route_matcher.dart';
 import 'package:dart_counter/presentation/core/core.dart';
 import 'package:flutter/widgets.dart';
 
 import 'helpers.dart';
+
+// TODO maybe make extension on widget tester pumpRoutableWidget
 
 /// Wraps [widget] with a dummy route so build doesnt fail.
 ///
@@ -12,7 +13,7 @@ import 'helpers.dart';
 /// This should only be used to test pages.
 Widget routableWrapper(Widget widget, PlatformRouter router) {
   assert(router is Mock);
-  
+
   const name = 'mocked-route-name';
   final collection = RouteCollection.from([
     RouteConfig(
