@@ -9,6 +9,7 @@ void main() {
     late ForgotPasswordModal underTest;
 
     setUp(() {
+      // Init widget under test
       underTest = const ForgotPasswordModal();
     });
 

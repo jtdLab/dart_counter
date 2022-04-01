@@ -8,6 +8,7 @@ void main() {
     late ForgotPasswordSuccessPage underTest;
 
     setUp(() {
+      // Init widget under test
       underTest = const ForgotPasswordSuccessPage();
     });
 

@@ -4,6 +4,7 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:golden_toolkit/golden_toolkit.dart';
 
 import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
@@ -12,7 +13,10 @@ void main() {
   group('#ForgotPasswordInitialView#', () {
     late ForgotPasswordBloc forgotPasswordBloc;
 
+    late ForgotPasswordInitialView underTest;
+
     setUp(() {
+      // Init dependencies
       forgotPasswordBloc = MockForgotPasswordBloc();
       whenListenTo(
         forgotPasswordBloc,
@@ -21,6 +25,45 @@ void main() {
           showErrorMessages: false,
         ),
       );
+
+      // Init widget under test
+      underTest = const ForgotPasswordInitialView();
+    });
+
+    testGoldens(
+        'GIVEN empty email '
+        'GIVEN showErrorMessages is false '
+        'THEN ForgotPasswordInitialPage should look correct on iPhones.',
+        (tester) async {
+      // Arrange
+      final email = EmailAddress.empty();
+      const showErrorMessages = false;
+
+      whenListenTo(
+        forgotPasswordBloc,
+        ForgotPasswordState.initial(
+          email: email,
+          showErrorMessages: showErrorMessages,
+        ),
+      );
+
+      // Act
+
+      final builder = DeviceBuilder()
+        ..overrideDevicesForAllScenarios(devices: iPhones)
+        ..addScenario(
+          widget: appWrapper(
+            BlocProvider(
+              create: (context) => forgotPasswordBloc,
+              child: underTest,
+            ),
+          ),
+          name: underTest.toString(),
+        );
+      await tester.pumpDeviceBuilder(builder);
+
+      // Assert
+      await screenMatchesGolden(tester, 'forgot_password_initial_page_mobile');
     });
 
     for (final phone in iPhones) {
@@ -32,7 +75,6 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            const underTest = ForgotPasswordInitialView();
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,
@@ -55,7 +97,6 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            const underTest = ForgotPasswordInitialView();
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,
@@ -78,7 +119,6 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            const underTest = ForgotPasswordInitialView();
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,
@@ -101,7 +141,6 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            const underTest = ForgotPasswordInitialView();
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,
@@ -127,7 +166,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -148,7 +186,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -169,7 +206,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -194,7 +230,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -215,7 +250,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -236,7 +270,6 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              const underTest = ForgotPasswordInitialView();
               await tester.pumpApp(
                 BlocProvider.value(
                   value: forgotPasswordBloc,
@@ -259,7 +292,6 @@ void main() {
             const newEmail = 'a';
 
             // Act
-            const underTest = ForgotPasswordInitialView();
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,
@@ -287,7 +319,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            const underTest = ForgotPasswordInitialView();
+
             await tester.pumpApp(
               BlocProvider.value(
                 value: forgotPasswordBloc,

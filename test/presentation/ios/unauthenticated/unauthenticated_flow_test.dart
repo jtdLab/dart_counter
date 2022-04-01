@@ -9,6 +9,7 @@ void main() {
     late UnauthenticatedFlow underTest;
 
     setUp(() {
+      // Init widget under test
       underTest = const UnauthenticatedFlow();
     });
 

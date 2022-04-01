@@ -13,9 +13,11 @@ void main() {
     late ForgotPasswordSuccessView underTest;
 
     setUp(() {
+      // Init dependencies
       router = MockRouter();
       when(() => router.pop()).thenAnswer((_) async => true);
 
+      // Init widget under test
       underTest = const ForgotPasswordSuccessView();
     });
 
