@@ -3,7 +3,6 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
-import '../../../../../core/helpers/helpers.dart' hide MockRouter;
 import '../../../../helpers/helpers.dart';
 
 void main() {
@@ -120,7 +119,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(underTest, locale);
+              await tester.pumpApp(underTest, locale: locale);
 
               // Assert
               expect(find.text('EMAIL SENT!'), findsOneWidget);
@@ -134,7 +133,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(underTest, locale);
+              await tester.pumpApp(underTest, locale: locale);
 
               // Assert
               expect(find.text('SIGN IN'), findsOneWidget);
@@ -152,7 +151,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(underTest, locale);
+              await tester.pumpApp(underTest, locale: locale);
 
               // Assert
               expect(find.text('EMAIL GESENDET!'), findsOneWidget);
@@ -166,7 +165,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(underTest, locale);
+              await tester.pumpApp(underTest, locale: locale);
 
               // Assert
               expect(find.text('EINLOGGEN'), findsOneWidget);

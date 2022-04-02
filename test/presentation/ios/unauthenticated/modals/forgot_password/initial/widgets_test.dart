@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
-import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
 
 void main() {
@@ -157,7 +156,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert
@@ -174,7 +173,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert
@@ -191,7 +190,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert
@@ -212,7 +211,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert
@@ -229,7 +228,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert
@@ -246,7 +245,7 @@ void main() {
               // Act
               await tester.pumpApp(
                 bootstrap(),
-                locale,
+                locale: locale,
               );
 
               // Assert

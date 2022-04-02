@@ -5,7 +5,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../../core/helpers/helpers.dart' hide MockRouter;
 import '../../../../helpers/helpers.dart';
 
 void main() {
@@ -102,7 +101,7 @@ void main() {
           // Act
           await tester.pumpApp(
             bootstrap(),
-            locale,
+            locale: locale,
           );
           tester.takeException();
 
@@ -128,7 +127,7 @@ void main() {
           // Act
           await tester.pumpApp(
             bootstrap(),
-            locale,
+            locale: locale,
           );
           tester.takeException();
 
@@ -158,7 +157,7 @@ void main() {
           // Act
           await tester.pumpApp(
             bootstrap(),
-            locale,
+            locale: locale,
           );
           tester.takeException();
 
@@ -184,7 +183,7 @@ void main() {
           // Act
           await tester.pumpApp(
             bootstrap(),
-            locale,
+            locale: locale,
           );
           tester.takeException();
 
