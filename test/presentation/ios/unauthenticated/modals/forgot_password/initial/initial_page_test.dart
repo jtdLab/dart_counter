@@ -5,19 +5,21 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../../core/helpers/helpers.dart';
+import '../../../../../core/helpers/helpers.dart' hide MockRouter;
 import '../../../../helpers/helpers.dart';
-
-// TODO refactor
 
 void main() {
   group('#ForgotPasswordInitialPage#', () {
+    late Router router;
+    late AppToast appToast;
     late ForgotPasswordBloc forgotPasswordBloc;
 
     late ForgotPasswordInitialPage underTest;
 
     setUp(() {
       // Init dependencies
+      router = MockRouter();
+      appToast = MockAppToast();
       forgotPasswordBloc = MockForgotPasswordBloc();
       whenListenTo(
         forgotPasswordBloc,
@@ -31,8 +33,13 @@ void main() {
       underTest = const ForgotPasswordInitialPage();
     });
 
-    Widget bootstrap() => BlocProvider.value(
-          value: forgotPasswordBloc,
+    Widget bootstrap() => MultiProvider(
+          providers: [
+            Provider.value(value: appToast),
+            BlocProvider.value(
+              value: forgotPasswordBloc,
+            )
+          ],
           child: underTest,
         );
 
@@ -52,7 +59,6 @@ void main() {
       'Calls replace with ForgotPasswordSuccessPageRoute when submit succeeds.',
       (tester) async {
         // Arrange
-        final router = MockRouter();
         when(
           () => router.replace(const ForgotPasswordSuccessPageRoute()),
         ).thenAnswer((_) async => null);
@@ -65,14 +71,9 @@ void main() {
 
         // Act
         await tester.pumpApp(
-          MockRouterProvider(
-            router: router,
-            child: BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
-          ),
+          routableWrapper(bootstrap(), router),
         );
+        tester.takeException();
 
         // Assert
         verify(
@@ -83,17 +84,6 @@ void main() {
 
     group('GIVEN locale is en', () {
       const locale = Locale('en');
-
-      late AppToast appToast;
-
-      setUp(() {
-        appToast = MockAppToast();
-        getIt.registerSingleton<AppToast>(appToast);
-      });
-
-      tearDown(() async {
-        await getIt.reset();
-      });
 
       testWidgets(
         'Calls show toast when submit fails with invalid email.',
@@ -111,12 +101,10 @@ void main() {
 
           // Act
           await tester.pumpApp(
-            BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
+            bootstrap(),
             locale,
           );
+          tester.takeException();
 
           // Assert
           verify(() => appToast.show('INVALID EMAIL')).called(1);
@@ -139,12 +127,10 @@ void main() {
 
           // Act
           await tester.pumpApp(
-            BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
+            bootstrap(),
             locale,
           );
+          tester.takeException();
 
           // Assert
           verify(() => appToast.show('UNEXPECTED ERROR')).called(1);
@@ -154,17 +140,6 @@ void main() {
 
     group('GIVEN locale is de', () {
       const locale = Locale('de');
-
-      late AppToast appToast;
-
-      setUp(() {
-        appToast = MockAppToast();
-        getIt.registerSingleton<AppToast>(appToast);
-      });
-
-      tearDown(() async {
-        await getIt.reset();
-      });
 
       testWidgets(
         'Calls show toast when submit fails with invalid email.',
@@ -182,12 +157,10 @@ void main() {
 
           // Act
           await tester.pumpApp(
-            BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
+            bootstrap(),
             locale,
           );
+          tester.takeException();
 
           // Assert
           verify(() => appToast.show('EMAIL-ADRESSE UNGÜLTIG')).called(1);
@@ -210,12 +183,10 @@ void main() {
 
           // Act
           await tester.pumpApp(
-            BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
+            bootstrap(),
             locale,
           );
+          tester.takeException();
 
           // Assert
           verify(() => appToast.show('UNERWARTETER FEHLER')).called(1);

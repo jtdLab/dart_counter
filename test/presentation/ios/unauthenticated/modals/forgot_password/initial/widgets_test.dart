@@ -9,8 +9,6 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
 
-// TODO refactor
-
 void main() {
   group('#ForgotPasswordInitialView#', () {
     late ForgotPasswordBloc forgotPasswordBloc;
@@ -32,6 +30,11 @@ void main() {
       underTest = const ForgotPasswordInitialView();
     });
 
+    Widget bootstrap() => BlocProvider.value(
+          value: forgotPasswordBloc,
+          child: underTest,
+        );
+
     testGoldens(
         'GIVEN empty email '
         'GIVEN showErrorMessages is false '
@@ -50,17 +53,13 @@ void main() {
       );
 
       // Act
-
       final builder = DeviceBuilder()
         ..overrideDevicesForAllScenarios(devices: iPhones)
         ..addScenario(
           widget: appWrapper(
-            BlocProvider(
-              create: (context) => forgotPasswordBloc,
-              child: underTest,
-            ),
+            bootstrap(),
           ),
-          name: underTest.toString(),
+          name: 'ForgotPasswordInitialView',
         );
       await tester.pumpDeviceBuilder(builder);
 
@@ -78,10 +77,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
 
             // Assert
@@ -100,10 +96,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
 
             // Assert
@@ -122,10 +115,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
 
             // Assert
@@ -144,10 +134,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
 
             // Assert
@@ -169,10 +156,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -189,10 +173,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -209,10 +190,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -233,10 +211,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -253,10 +228,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -273,10 +245,7 @@ void main() {
 
               // Act
               await tester.pumpApp(
-                BlocProvider.value(
-                  value: forgotPasswordBloc,
-                  child: underTest,
-                ),
+                bootstrap(),
                 locale,
               );
 
@@ -295,10 +264,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
             await tester.enterText(
               find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
@@ -321,12 +287,8 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-
             await tester.pumpApp(
-              BlocProvider.value(
-                value: forgotPasswordBloc,
-                child: underTest,
-              ),
+              bootstrap(),
             );
             await tester.tap(
               find.byKey(ForgotPasswordInitialView.confirmButtonKey),

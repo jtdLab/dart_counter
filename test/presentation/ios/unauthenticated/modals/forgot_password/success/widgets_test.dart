@@ -15,11 +15,12 @@ void main() {
     setUp(() {
       // Init dependencies
       router = MockRouter();
-      when(() => router.pop()).thenAnswer((_) async => true);
 
       // Init widget under test
       underTest = const ForgotPasswordSuccessView();
     });
+
+    Widget bootstrap() => Container(); // TODO
 
     testGoldens('ForgotPasswordSuccessView should look correct on iPhones.',
         (tester) async {
@@ -28,7 +29,7 @@ void main() {
         ..overrideDevicesForAllScenarios(devices: iPhones)
         ..addScenario(
           widget: appWrapper(underTest),
-          name: underTest.toString(),
+          name: 'ForgotPasswordSuccessView',
         );
       await tester.pumpDeviceBuilder(builder);
 
@@ -178,6 +179,7 @@ void main() {
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
+            when(() => router.pop()).thenAnswer((_) async => true);
 
             // Act
             await tester.pumpApp(
