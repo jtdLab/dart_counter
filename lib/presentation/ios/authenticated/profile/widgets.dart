@@ -1,5 +1,174 @@
 part of './profile_page.dart';
 
+class ProfileView extends HookWidget {
+  const ProfileView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final pageController = usePageController();
+    // needed cause pageControllers page cant be accessed before pageview is initialized
+    final pageIndex = useState(0); // TODO move this to profile bloc
+
+    return AppPage(
+      navigationBar: const AppNavigationBar(
+        leading: BackButton(),
+        middle: _NameDisplayer(),
+      ),
+      child: BlocBuilder<UserCubit, UserState>(
+        builder: (context, state) {
+          final careerStatsOnline = state.user.profile.careerStatsOnline;
+          final careerStatsOffline = state.user.careerStatsOffline;
+          final photoUrl = state.user.profile.photoUrl;
+
+          return BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              final careerStatsAll = state.careerStatsAll;
+
+              return Column(
+                children: [
+                  SizedBox(
+                    height: spacerSmall(context),
+                  ),
+                  ProfileImageDisplayer(
+                    photoUrl: photoUrl,
+                  ),
+                  SizedBox(
+                    height: spacerLarge(context),
+                  ),
+                  Container(
+                    height: size50(context),
+                    color: AppColors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Visibility(
+                            visible: pageIndex.value != 0,
+                            maintainSize: true,
+                            maintainAnimation: true,
+                            maintainState: true,
+                            child: AppIconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () => pageController.previousPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeOut,
+                              ),
+                              icon: Image.asset(AppImages
+                                  .chevronWhiteBackNew), // TODO icon size
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            pageIndex.value == 0
+                                ? context.l10n.general
+                                    .toUpperCase() // TODO better string
+                                : pageIndex.value == 1
+                                    ? context.l10n.online.toUpperCase()
+                                    : context.l10n.offline.toUpperCase(),
+                            style: CupertinoTheme.of(context)
+                                .textTheme
+                                .textStyle
+                                .copyWith(color: AppColors.white),
+                          ),
+                          const Spacer(),
+                          Visibility(
+                            visible: pageIndex.value != 2,
+                            maintainSize: true,
+                            maintainAnimation: true,
+                            maintainState: true,
+                            child: AppIconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () => pageController.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeOut,
+                              ),
+                              icon: Image.asset(
+                                AppImages.chevronWhiteForwardNew,
+                              ), // TODO icon size
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: spacerSmall(context),
+                  ),
+                  SizedBox(
+                    height: spacerSmall(context) +
+                        6 *
+                            (size6(context) +
+                                size50(context)), // TODO 8 eigneltich
+                    child: PageView(
+                      onPageChanged: (newPageIndex) {
+                        pageIndex.value = newPageIndex;
+                      },
+                      controller: pageController,
+                      children: [
+                        _CareerStatsDisplayer(
+                          careerStats: careerStatsAll,
+                        ),
+                        _CareerStatsDisplayer(
+                          careerStats: careerStatsOnline,
+                        ),
+                        _CareerStatsDisplayer(
+                          careerStats: careerStatsOffline,
+                        ),
+                      ],
+                    ),
+                  ),
+                  AppActionButton.normal(
+                    text: context.l10n.gameHistory.toUpperCase(),
+                    onPressed: () {
+                      if (pageIndex.value == 0) {
+                        context.router.push(
+                          GameHistoryFlowRoute(
+                            gameHistoryBloc: GameHistoryBloc.getIt(
+                              context.read<UserCubit>(),
+                            )..add(
+                                const GameHistoryEvent
+                                    .fetchGameHistoryAllRequested(),
+                              ),
+                          ),
+                        );
+                      } else if (pageIndex.value == 1) {
+                        context.router.push(
+                          GameHistoryFlowRoute(
+                            gameHistoryBloc: GameHistoryBloc.getIt(
+                              context.read<UserCubit>(),
+                            )..add(
+                                const GameHistoryEvent
+                                    .fetchGameHistoryOnlineRequested(),
+                              ),
+                          ),
+                        );
+                      } else {
+                        context.router.push(
+                          GameHistoryFlowRoute(
+                            gameHistoryBloc: GameHistoryBloc.getIt(
+                              context.read<UserCubit>(),
+                            )..add(
+                                const GameHistoryEvent
+                                    .fetchGameHistoryOfflineRequested(),
+                              ),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
 // NAVBAR
 class _NameDisplayer extends StatelessWidget {
   const _NameDisplayer({
@@ -21,169 +190,6 @@ class _NameDisplayer extends StatelessWidget {
 }
 
 // BODY
-class _ProfileWidget extends HookWidget {
-  const _ProfileWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final pageController = usePageController();
-    // needed cause pageControllers page cant be accessed before pageview is initialized
-    final pageIndex = useState(0); // TODO move this to profile bloc
-
-    return BlocBuilder<UserCubit, UserState>(
-      builder: (context, state) {
-        final careerStatsOnline = state.user.profile.careerStatsOnline;
-        final careerStatsOffline = state.user.careerStatsOffline;
-        final photoUrl = state.user.profile.photoUrl;
-
-        return BlocBuilder<ProfileBloc, ProfileState>(
-          builder: (context, state) {
-            final careerStatsAll = state.careerStatsAll;
-
-            return Column(
-              children: [
-                SizedBox(
-                  height: spacerSmall(context),
-                ),
-                ProfileImageDisplayer(
-                  photoUrl: photoUrl,
-                ),
-                SizedBox(
-                  height: spacerLarge(context),
-                ),
-                Container(
-                  height: size50(context),
-                  color: AppColors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Visibility(
-                          visible: pageIndex.value != 0,
-                          maintainSize: true,
-                          maintainAnimation: true,
-                          maintainState: true,
-                          child: AppIconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () => pageController.previousPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeOut,
-                            ),
-                            icon: Image.asset(AppImages
-                                .chevronWhiteBackNew), // TODO icon size
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          pageIndex.value == 0
-                              ? context.l10n.general
-                                  .toUpperCase() // TODO better string
-                              : pageIndex.value == 1
-                                  ? context.l10n.online.toUpperCase()
-                                  : context.l10n.offline.toUpperCase(),
-                          style: CupertinoTheme.of(context)
-                              .textTheme
-                              .textStyle
-                              .copyWith(color: AppColors.white),
-                        ),
-                        const Spacer(),
-                        Visibility(
-                          visible: pageIndex.value != 2,
-                          maintainSize: true,
-                          maintainAnimation: true,
-                          maintainState: true,
-                          child: AppIconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () => pageController.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeOut,
-                            ),
-                            icon: Image.asset(
-                              AppImages.chevronWhiteForwardNew,
-                            ), // TODO icon size
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: spacerSmall(context),
-                ),
-                SizedBox(
-                  height: spacerSmall(context) +
-                      6 *
-                          (size6(context) +
-                              size50(context)), // TODO 8 eigneltich
-                  child: PageView(
-                    onPageChanged: (newPageIndex) {
-                      pageIndex.value = newPageIndex;
-                    },
-                    controller: pageController,
-                    children: [
-                      _CareerStatsDisplayer(
-                        careerStats: careerStatsAll,
-                      ),
-                      _CareerStatsDisplayer(
-                        careerStats: careerStatsOnline,
-                      ),
-                      _CareerStatsDisplayer(
-                        careerStats: careerStatsOffline,
-                      ),
-                    ],
-                  ),
-                ),
-                AppActionButton.normal(
-                  text: context.l10n.gameHistory.toUpperCase(),
-                  onPressed: () {
-                    if (pageIndex.value == 0) {
-                      context.router.push(
-                        GameHistoryFlowRoute(
-                          gameHistoryBloc: GameHistoryBloc.getIt(
-                            context.read<UserCubit>(),
-                          )..add(
-                              const GameHistoryEvent
-                                  .fetchGameHistoryAllRequested(),
-                            ),
-                        ),
-                      );
-                    } else if (pageIndex.value == 1) {
-                      context.router.push(
-                        GameHistoryFlowRoute(
-                          gameHistoryBloc: GameHistoryBloc.getIt(
-                            context.read<UserCubit>(),
-                          )..add(
-                              const GameHistoryEvent
-                                  .fetchGameHistoryOnlineRequested(),
-                            ),
-                        ),
-                      );
-                    } else {
-                      context.router.push(
-                        GameHistoryFlowRoute(
-                          gameHistoryBloc: GameHistoryBloc.getIt(
-                            context.read<UserCubit>(),
-                          )..add(
-                              const GameHistoryEvent
-                                  .fetchGameHistoryOfflineRequested(),
-                            ),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
-}
-
 class _CareerStatsDisplayer extends StatelessWidget {
   final CareerStats careerStats;
 

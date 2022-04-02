@@ -12,14 +12,6 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        middle: Text(
-          context.l10n.contact.toUpperCase(),
-        ),
-        leading: const BackButton(),
-      ),
-      child: const _ContactWidget(),
-    );
+    return const ContactWidget();
   }
 }

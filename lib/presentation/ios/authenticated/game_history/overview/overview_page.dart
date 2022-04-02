@@ -21,16 +21,6 @@ class GameHistoryOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      navigationBar: AppNavigationBar(
-        leading: const BackButton(),
-        middle: Text(
-          context.l10n.gameHistory.toUpperCase(),
-        ),
-      ),
-      child: const SingleChildScrollView(
-        child: _OverviewWidget(),
-      ),
-    );
+    return const GameHistoryOverviewView();
   }
 }

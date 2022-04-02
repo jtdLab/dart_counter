@@ -1,48 +1,30 @@
 // CORE
 import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
-import 'package:dart_counter/presentation/ios/core/core.dart';
-
+import 'package:dart_counter/application/authenticated/settings/settings_bloc.dart';
 // BLOC
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
-import 'package:dart_counter/application/authenticated/settings/settings_bloc.dart';
-
-// MODALS
-import '../modals/edit_profile_image/edit_profile_image_modal.dart';
-import '../modals/change_username/change_username_modal.dart';
-import '../modals/change_password/change_password_modal.dart';
-import '../modals/change_email/change_email_modal.dart';
+import 'package:dart_counter/presentation/ios/core/core.dart';
 
 // LOCAL WIDGETS
 import '../../shared/widgets.dart';
+
 part 'widgets.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
   const SettingsPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => SettingsBloc.getIt(),
-      child: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is Unauthenticated) {
-            context.router.replace(const UnauthenticatedFlowRoute());
-          }
-        },
-        child: AppPage(
-          navigationBar: AppNavigationBar(
-            leading: const BackButton(),
-            middle: Text(
-              context.l10n.settings.toUpperCase(),
-            ),
-          ),
-          child: const SingleChildScrollView(
-            child: _SettingsWidget(),
-          ),
-        ),
-      ),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SettingsView();
   }
 }

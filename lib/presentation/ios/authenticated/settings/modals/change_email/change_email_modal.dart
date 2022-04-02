@@ -4,16 +4,21 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 // BLOCS
 import 'package:dart_counter/application/authenticated/settings/change_email/change_email_bloc.dart';
 
-class ChangeEmailModal extends StatelessWidget {
+class ChangeEmailModal extends StatelessWidget implements AutoRouteWrapper {
   const ChangeEmailModal({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => ChangeEmailBloc.getIt(),
-      child: const AutoRouter(),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
   }
 }

@@ -11,8 +11,6 @@ class ChangeEmailSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
-      child: _ChangeEmailSuccessWidget(),
-    );
+    return const ChangeEmailSuccessView();
   }
 }

@@ -1,65 +1,83 @@
 part of 'settings_page.dart';
 
-// BODY
-class _SettingsWidget extends StatelessWidget {
-  const _SettingsWidget({
+class SettingsView extends StatelessWidget {
+  const SettingsView({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(
-      builder: (context, state) {
-        final photoUrl = state.user.profile.photoUrl;
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is Unauthenticated) {
+          context.router.replace(const UnauthenticatedFlowRoute());
+        }
+      },
+      child: AppPage(
+        navigationBar: AppNavigationBar(
+          leading: const BackButton(),
+          middle: Text(
+            context.l10n.settings.toUpperCase(),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              final photoUrl = state.user.profile.photoUrl;
 
-        return Column(
-          children: [
-            CupertinoButton(
-              onPressed: () {
-                // TODO background
-                /**
+              return Column(
+                children: [
+                  CupertinoButton(
+                    onPressed: () {
+                      // TODO background
+                      /**
                 *  showCupertinoModalBottomSheet(
                   backgroundColor: Colors.white70,
                   context: context,
                   builder: (context) => EditProfileImageModal(),
                 );
                 */
-                context.router.push(const EditProfileImageModalRoute());
-              },
-              child: ProfileImageDisplayer(
-                photoUrl: photoUrl,
-              ),
-            ),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            // _LanguageCard(), // TODO needed or remove
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            _AccountCard(),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            _DartsGerCard(),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            AppPrimaryButton(
-              text: context.l10n.signOut,
-              color: AppColors.red,
-              onPressed: () {
-                context
-                    .read<SettingsBloc>()
-                    .add(const SettingsEvent.signOutPressed());
-              },
-            ),
-          ],
-        );
-      },
+                      context.router.push(const EditProfileImageModalRoute());
+                    },
+                    child: ProfileImageDisplayer(
+                      photoUrl: photoUrl,
+                    ),
+                  ),
+                  SizedBox(
+                    height: spacerLarge(context),
+                  ),
+                  // _LanguageCard(), // TODO needed or remove
+                  SizedBox(
+                    height: spacerLarge(context),
+                  ),
+                  _AccountCard(),
+                  SizedBox(
+                    height: spacerLarge(context),
+                  ),
+                  _DartsGerCard(),
+                  SizedBox(
+                    height: spacerLarge(context),
+                  ),
+                  AppPrimaryButton(
+                    text: context.l10n.signOut,
+                    color: AppColors.red,
+                    onPressed: () {
+                      context
+                          .read<SettingsBloc>()
+                          .add(const SettingsEvent.signOutPressed());
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
+
+// BODY
 
 /**
  * class _LanguageCard extends StatelessWidget {

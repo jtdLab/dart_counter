@@ -8,14 +8,19 @@ import 'package:dart_counter/application/authenticated/settings/edit_profile_ima
 part 'widgets.dart';
 
 // TODO use app page here
-class EditProfileImageModal extends StatelessWidget {
+
+class EditProfileImageModal extends StatelessWidget
+    implements AutoRouteWrapper {
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => EditProfileImageBloc.getIt(),
-      child: const AppModal(
-        child: _EditProfileImageWidget(),
-      ),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const EditProfileImageView();
   }
 }

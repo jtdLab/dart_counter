@@ -1,5 +1,46 @@
 part of 'home_page.dart';
 
+class HomeView extends StatelessWidget {
+  const HomeView()
+      : super(
+          key: const Key('home_widget'),
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<HomeBloc, HomeState, bool>(
+      selector: (state) => state is HomeLoadSuccess,
+      builder: (context, hasNavigationBar) {
+        return AppPage(
+          navigationBar: hasNavigationBar
+              ? AppNavigationBar(
+                  leading: const _SettingsButton(),
+                  trailing: Row(
+                    children: const [
+                      _GameInvitationsButton(),
+                      _FriendsButton(),
+                      _StatsButton(),
+                    ],
+                  ),
+                )
+              : null,
+          child: BlocBuilder<HomeBloc, HomeState>(
+            buildWhen: (previous, current) =>
+                previous.runtimeType != current.runtimeType,
+            builder: (context, state) {
+              return state.map(
+                loadInProgress: (_) => const LoadingWidget(),
+                loadSuccess: (_) => const _SuccessWidget(),
+                loadFailure: (_) => const _FailureWidget(),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
 // NAVBAR
 class _SettingsButton extends StatelessWidget {
   const _SettingsButton({
@@ -113,28 +154,6 @@ class _StatsButton extends StatelessWidget {
 }
 
 // BODY
-class _HomeWidget extends StatelessWidget {
-  const _HomeWidget() // TODO local changed works with const constructor
-      : super(
-          key: const Key('home_widget'),
-        );
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) =>
-          previous.runtimeType != current.runtimeType,
-      builder: (context, state) {
-        return state.map(
-          loadInProgress: (_) => const LoadingWidget(),
-          loadSuccess: (_) => const _SuccessWidget(),
-          loadFailure: (_) => const _FailureWidget(),
-        );
-      },
-    );
-  }
-}
-
 // Success
 class _SuccessWidget extends StatelessWidget {
   const _SuccessWidget()

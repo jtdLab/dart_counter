@@ -12,61 +12,22 @@ import '../shared/widgets.dart';
 
 part 'widgets.dart';
 
-class GameInvitationsPage extends StatelessWidget {
+class GameInvitationsPage extends StatelessWidget implements AutoRouteWrapper {
   const GameInvitationsPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => GameInvitationsBloc.getIt()
         ..add(const GameInvitationsEvent.started()),
-      child: BlocConsumer<GameInvitationsBloc, GameInvitationsState>(
-        listenWhen: (oldState, newState) => newState is GameInvitationsInitial,
-        listener: (context, state) {
-          state.mapOrNull(
-            // TODO move this logic to sepreate join game bloc
-            initial: (initial) {
-              final initialSnapshot = initial.gameSnapshot;
-
-              if (initialSnapshot != null) {
-                // TODO replace all needed?
-                context.router.replaceAll(
-                  [
-                    PlayOnlineFlowRoute(
-                      children: [
-                        CreateOnlineGameFlowRoute(
-                          children: [
-                            CreateOnlineGamePageRoute(
-                              initialSnapshot: initialSnapshot,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              }
-            },
-          );
-        },
-        builder: (context, state) {
-          return state.map(
-            initial: (_) => AppPage(
-              navigationBar: AppNavigationBar(
-                leading: const BackButton(),
-                middle: Text(context.l10n.invitations.toUpperCase()),
-              ),
-              child: const SingleChildScrollView(
-                child: _GameInvitationsWidget(),
-              ),
-            ),
-            loadInProgress: (_) => const AppPage(child: LoadingWidget()),
-            failure: (failure) => const Text('FAILURE '), // TODO
-          );
-        },
-      ),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const GameInvitationsView();
   }
 }

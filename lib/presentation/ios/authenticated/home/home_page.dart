@@ -37,78 +37,62 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
       ],
       child: this,
     );
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
-      listener: (context, state) {
-        state.mapOrNull(
-          success: (success) {
-            final initialSnapshot = success.initialSnapshot;
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CreateOnlineGameCubit, CreateOnlineGameState>(
+          listener: (context, state) {
+            state.mapOrNull(
+              success: (success) {
+                final initialSnapshot = success.initialSnapshot;
 
-            context.router.replace(
-              PlayOnlineFlowRoute(
-                children: [
-                  CreateOnlineGameFlowRoute(
+                context.router.replace(
+                  PlayOnlineFlowRoute(
                     children: [
-                      CreateOnlineGamePageRoute(
-                        initialSnapshot: initialSnapshot,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
-          // TODO localize + test
-          failure: (failure) => showToast('Could not create game.'),
-        );
-      },
-      child: BlocListener<CreateOfflineGameCubit, CreateOfflineGameState>(
-        listener: (context, state) {
-          state.mapOrNull(
-            success: (success) {
-              final initialSnapshot = success.initialSnapshot;
-
-              context.router.push(
-                PlayOfflineFlowRoute(
-                  children: [
-                    CreateOfflineGameFlowRoute(
-                      children: [
-                        CreateOfflineGamePageRoute(
-                          initialSnapshot: initialSnapshot,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
-        child: BlocSelector<HomeBloc, HomeState, bool>(
-          selector: (state) => state is HomeLoadSuccess,
-          builder: (context, hasNavigationBar) {
-            return AppPage(
-              navigationBar: hasNavigationBar
-                  ? AppNavigationBar(
-                      leading: const _SettingsButton(),
-                      trailing: Row(
-                        children: const [
-                          _GameInvitationsButton(),
-                          _FriendsButton(),
-                          _StatsButton(),
+                      CreateOnlineGameFlowRoute(
+                        children: [
+                          CreateOnlineGamePageRoute(
+                            initialSnapshot: initialSnapshot,
+                          )
                         ],
                       ),
-                    )
-                  : null,
-              child: const _HomeWidget(),
+                    ],
+                  ),
+                );
+              },
+              // TODO localize + test
+              failure: (failure) => showToast('Could not create game.'),
             );
           },
         ),
-      ),
+        BlocListener<CreateOfflineGameCubit, CreateOfflineGameState>(
+          listener: (context, state) {
+            state.mapOrNull(
+              success: (success) {
+                final initialSnapshot = success.initialSnapshot;
+
+                context.router.push(
+                  PlayOfflineFlowRoute(
+                    children: [
+                      CreateOfflineGameFlowRoute(
+                        children: [
+                          CreateOfflineGamePageRoute(
+                            initialSnapshot: initialSnapshot,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ],
+      child: const HomeView(),
     );
   }
 }

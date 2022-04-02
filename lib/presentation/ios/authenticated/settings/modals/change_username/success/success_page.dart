@@ -11,8 +11,6 @@ class ChangeUsernameSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
-      child: _ChangeUsernameSuccessWidget(),
-    );
+    return const ChangeUsernameSuccessView();
   }
 }

@@ -1,8 +1,7 @@
 part of './details_page.dart';
 
-// BODY
-class _DetailsWidget extends StatelessWidget {
-  const _DetailsWidget({
+class GameHistoryDetailsView extends StatelessWidget {
+  const GameHistoryDetailsView({
     Key? key,
   }) : super(key: key);
 
@@ -10,15 +9,33 @@ class _DetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameHistoryBloc, GameHistoryState>(
       builder: (context, state) {
-        final players = (state as GameHistoryLoadSuccess).selectedGame!.players;
+        final game = (state as GameHistoryLoadSuccess).selectedGame!;
 
-        // TODO
-        return _StatsWidget(players: players);
+        return AppPage(
+          navigationBar: AppNavigationBar(
+            leading: const BackButton(),
+            middle: Text(
+              game.description().toUpperCase(),
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: BlocBuilder<GameHistoryBloc, GameHistoryState>(
+              builder: (context, state) {
+                final players =
+                    (state as GameHistoryLoadSuccess).selectedGame!.players;
+
+                // TODO
+                return _StatsWidget(players: players);
+              },
+            ),
+          ),
+        );
       },
     );
   }
 }
 
+// BODY
 class _StatsWidget extends StatefulWidget {
   final KtList<AbstractPlayer> players;
 

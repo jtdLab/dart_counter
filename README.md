@@ -314,3 +314,8 @@ flutter pub add golden_toolkit
 
  listening to blocs on page or view level atm its on page level
  + goldens then widget tests are perfect
+
+
+ presentation/play and presentation/training route wrapper and separation of page and view is not done yet
+
+     // TODO move bloc listener into the view + test in forgot password initial 

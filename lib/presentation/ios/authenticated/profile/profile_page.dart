@@ -14,24 +14,23 @@ import 'package:dart_counter/domain/user/career_stats.dart';
 import '../shared/widgets.dart';
 part 'widgets.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatelessWidget implements AutoRouteWrapper {
   const ProfilePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => ProfileBloc.getIt(
         context.read<UserCubit>(),
       ),
-      child: const AppPage(
-        navigationBar: AppNavigationBar(
-          leading: BackButton(),
-          middle: _NameDisplayer(),
-        ),
-        child: _ProfileWidget(),
-      ),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const ProfileView();
   }
 }

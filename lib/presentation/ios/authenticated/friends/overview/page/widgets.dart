@@ -1,25 +1,43 @@
 part of 'overview_page.dart';
 
 // BODY
-class _OverviewWidget extends StatelessWidget {
-  const _OverviewWidget({
+class FriendsOverviewView extends StatelessWidget {
+  const FriendsOverviewView({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppColumn(
-      spacing: size12(context),
-      children: [
-        SizedBox(
-          height: spacerSmall(context),
+    return AppPage(
+      onTap: () => FocusScope.of(context).unfocus(),
+      navigationBar: AppNavigationBar(
+        leading: const BackButton(),
+        middle: Text(context.l10n.friends.toUpperCase()),
+        trailing: AppNavigationBarButton(
+          noPaddingRight: true,
+          onPressed: () {
+            context.router.push(const SearchUserModalRoute());
+          },
+          child: Image.asset(
+            AppImages.lupeNew,
+          ),
         ),
-        const _FriendRequestCard(),
-        SizedBox(
-          height: spacerSmall(context),
+      ),
+      child: SingleChildScrollView(
+        child: AppColumn(
+          spacing: size12(context),
+          children: [
+            SizedBox(
+              height: spacerSmall(context),
+            ),
+            const _FriendRequestCard(),
+            SizedBox(
+              height: spacerSmall(context),
+            ),
+            const _FriendsCard(),
+          ],
         ),
-        const _FriendsCard(),
-      ],
+      ),
     );
   }
 }

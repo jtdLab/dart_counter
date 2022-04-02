@@ -21,14 +21,6 @@ class FriendsProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppPage(
-      navigationBar: AppNavigationBar(
-        leading: BackButton(),
-        middle: _NameDisplayer(),
-      ),
-      child: SingleChildScrollView(
-        child: _FriendsProfileWidget(),
-      ),
-    );
+    return const FriendsProfileView();
   }
 }

@@ -1,45 +1,55 @@
 part of './overview_page.dart';
 
-// BODY
-class _OverviewWidget extends StatelessWidget {
-  const _OverviewWidget({
+class GameHistoryOverviewView extends StatelessWidget {
+  const GameHistoryOverviewView({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GameHistoryBloc, GameHistoryState>(
-      builder: (context, state) {
-        return state.map(
-          loadInProgress: (_) => const LoadingWidget(),
-          loadSuccess: (loadSucess) {
-            final games = loadSucess.gameHistory.getOrCrash();
+    return AppPage(
+      navigationBar: AppNavigationBar(
+        leading: const BackButton(),
+        middle: Text(
+          context.l10n.gameHistory.toUpperCase(),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: BlocBuilder<GameHistoryBloc, GameHistoryState>(
+          builder: (context, state) {
+            return state.map(
+              loadInProgress: (_) => const LoadingWidget(),
+              loadSuccess: (loadSucess) {
+                final games = loadSucess.gameHistory.getOrCrash();
 
-            if (games.isEmpty()) {
-              return Center(
-                child: Text(context.l10n.noGamesFound.toUpperCase()),
-              );
-            }
+                if (games.isEmpty()) {
+                  return Center(
+                    child: Text(context.l10n.noGamesFound.toUpperCase()),
+                  );
+                }
 
-            return AppColumn(
-              spacing: size12(context),
-              children: [
-                for (final game in games.iter) _GameHistoryCard(game: game),
-              ],
+                return AppColumn(
+                  spacing: size12(context),
+                  children: [
+                    for (final game in games.iter) _GameHistoryCard(game: game),
+                  ],
+                );
+              },
+              loadFailure: (_) {
+                // TODO real error displayer
+                return const Center(
+                  child: Text('Could not load games.'),
+                );
+              },
             );
           },
-          loadFailure: (_) {
-            // TODO real error displayer
-            return const Center(
-              child: Text('Could not load games.'),
-            );
-          },
-        );
-      },
+        ),
+      ),
     );
   }
 }
 
+// BODY
 // TODO only display game owners stats here atm the game owner is assumed to be players[0]
 class _GameHistoryCard extends StatelessWidget {
   final AbstractGame game;

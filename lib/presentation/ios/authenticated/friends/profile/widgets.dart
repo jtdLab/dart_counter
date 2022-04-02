@@ -1,7 +1,62 @@
 part of 'profile_page.dart';
 
-// NAVBAR
+class FriendsProfileView extends StatelessWidget {
+  const FriendsProfileView({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return AppPage(
+      navigationBar: const AppNavigationBar(
+        leading: BackButton(),
+        middle: _NameDisplayer(),
+      ),
+      child: SingleChildScrollView(
+        child: BlocBuilder<FriendsBloc, FriendsState>(
+          builder: (context, state) {
+            final photoUrl = state.selectedFriend!.profile.photoUrl;
+            final friendId = state.selectedFriend!.id;
+
+            return Column(
+              children: [
+                SizedBox(
+                  height: spacerLarge(context),
+                ),
+                ProfileImageDisplayer(
+                  photoUrl: photoUrl,
+                ),
+                SizedBox(
+                  height: spacerLarge(context),
+                ),
+                const _CareerStatsDisplayer(),
+                SizedBox(
+                  height: spacerNormal(context),
+                ),
+                AppActionButton.normal(
+                  text: context.l10n.gameHistory.toUpperCase(),
+                  onPressed: () => context.router.push(
+                    GameHistoryFlowRoute(
+                      gameHistoryBloc:
+                          GameHistoryBloc.getIt(context.read<UserCubit>())
+                            ..add(
+                              GameHistoryEvent.fetchGameHistoryOnlineRequested(
+                                userId: friendId,
+                              ),
+                            ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// NAVBAR
 class _NameDisplayer extends StatelessWidget {
   const _NameDisplayer({
     Key? key,
@@ -22,54 +77,6 @@ class _NameDisplayer extends StatelessWidget {
 }
 
 // BODY
-class _FriendsProfileWidget extends StatelessWidget {
-  const _FriendsProfileWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<FriendsBloc, FriendsState>(
-      builder: (context, state) {
-        final photoUrl = state.selectedFriend!.profile.photoUrl;
-        final friendId = state.selectedFriend!.id;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            ProfileImageDisplayer(
-              photoUrl: photoUrl,
-            ),
-            SizedBox(
-              height: spacerLarge(context),
-            ),
-            const _CareerStatsDisplayer(),
-            SizedBox(
-              height: spacerNormal(context),
-            ),
-            AppActionButton.normal(
-              text: context.l10n.gameHistory.toUpperCase(),
-              onPressed: () => context.router.push(
-                GameHistoryFlowRoute(
-                  gameHistoryBloc:
-                      GameHistoryBloc.getIt(context.read<UserCubit>())
-                        ..add(
-                          GameHistoryEvent.fetchGameHistoryOnlineRequested(
-                            userId: friendId,
-                          ),
-                        ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
 class _CareerStatsDisplayer extends StatelessWidget {
   const _CareerStatsDisplayer({
     Key? key,

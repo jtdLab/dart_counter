@@ -18,22 +18,6 @@ class GameHistoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GameHistoryBloc, GameHistoryState>(
-      builder: (context, state) {
-        final game = (state as GameHistoryLoadSuccess).selectedGame!;
-
-        return AppPage(
-          navigationBar: AppNavigationBar(
-            leading: const BackButton(),
-            middle: Text(
-              game.description().toUpperCase(),
-            ),
-          ),
-          child: const SingleChildScrollView(
-            child: _DetailsWidget(),
-          ),
-        );
-      },
-    );
+    return const GameHistoryDetailsView();
   }
 }

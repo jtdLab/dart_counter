@@ -1,91 +1,90 @@
 part of 'search_user_modal.dart';
 
-// BODY
-class _SearchUserWidget extends StatefulWidget {
-  const _SearchUserWidget({
+class SearchUserView extends StatelessWidget {
+  const SearchUserView({
     Key? key,
   }) : super(key: key);
 
   @override
-  _SearchUserWidgetState createState() => _SearchUserWidgetState();
-}
-
-class _SearchUserWidgetState extends State<_SearchUserWidget> {
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchUserBloc, SearchUserState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (initial) {
-            return const Center(child: Text('initial - TODO'));
-          },
-          loadInProgress: (loadInProgress) {
-            return const Center(child: Text('loadInProgress - TODO'));
-          },
-          loadSuccess: (loadSuccess) {
-            final searchResults = loadSuccess.searchResults;
+    return AppPage(
+      padding: modalPagePadding(context),
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: BlocBuilder<SearchUserBloc, SearchUserState>(
+        builder: (context, state) {
+          return state.map(
+            initial: (initial) {
+              return const Center(child: Text('initial - TODO'));
+            },
+            loadInProgress: (loadInProgress) {
+              return const Center(child: Text('loadInProgress - TODO'));
+            },
+            loadSuccess: (loadSuccess) {
+              final searchResults = loadSuccess.searchResults;
 
-            return AppColumn(
-              spacing: size6(context),
-              children: [
-                AppTextField(
-                  onClear: () => context.read<SearchUserBloc>().add(
-                        const SearchUserEvent.clearPressed(),
-                      ),
-                  showClear: true,
-                  placeholder: context.l10n.searchUser.toUpperCase(),
-                  onChanged: (newSearchString) {
-                    context.read<SearchUserBloc>().add(
-                          SearchUserEvent.searchStringChanged(
-                            newSearchString: newSearchString,
-                          ),
-                        );
-                  },
-                ),
-                Expanded(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) => SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: constraints.copyWith(
-                          maxHeight: constraints.maxHeight +
-                              MediaQuery.of(context).viewInsets.bottom,
+              return AppColumn(
+                spacing: size6(context),
+                children: [
+                  AppTextField(
+                    onClear: () => context.read<SearchUserBloc>().add(
+                          const SearchUserEvent.clearPressed(),
                         ),
-                        child: Builder(
-                          builder: (context) {
-                            if (searchResults.isEmpty()) {
-                              return const Center(
-                                child: Text('No results'), // TODO translate
-                              );
-                            } else {
-                              return AppColumn(
-                                spacing: size6(context),
-                                children: searchResults
-                                    .map(
-                                      (item) => _UserItem(
-                                        name: item.name.getOrCrash(),
-                                      ),
-                                    )
-                                    .asList(),
-                              );
-                            }
-                          },
+                    showClear: true,
+                    placeholder: context.l10n.searchUser.toUpperCase(),
+                    onChanged: (newSearchString) {
+                      context.read<SearchUserBloc>().add(
+                            SearchUserEvent.searchStringChanged(
+                              newSearchString: newSearchString,
+                            ),
+                          );
+                    },
+                  ),
+                  Expanded(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => SingleChildScrollView(
+                        child: ConstrainedBox(
+                          constraints: constraints.copyWith(
+                            maxHeight: constraints.maxHeight +
+                                MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: Builder(
+                            builder: (context) {
+                              if (searchResults.isEmpty()) {
+                                return const Center(
+                                  child: Text('No results'), // TODO translate
+                                );
+                              } else {
+                                return AppColumn(
+                                  spacing: size6(context),
+                                  children: searchResults
+                                      .map(
+                                        (item) => _UserItem(
+                                          name: item.name.getOrCrash(),
+                                        ),
+                                      )
+                                      .asList(),
+                                );
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            );
-          },
-          loadFailure: (loadFailure) {
-            return const Center(child: Text('loadFailure - TODO'));
-          },
-        );
-      },
+                ],
+              );
+            },
+            loadFailure: (loadFailure) {
+              return const Center(child: Text('loadFailure - TODO'));
+            },
+          );
+        },
+      ),
     );
   }
 }
 
+// BODY
 class _UserItem extends StatelessWidget {
   final String name;
 

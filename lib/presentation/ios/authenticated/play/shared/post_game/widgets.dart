@@ -8,7 +8,6 @@ import 'package:dart_counter/domain/play/abstract_game_snapshot.dart';
 import '../widgets.dart';
 
 // BODY
-
 class PostGameWidget extends StatelessWidget {
   final AbstractGameSnapshot gameSnapshot;
 
