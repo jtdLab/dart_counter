@@ -4,11 +4,13 @@ import 'package:flutter/widgets.dart';
 
 import 'helpers.dart';
 
+class MockRouteData extends Mock implements RouteData {}
+
 // TODO use this logic for widget MockRouterProvider
 
 /// Wraps [widget] with a dummy route so build doesnt fail.
 ///
-/// The [router] is a mock and can be used to verify navigation calls.
+/// The [router] must be a mock and can be used to verify navigation calls.
 ///
 /// This should only be used to test pages.
 Widget routableWrapper(Widget widget, PlatformRouter router) {

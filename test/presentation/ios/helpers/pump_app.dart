@@ -1,11 +1,8 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'app_wrapper.dart';
-
 extension PumpApp on WidgetTester {
-  // TODO doc
-  /// Wraps [widget] into testable app environment.
+  /// Wraps [widget] into testable app environment close to the original ios app.
   ///
   /// Developer can specificy [locale]. Defaults to the first supported locale of the original app.
   Future<void> pumpApp(
@@ -22,3 +19,17 @@ extension PumpApp on WidgetTester {
     );
   }
 }
+
+// TODO doc
+Widget appWrapper(
+  Widget child, {
+  Locale? locale,
+  CupertinoThemeData? theme,
+}) =>
+    CupertinoApp(
+      locale: locale ?? AppLocalizations.supportedLocales.first,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      theme: theme ?? Theme.theme(),
+      home: child,
+    );

@@ -15,17 +15,22 @@ void main() {
   group('#App#', () {
     late Platform platform;
 
-    late App underTest;
-
     setUp(() {
-      // Init dependencies
+      // Init dependencies + mock default behaviour
       platform = MockPlatform();
       when(() => platform.isAndroid).thenReturn(false);
       when(() => platform.isIOS).thenReturn(false);
-
-      // Init widget under test
-      underTest = const App();
     });
+
+    // Bootstrap the widget under test and pumps it using tester.
+    Future<void> bootstrap(WidgetTester tester) async {
+      await tester.pumpWidget(
+        Provider.value(
+          value: platform,
+          child: const App(),
+        ),
+      );
+    }
 
     testWidgets(
       'GIVEN android router '
@@ -39,12 +44,7 @@ void main() {
         when(() => platform.isAndroid).thenReturn(true);
 
         // Act
-        await tester.pumpWidget(
-          Provider.value(
-            value: platform,
-            child: underTest,
-          ),
-        );
+        await bootstrap(tester);
         tester.takeException();
 
         // Assert
@@ -71,12 +71,7 @@ void main() {
         when(() => platform.isIOS).thenReturn(true);
 
         // Act
-        await tester.pumpWidget(
-          Provider.value(
-            value: platform,
-            child: underTest,
-          ),
-        );
+        await bootstrap(tester);
         tester.takeException();
 
         // Assert
@@ -100,12 +95,7 @@ void main() {
         when(() => platform.isIOS).thenReturn(false);
 
         // Act
-        await tester.pumpWidget(
-          Provider.value(
-            value: platform,
-            child: underTest,
-          ),
-        );
+        await bootstrap(tester);
 
         // Assert
         expect(tester.takeException(), isA<PlatformNotSupportedError>());
