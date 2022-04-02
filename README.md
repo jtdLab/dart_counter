@@ -313,3 +313,4 @@ flutter pub add golden_toolkit
  https://blog.prototypr.io/designing-a-dark-mode-for-your-ios-app-the-ultimate-guide-6b043303b941
 
  listening to blocs on page or view level atm its on page level
+ + goldens then widget tests are perfect

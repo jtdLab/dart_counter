@@ -21,13 +21,13 @@ void main() {
       when(() => platform.isIOS).thenReturn(false);
     });
 
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(WidgetTester tester) async {
-      await tester.pumpWidget(
-        Provider.value(
-          value: platform,
-          child: const App(),
-        ),
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest() {
+      return Provider.value(
+        value: platform,
+        child: const App(),
       );
     }
 
@@ -43,7 +43,7 @@ void main() {
         when(() => platform.isAndroid).thenReturn(true);
 
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -70,7 +70,7 @@ void main() {
         when(() => platform.isIOS).thenReturn(true);
 
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -94,7 +94,7 @@ void main() {
         when(() => platform.isIOS).thenReturn(false);
 
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
 
         // Assert
         expect(tester.takeException(), isA<PlatformNotSupportedError>());

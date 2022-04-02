@@ -5,18 +5,18 @@ import '../../../helpers/helpers.dart';
 
 void main() {
   group('#ForgotPasswordModal#', () {
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(WidgetTester tester) async {
-      await tester.pumpWidget(
-        routableWrapper(const ForgotPasswordModal(), MockRouter()),
-      );
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest() {
+      return routableWrapper(const ForgotPasswordModal(), MockRouter());
     }
 
     // TODO test wrapped route
 
     testWidgets('Renders AutoRouter.', (tester) async {
       // Act
-      await bootstrap(tester);
+      await tester.pumpWidget(wrappedUnderTest());
 
       // Assert
       expect(find.byType(AutoRouter), findsOneWidget);

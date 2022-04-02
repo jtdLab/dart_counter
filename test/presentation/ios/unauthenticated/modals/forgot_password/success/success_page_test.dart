@@ -4,16 +4,18 @@ import '../../../../helpers/helpers.dart';
 
 void main() {
   group('#ForgotPasswordSuccessPage#', () {
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(WidgetTester tester) async {
-      await tester.pumpWidget(const ForgotPasswordSuccessPage());
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest() {
+      return const ForgotPasswordSuccessPage();
     }
 
     testWidgets(
       'Renders ForgotPasswordSuccessView.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert

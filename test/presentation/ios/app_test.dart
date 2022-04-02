@@ -16,16 +16,16 @@ void main() {
       whenListenTo(authBloc, const AuthState.unauthenticated());
     });
 
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(WidgetTester tester) async {
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            ListenableProvider.value(value: router),
-            BlocProvider.value(value: authBloc),
-          ],
-          child: const App(),
-        ),
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest() {
+      return MultiProvider(
+        providers: [
+          ListenableProvider.value(value: router),
+          BlocProvider.value(value: authBloc),
+        ],
+        child: const App(),
       );
     }
 
@@ -33,7 +33,7 @@ void main() {
 
     testWidgets('Render CupertinoApp.', (tester) async {
       // Act
-      await bootstrap(tester);
+      await tester.pumpWidget(wrappedUnderTest());
 
       // Assert
       expect(find.byType(CupertinoApp), findsOneWidget);

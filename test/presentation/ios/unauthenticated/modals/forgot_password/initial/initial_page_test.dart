@@ -26,12 +26,13 @@ void main() {
       );
     });
 
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(
-      WidgetTester tester, {
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest({
       Locale? locale,
-    }) async {
-      await tester.pumpApp(
+    }) {
+      return appWrapper(
         routableWrapper(
           MultiProvider(
             providers: [
@@ -52,7 +53,7 @@ void main() {
       'Renders ForgotPasswordInitialView.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -75,7 +76,7 @@ void main() {
         );
 
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -103,7 +104,7 @@ void main() {
           );
 
           // Act
-          await bootstrap(tester, locale: locale);
+          await tester.pumpWidget(wrappedUnderTest(locale: locale));
           tester.takeException();
 
           // Assert
@@ -126,7 +127,7 @@ void main() {
           );
 
           // Act
-          await bootstrap(tester, locale: locale);
+          await tester.pumpWidget(wrappedUnderTest(locale: locale));
           tester.takeException();
 
           // Assert
@@ -153,7 +154,7 @@ void main() {
           );
 
           // Act
-          await bootstrap(tester, locale: locale);
+          await tester.pumpWidget(wrappedUnderTest(locale: locale));
           tester.takeException();
 
           // Assert
@@ -176,7 +177,7 @@ void main() {
           );
 
           // Act
-          await bootstrap(tester, locale: locale);
+          await tester.pumpWidget(wrappedUnderTest(locale: locale));
           tester.takeException();
 
           // Assert

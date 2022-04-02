@@ -31,18 +31,18 @@ void main() {
       await getIt.reset();
     });
 
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(WidgetTester tester) async {
-      await tester.pumpWidget(
-        AppScope(router: router, app: app),
-      );
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest() {
+      return AppScope(router: router, app: app);
     }
 
     testWidgets(
       'Inject the router into widget tree.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -54,7 +54,7 @@ void main() {
       'Inject the app toast into widget tree.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -66,7 +66,7 @@ void main() {
       'Inject the auth bloc into widget tree.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
@@ -78,7 +78,7 @@ void main() {
       'Render the app.',
       (tester) async {
         // Act
-        await bootstrap(tester);
+        await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert

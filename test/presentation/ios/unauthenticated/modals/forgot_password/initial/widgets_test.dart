@@ -20,12 +20,13 @@ void main() {
       );
     });
 
-    // Bootstrap the widget under test and pump it using tester.
-    Future<void> bootstrap(
-      WidgetTester tester, {
+    // Wraps the widget under test with a testable environment
+    //
+    // and injects dependencies when needed.
+    Widget wrappedUnderTest({
       Locale? locale,
-    }) async {
-      await tester.pumpApp(
+    }) {
+      return appWrapper(
         BlocProvider.value(
           value: forgotPasswordBloc,
           child: const ForgotPasswordInitialView(),
@@ -35,7 +36,7 @@ void main() {
     }
 
     // TODO golden
-    /*  testGoldens(
+    testGoldens(
         'GIVEN empty email '
         'GIVEN showErrorMessages is false '
         'THEN ForgotPasswordInitialPage should look correct on iPhones.',
@@ -56,7 +57,7 @@ void main() {
       final builder = DeviceBuilder()
         ..overrideDevicesForAllScenarios(devices: iPhones)
         ..addScenario(
-          widget: appWrapper(const ForgotPasswordInitialView()),
+          widget: wrappedUnderTest(),
           name: 'ForgotPasswordInitialView',
         );
       await tester.pumpDeviceBuilder(builder);
@@ -64,7 +65,6 @@ void main() {
       // Assert
       await screenMatchesGolden(tester, 'forgot_password_initial_view_mobile');
     });
- */
 
     for (final phone in iPhones) {
       group('#${phone.name}#', () {
@@ -75,7 +75,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
 
             // Assert
             expect(
@@ -92,7 +92,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
 
             // Assert
             expect(
@@ -109,7 +109,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
 
             // Assert
             expect(
@@ -126,7 +126,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
 
             // Assert
             expect(
@@ -146,7 +146,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('FORGOT PASSWORD?'), findsOneWidget);
@@ -160,7 +160,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('EMAIL ADDRESS'), findsOneWidget);
@@ -174,7 +174,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('CONFIRM'), findsOneWidget);
@@ -192,7 +192,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('PASSWORT VERGESSEN?'), findsOneWidget);
@@ -206,7 +206,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('E-MAIL'), findsOneWidget);
@@ -220,7 +220,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await bootstrap(tester, locale: locale);
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
 
               // Assert
               expect(find.text('BESTÄTIGEN'), findsOneWidget);
@@ -236,7 +236,7 @@ void main() {
             const newEmail = 'a';
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
             await tester.enterText(
               find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
               newEmail,
@@ -258,7 +258,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await bootstrap(tester);
+            await tester.pumpWidget(wrappedUnderTest());
             await tester.tap(
               find.byKey(ForgotPasswordInitialView.confirmButtonKey),
             );
