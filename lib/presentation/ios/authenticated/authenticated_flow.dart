@@ -4,13 +4,13 @@ import 'package:dart_counter/application/authenticated/core/game_invitations/gam
 import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-class AuthenticatedFlow extends StatelessWidget {
+class AuthenticatedFlow extends StatelessWidget implements AutoRouteWrapper {
   const AuthenticatedFlow({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -23,7 +23,12 @@ class AuthenticatedFlow extends StatelessWidget {
           create: (context) => GameInvitationsCubit.getIt(),
         ),
       ],
-      child: const AutoRouter(),
+      child: this,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
   }
 }

@@ -7,6 +7,7 @@ import 'package:dart_counter/application/unauthenticated/forgot_password/forgot_
 // WIDGETS
 part 'widgets.dart';
 
+// TODO move bloc listener into the view
 class ForgotPasswordInitialPage extends StatelessWidget {
   const ForgotPasswordInitialPage({
     Key? key,
