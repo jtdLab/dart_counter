@@ -9,6 +9,8 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import '../../../../../core/helpers/helpers.dart';
 import '../../../../helpers/helpers.dart';
 
+// TODO refactor
+
 void main() {
   group('#ForgotPasswordInitialView#', () {
     late ForgotPasswordBloc forgotPasswordBloc;

@@ -3,8 +3,8 @@ import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_pass
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 
+import '../../../../../core/helpers/helpers.dart' hide MockRouter;
 import '../../../../helpers/helpers.dart';
-import '../../../../helpers/mocks.dart';
 
 void main() {
   group('#ForgotPasswordSuccessView#', () {
@@ -173,7 +173,6 @@ void main() {
           );
         });
 
-        // TODO fix this test
         testWidgets(
           'Calls pop when go to sign in button is tapped.',
           (tester) async {
@@ -182,7 +181,7 @@ void main() {
 
             // Act
             await tester.pumpApp(
-              MockRouterProvider(router: router, child: underTest),
+              routableWrapper(underTest, router),
             );
             await tester.tap(
               find.byKey(ForgotPasswordSuccessView.goToSignInButtonKey),

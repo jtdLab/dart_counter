@@ -1,10 +1,11 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
-class MockRouterProvider extends StatelessWidget {
+// TODO remove or get inspired by routable wrapper
+class MockRouterProviderx extends StatelessWidget {
   final Router router;
   final Widget child;
 
-  const MockRouterProvider({
+  const MockRouterProviderx({
     Key? key,
     required this.router,
     required this.child,

@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'helpers.dart';
 
-// TODO maybe make extension on widget tester pumpRoutableWidget
+// TODO use this logic for widget MockRouterProvider
 
 /// Wraps [widget] with a dummy route so build doesnt fail.
 ///
@@ -38,14 +38,20 @@ Widget routableWrapper(Widget widget, PlatformRouter router) {
   when(() => routeData.hasPendingChildren).thenReturn(false);
   when(() => routeData.pendingChildren).thenReturn([]);
 
+  const stateHash = 0;
+
   return RouteDataScope(
     routeData: routeData,
     child: RouterScope(
       controller: router,
       navigatorObservers: const [],
       inheritableObserversBuilder: () => [],
-      stateHash: 0,
-      child: widget,
+      stateHash: stateHash,
+      child: StackRouterScope(
+        controller: router,
+        stateHash: stateHash,
+        child: widget,
+      ),
     ),
   );
 }
