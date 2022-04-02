@@ -45,7 +45,7 @@ void main() {
     for (final phone in iPhones) {
       group('#${phone.name}#', () {
         testWidgets(
-          'Renders logo.',
+          'Render logo.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -62,7 +62,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders success email sent text.',
+          'Render success email sent text.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -79,7 +79,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders success icon.',
+          'Render success icon.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -96,7 +96,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders go to sign in button.',
+          'Render go to sign in button.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -116,7 +116,7 @@ void main() {
           const locale = Locale('en');
 
           testWidgets(
-            'THEN renders text "EMAIL SENT!".',
+            'THEN render text "EMAIL SENT!".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -130,7 +130,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "SIGN IN".',
+            'THEN render text "SIGN IN".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -148,7 +148,7 @@ void main() {
           const locale = Locale('de');
 
           testWidgets(
-            'THEN renders text "EMAIL GESENDET!".',
+            'THEN render text "EMAIL GESENDET!".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -162,7 +162,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "EINLOGGEN".',
+            'THEN render text "EINLOGGEN".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);

@@ -69,7 +69,7 @@ void main() {
     for (final phone in iPhones) {
       group('#${phone.name}#', () {
         testWidgets(
-          'Renders logo.',
+          'Render logo.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -86,7 +86,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders forgot password text.',
+          'Render forgot password text.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -103,7 +103,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders email text field.',
+          'Render email text field.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -120,7 +120,7 @@ void main() {
         );
 
         testWidgets(
-          'Renders confirm button.',
+          'Render confirm button.',
           (tester) async {
             // Arrange
             await tester.binding.setSurfaceSize(phone.size);
@@ -140,7 +140,7 @@ void main() {
           const locale = Locale('en');
 
           testWidgets(
-            'THEN renders text "FORGOT PASSWORD?".',
+            'THEN render text "FORGOT PASSWORD?".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -154,7 +154,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "EMAIL ADDRESS".',
+            'THEN render text "EMAIL ADDRESS".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -168,7 +168,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "CONFIRM".',
+            'THEN render text "CONFIRM".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -186,7 +186,7 @@ void main() {
           const locale = Locale('de');
 
           testWidgets(
-            'THEN renders text "PASSWORT VERGESSEN?".',
+            'THEN render text "PASSWORT VERGESSEN?".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -200,7 +200,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "E-MAIL".',
+            'THEN render text "E-MAIL".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);
@@ -214,7 +214,7 @@ void main() {
           );
 
           testWidgets(
-            'THEN renders text "BESTÄTIGEN".',
+            'THEN render text "BESTÄTIGEN".',
             (tester) async {
               // Arrange
               await tester.binding.setSurfaceSize(phone.size);

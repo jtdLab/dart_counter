@@ -50,7 +50,7 @@ void main() {
     }
 
     testWidgets(
-      'Renders ForgotPasswordInitialView.',
+      'Render ForgotPasswordInitialView.',
       (tester) async {
         // Act
         await tester.pumpWidget(wrappedUnderTest());

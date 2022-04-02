@@ -14,7 +14,6 @@ class ForgotPasswordInitialPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO move bloc listener into the view + test
     return BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
       listenWhen: (previous, current) =>
           current is ForgotPasswordSubmitSuccess ||

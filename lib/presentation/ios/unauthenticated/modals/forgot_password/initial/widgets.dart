@@ -16,7 +16,7 @@ class ForgotPasswordInitialView extends StatelessWidget {
     final node = FocusScope.of(context);
 
     return AppPage(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () => node.unfocus(),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final bottomInsets = MediaQuery.of(context).viewInsets.bottom;

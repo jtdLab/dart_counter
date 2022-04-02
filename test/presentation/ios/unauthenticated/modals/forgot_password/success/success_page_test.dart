@@ -12,7 +12,7 @@ void main() {
     }
 
     testWidgets(
-      'Renders ForgotPasswordSuccessView.',
+      'Render ForgotPasswordSuccessView.',
       (tester) async {
         // Act
         await tester.pumpWidget(wrappedUnderTest());

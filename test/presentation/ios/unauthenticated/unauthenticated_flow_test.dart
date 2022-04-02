@@ -12,7 +12,7 @@ void main() {
       return routableWrapper(const UnauthenticatedFlow(), MockRouter());
     }
 
-    testWidgets('Renders AutoRouter.', (tester) async {
+    testWidgets('Render AutoRouter.', (tester) async {
       // Act
       await tester.pumpWidget(wrappedUnderTest());
 
