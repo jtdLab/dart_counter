@@ -3,7 +3,6 @@ import 'package:dart_counter/domain/auth/auth_failure.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../helpers/helpers.dart';
 
@@ -13,10 +12,8 @@ void main() {
     late AppToast appToast;
     late ForgotPasswordBloc forgotPasswordBloc;
 
-    late ForgotPasswordInitialPage underTest;
-
     setUp(() {
-      // Init dependencies
+      // Init dependencies + mock default behaviour
       router = MockRouter();
       appToast = MockAppToast();
       forgotPasswordBloc = MockForgotPasswordBloc();
@@ -27,26 +24,35 @@ void main() {
           showErrorMessages: false,
         ),
       );
-
-      // Init widget under test
-      underTest = const ForgotPasswordInitialPage();
     });
 
-    Widget bootstrap() => MultiProvider(
-          providers: [
-            Provider.value(value: appToast),
-            BlocProvider.value(
-              value: forgotPasswordBloc,
-            )
-          ],
-          child: underTest,
-        );
+    // Bootstrap the widget under test and pump it using tester.
+    Future<void> bootstrap(
+      WidgetTester tester, {
+      Locale? locale,
+    }) async {
+      await tester.pumpApp(
+        routableWrapper(
+          MultiProvider(
+            providers: [
+              Provider.value(value: appToast),
+              BlocProvider.value(
+                value: forgotPasswordBloc,
+              )
+            ],
+            child: const ForgotPasswordInitialPage(),
+          ),
+          router,
+        ),
+        locale: locale,
+      );
+    }
 
     testWidgets(
       'Renders ForgotPasswordInitialView.',
       (tester) async {
         // Act
-        await tester.pumpWidget(bootstrap());
+        await bootstrap(tester);
         tester.takeException();
 
         // Assert
@@ -69,9 +75,7 @@ void main() {
         );
 
         // Act
-        await tester.pumpApp(
-          routableWrapper(bootstrap(), router),
-        );
+        await bootstrap(tester);
         tester.takeException();
 
         // Assert
@@ -99,10 +103,7 @@ void main() {
           );
 
           // Act
-          await tester.pumpApp(
-            bootstrap(),
-            locale: locale,
-          );
+          await bootstrap(tester, locale: locale);
           tester.takeException();
 
           // Assert
@@ -125,10 +126,7 @@ void main() {
           );
 
           // Act
-          await tester.pumpApp(
-            bootstrap(),
-            locale: locale,
-          );
+          await bootstrap(tester, locale: locale);
           tester.takeException();
 
           // Assert
@@ -155,10 +153,7 @@ void main() {
           );
 
           // Act
-          await tester.pumpApp(
-            bootstrap(),
-            locale: locale,
-          );
+          await bootstrap(tester, locale: locale);
           tester.takeException();
 
           // Assert
@@ -181,10 +176,7 @@ void main() {
           );
 
           // Act
-          await tester.pumpApp(
-            bootstrap(),
-            locale: locale,
-          );
+          await bootstrap(tester, locale: locale);
           tester.takeException();
 
           // Assert

@@ -1,7 +1,6 @@
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/ios/app.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../core/helpers/helpers.dart';
 
@@ -10,25 +9,23 @@ void main() {
     late Router router;
     late AuthBloc authBloc;
 
-    late App underTest;
-
     setUp(() {
-      // Init dependencies
+      // Init dependencies + mock default behaviour
       router = Router();
       authBloc = MockAuthBloc();
       whenListenTo(authBloc, const AuthState.unauthenticated());
-
-      // Init widget under test
-      underTest = const App();
     });
 
-    Widget bootstrap() {
-      return MultiProvider(
-        providers: [
-          ListenableProvider.value(value: router),
-          BlocProvider.value(value: authBloc),
-        ],
-        child: underTest,
+    // Bootstrap the widget under test and pump it using tester.
+    Future<void> bootstrap(WidgetTester tester) async {
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ListenableProvider.value(value: router),
+            BlocProvider.value(value: authBloc),
+          ],
+          child: const App(),
+        ),
       );
     }
 
@@ -36,7 +33,7 @@ void main() {
 
     testWidgets('Render CupertinoApp.', (tester) async {
       // Act
-      await tester.pumpWidget(bootstrap());
+      await bootstrap(tester);
 
       // Assert
       expect(find.byType(CupertinoApp), findsOneWidget);

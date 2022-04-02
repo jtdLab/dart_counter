@@ -1,26 +1,22 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/forgot_password_modal.dart';
-import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../core/helpers/helpers.dart';
 import '../../../helpers/helpers.dart';
 
 void main() {
   group('#ForgotPasswordModal#', () {
-    late ForgotPasswordModal underTest;
-
-    setUp(() {
-      // Init widget under test
-      underTest = const ForgotPasswordModal();
-    });
-
-    Widget bootstrap() => routableWrapper(underTest, MockRouter());
+    // Bootstrap the widget under test and pump it using tester.
+    Future<void> bootstrap(WidgetTester tester) async {
+      await tester.pumpWidget(
+        routableWrapper(const ForgotPasswordModal(), MockRouter()),
+      );
+    }
 
     // TODO test wrapped route
 
     testWidgets('Renders AutoRouter.', (tester) async {
       // Act
-      await tester.pumpWidget(bootstrap());
+      await bootstrap(tester);
 
       // Assert
       expect(find.byType(AutoRouter), findsOneWidget);

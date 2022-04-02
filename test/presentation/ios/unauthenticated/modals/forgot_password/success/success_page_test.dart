@@ -1,20 +1,19 @@
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/success/success_page.dart';
-import 'package:flutter_test/flutter_test.dart';
+
+import '../../../../helpers/helpers.dart';
 
 void main() {
   group('#ForgotPasswordSuccessPage#', () {
-    late ForgotPasswordSuccessPage underTest;
-
-    setUp(() {
-      // Init widget under test
-      underTest = const ForgotPasswordSuccessPage();
-    });
+    // Bootstrap the widget under test and pump it using tester.
+    Future<void> bootstrap(WidgetTester tester) async {
+      await tester.pumpWidget(const ForgotPasswordSuccessPage());
+    }
 
     testWidgets(
       'Renders ForgotPasswordSuccessView.',
       (tester) async {
         // Act
-        await tester.pumpWidget(underTest);
+        await bootstrap(tester);
         tester.takeException();
 
         // Assert

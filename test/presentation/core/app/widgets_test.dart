@@ -1,8 +1,6 @@
 import 'package:dart_counter/application/shared/auth/auth_bloc.dart';
 import 'package:dart_counter/presentation/core/app/app.dart';
 import 'package:dart_counter/presentation/core/core.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/helpers.dart';
 
@@ -33,7 +31,7 @@ void main() {
       await getIt.reset();
     });
 
-    // Bootstrap the widget under test and pumps it using tester.
+    // Bootstrap the widget under test and pump it using tester.
     Future<void> bootstrap(WidgetTester tester) async {
       await tester.pumpWidget(
         AppScope(router: router, app: app),

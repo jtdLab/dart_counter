@@ -6,7 +6,6 @@ import 'package:dart_counter/presentation/core/app/app.dart';
 import 'package:dart_counter/presentation/core/presentation_error.dart';
 import 'package:dart_counter/presentation/ios/app.dart' as ios;
 import 'package:dart_counter/presentation/ios/core/router.dart' as ios;
-import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helpers.dart';
@@ -22,7 +21,7 @@ void main() {
       when(() => platform.isIOS).thenReturn(false);
     });
 
-    // Bootstrap the widget under test and pumps it using tester.
+    // Bootstrap the widget under test and pump it using tester.
     Future<void> bootstrap(WidgetTester tester) async {
       await tester.pumpWidget(
         Provider.value(

@@ -1,10 +1,6 @@
 import 'package:dart_counter/application/unauthenticated/forgot_password/forgot_password_bloc.dart';
 import 'package:dart_counter/domain/core/value_objects.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/modals/forgot_password/initial/initial_page.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:golden_toolkit/golden_toolkit.dart';
 
 import '../../../../helpers/helpers.dart';
 
@@ -12,10 +8,8 @@ void main() {
   group('#ForgotPasswordInitialView#', () {
     late ForgotPasswordBloc forgotPasswordBloc;
 
-    late ForgotPasswordInitialView underTest;
-
     setUp(() {
-      // Init dependencies
+      // Init dependencies + mock default behaviour
       forgotPasswordBloc = MockForgotPasswordBloc();
       whenListenTo(
         forgotPasswordBloc,
@@ -24,17 +18,24 @@ void main() {
           showErrorMessages: false,
         ),
       );
-
-      // Init widget under test
-      underTest = const ForgotPasswordInitialView();
     });
 
-    Widget bootstrap() => BlocProvider.value(
+    // Bootstrap the widget under test and pump it using tester.
+    Future<void> bootstrap(
+      WidgetTester tester, {
+      Locale? locale,
+    }) async {
+      await tester.pumpApp(
+        BlocProvider.value(
           value: forgotPasswordBloc,
-          child: underTest,
-        );
+          child: const ForgotPasswordInitialView(),
+        ),
+        locale: locale,
+      );
+    }
 
-    testGoldens(
+    // TODO golden
+    /*  testGoldens(
         'GIVEN empty email '
         'GIVEN showErrorMessages is false '
         'THEN ForgotPasswordInitialPage should look correct on iPhones.',
@@ -55,9 +56,7 @@ void main() {
       final builder = DeviceBuilder()
         ..overrideDevicesForAllScenarios(devices: iPhones)
         ..addScenario(
-          widget: appWrapper(
-            bootstrap(),
-          ),
+          widget: appWrapper(const ForgotPasswordInitialView()),
           name: 'ForgotPasswordInitialView',
         );
       await tester.pumpDeviceBuilder(builder);
@@ -65,6 +64,7 @@ void main() {
       // Assert
       await screenMatchesGolden(tester, 'forgot_password_initial_view_mobile');
     });
+ */
 
     for (final phone in iPhones) {
       group('#${phone.name}#', () {
@@ -75,9 +75,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
 
             // Assert
             expect(
@@ -94,9 +92,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
 
             // Assert
             expect(
@@ -113,9 +109,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
 
             // Assert
             expect(
@@ -132,9 +126,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
 
             // Assert
             expect(
@@ -154,10 +146,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('FORGOT PASSWORD?'), findsOneWidget);
@@ -171,10 +160,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('EMAIL ADDRESS'), findsOneWidget);
@@ -188,10 +174,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('CONFIRM'), findsOneWidget);
@@ -209,10 +192,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('PASSWORT VERGESSEN?'), findsOneWidget);
@@ -226,10 +206,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('E-MAIL'), findsOneWidget);
@@ -243,10 +220,7 @@ void main() {
               await tester.binding.setSurfaceSize(phone.size);
 
               // Act
-              await tester.pumpApp(
-                bootstrap(),
-                locale: locale,
-              );
+              await bootstrap(tester, locale: locale);
 
               // Assert
               expect(find.text('BESTÄTIGEN'), findsOneWidget);
@@ -262,9 +236,7 @@ void main() {
             const newEmail = 'a';
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
             await tester.enterText(
               find.byKey(ForgotPasswordInitialView.emailTextFieldKey),
               newEmail,
@@ -286,9 +258,7 @@ void main() {
             await tester.binding.setSurfaceSize(phone.size);
 
             // Act
-            await tester.pumpApp(
-              bootstrap(),
-            );
+            await bootstrap(tester);
             await tester.tap(
               find.byKey(ForgotPasswordInitialView.confirmButtonKey),
             );
