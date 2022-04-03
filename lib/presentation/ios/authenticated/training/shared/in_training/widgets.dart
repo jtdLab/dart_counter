@@ -1215,9 +1215,7 @@ class _PropertyCard extends StatelessWidget {
 // TODO share with play
 // DARTS DISPLAYER
 class DartsDisplayer extends StatelessWidget {
-  const DartsDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const DartsDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1307,9 +1305,7 @@ class DartsDisplayer extends StatelessWidget {
 // TODO share with play
 // INPUT ROW
 class InputRow extends StatelessWidget {
-  const InputRow({
-    Key? key,
-  }) : super(key: key);
+  const InputRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1331,9 +1327,7 @@ class InputRow extends StatelessWidget {
 }
 
 class _UndoButton extends StatelessWidget {
-  const _UndoButton({
-    Key? key,
-  }) : super(key: key);
+  const _UndoButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1359,9 +1353,7 @@ class _UndoButton extends StatelessWidget {
 }
 
 class _InputPointsDisplayer extends StatelessWidget {
-  const _InputPointsDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _InputPointsDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1387,9 +1379,7 @@ class _InputPointsDisplayer extends StatelessWidget {
 }
 
 class _CommitButton extends StatelessWidget {
-  const _CommitButton({
-    Key? key,
-  }) : super(key: key);
+  const _CommitButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1417,9 +1407,7 @@ class _CommitButton extends StatelessWidget {
 // TODO share with play
 // STANDARD INPUT AREA
 class StandardInputArea extends StatelessWidget {
-  const StandardInputArea({
-    Key? key,
-  }) : super(key: key);
+  const StandardInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1448,9 +1436,7 @@ class StandardInputArea extends StatelessWidget {
 }
 
 class _StandardKeyBoard extends StatelessWidget {
-  const _StandardKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _StandardKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1560,9 +1546,7 @@ class _StandardDigitButton extends StatelessWidget {
 }
 
 class _StandardEreaseButton extends StatelessWidget {
-  const _StandardEreaseButton({
-    Key? key,
-  }) : super(key: key);
+  const _StandardEreaseButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1590,9 +1574,7 @@ class _StandardEreaseButton extends StatelessWidget {
 }
 
 class _CheckButton extends StatelessWidget {
-  const _CheckButton({
-    Key? key,
-  }) : super(key: key);
+  const _CheckButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1622,9 +1604,7 @@ class _CheckButton extends StatelessWidget {
 // TODO share with play
 // DETAILED INPUT AREA
 class DetailedInputArea extends StatelessWidget {
-  const DetailedInputArea({
-    Key? key,
-  }) : super(key: key);
+  const DetailedInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1655,9 +1635,7 @@ class DetailedInputArea extends StatelessWidget {
 }
 
 class _DetailedKeyBoard extends StatelessWidget {
-  const _DetailedKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _DetailedKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1850,9 +1828,7 @@ class _DetailedDigitButton extends StatelessWidget {
 }
 
 class _DetailedEreaseButton extends StatelessWidget {
-  const _DetailedEreaseButton({
-    Key? key,
-  }) : super(key: key);
+  const _DetailedEreaseButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1881,9 +1857,7 @@ class _DetailedEreaseButton extends StatelessWidget {
 
 // DOUBLE BOBS27 INPUT AREA
 class DoubleBobsTwentySevenInputArea extends StatelessWidget {
-  const DoubleBobsTwentySevenInputArea({
-    Key? key,
-  }) : super(key: key);
+  const DoubleBobsTwentySevenInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -1914,9 +1888,7 @@ class DoubleBobsTwentySevenInputArea extends StatelessWidget {
 }
 
 class _DoubleBobsTwentySevenKeyBoard extends StatelessWidget {
-  const _DoubleBobsTwentySevenKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _DoubleBobsTwentySevenKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

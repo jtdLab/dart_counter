@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 part 'widgets.dart';
 
 class ChangePasswordSuccessPage extends StatelessWidget {
-  const ChangePasswordSuccessPage({
-    Key? key,
-  }) : super(key: key);
+  const ChangePasswordSuccessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

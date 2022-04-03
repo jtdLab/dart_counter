@@ -15,9 +15,7 @@ import '../../../shared/widgets.dart';
 part 'widgets.dart';
 
 class FriendsOverviewPage extends StatelessWidget {
-  const FriendsOverviewPage({
-    Key? key,
-  }) : super(key: key);
+  const FriendsOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,7 @@ part of 'success_page.dart';
 
 // BODY
 class ChangeUsernameSuccessView extends StatelessWidget {
-  const ChangeUsernameSuccessView({
-    Key? key,
-  }) : super(key: key);
+  const ChangeUsernameSuccessView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,7 @@ part of './contact_page.dart';
 
 // BODY
 class ContactWidget extends StatelessWidget {
-  const ContactWidget({
-    Key? key,
-  }) : super(key: key);
+  const ContactWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

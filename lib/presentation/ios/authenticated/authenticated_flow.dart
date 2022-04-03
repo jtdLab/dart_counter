@@ -5,9 +5,7 @@ import 'package:dart_counter/application/authenticated/core/user/user_cubit.dart
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class AuthenticatedFlow extends StatelessWidget implements AutoRouteWrapper {
-  const AuthenticatedFlow({
-    Key? key,
-  }) : super(key: key);
+  const AuthenticatedFlow({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

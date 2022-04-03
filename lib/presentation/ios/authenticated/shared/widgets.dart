@@ -89,9 +89,7 @@ class ProfileImageDisplayer extends StatelessWidget {
 }
 
 class BackButton extends StatelessWidget {
-  const BackButton({
-    Key? key,
-  }) : super(key: key);
+  const BackButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

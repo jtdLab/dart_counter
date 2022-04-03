@@ -6,9 +6,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/authenticated/training/create_training/create_training_bloc.dart';
 
 class CreateTrainingFlow extends StatelessWidget {
-  const CreateTrainingFlow({
-    Key? key,
-  }) : super(key: key);
+  const CreateTrainingFlow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

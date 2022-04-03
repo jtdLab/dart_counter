@@ -15,9 +15,7 @@ import '../shared/widgets.dart';
 part 'widgets.dart';
 
 class ProfilePage extends StatelessWidget implements AutoRouteWrapper {
-  const ProfilePage({
-    Key? key,
-  }) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

@@ -8,9 +8,7 @@ import 'package:dart_counter/application/authenticated/play/online/create_game/a
 part 'widgets.dart';
 
 class AddPlayerModal extends StatelessWidget {
-  const AddPlayerModal({
-    Key? key,
-  }) : super(key: key);
+  const AddPlayerModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

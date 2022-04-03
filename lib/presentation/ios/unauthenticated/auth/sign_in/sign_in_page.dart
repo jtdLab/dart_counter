@@ -7,9 +7,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 part 'widgets.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({
-    Key? key,
-  }) : super(key: key);
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

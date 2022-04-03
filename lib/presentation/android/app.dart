@@ -6,9 +6,7 @@ import 'core/core.dart';
 
 // TODO impl
 class App extends PlatformApp {
-  const App({
-    Key? key,
-  }) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

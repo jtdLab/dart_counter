@@ -14,9 +14,7 @@ import 'package:dart_counter/presentation/ios/authenticated/training/shared/in_t
 part 'widgets.dart';
 
 class InSingleTrainingPage extends StatelessWidget {
-  const InSingleTrainingPage({
-    Key? key,
-  }) : super(key: key);
+  const InSingleTrainingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

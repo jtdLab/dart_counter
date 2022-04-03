@@ -1,9 +1,7 @@
 part of 'in_online_game_page.dart';
 
 class _InOnlineGameWidget extends StatelessWidget {
-  const _InOnlineGameWidget({
-    Key? key,
-  }) : super(key: key);
+  const _InOnlineGameWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +92,7 @@ class _InOnlineGameWidget extends StatelessWidget {
 
 // ONE PLAYER DISPLAYER
 class _OnePlayerDisplayer extends StatelessWidget {
-  const _OnePlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +117,7 @@ class _OnePlayerDisplayer extends StatelessWidget {
 }
 
 class _OnePlayerHeader extends StatelessWidget {
-  const _OnePlayerHeader({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -176,9 +170,7 @@ class _OnePlayerHeader extends StatelessWidget {
 }
 
 class _OnePlayerCenter extends StatelessWidget {
-  const _OnePlayerCenter({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerCenter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -210,9 +202,7 @@ class _OnePlayerCenter extends StatelessWidget {
 }
 
 class _OnePlayerLegsSetsDisplayer extends StatelessWidget {
-  const _OnePlayerLegsSetsDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerLegsSetsDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -253,9 +243,7 @@ class _OnePlayerLegsSetsDisplayer extends StatelessWidget {
 }
 
 class _OnePlayerPointsLeftLastThrowDisplayer extends StatelessWidget {
-  const _OnePlayerPointsLeftLastThrowDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerPointsLeftLastThrowDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -305,9 +293,7 @@ class _OnePlayerPointsLeftLastThrowDisplayer extends StatelessWidget {
 }
 
 class _OnePlayerFinishRecommendationDisplayer extends StatelessWidget {
-  const _OnePlayerFinishRecommendationDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerFinishRecommendationDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -341,9 +327,7 @@ class _OnePlayerFinishRecommendationDisplayer extends StatelessWidget {
 }
 
 class _OnePlayerFooter extends StatelessWidget {
-  const _OnePlayerFooter({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerFooter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -420,9 +404,7 @@ class _OnePlayerStatDisplayer extends StatelessWidget {
 
 // TWO PLAYER DISPLAYER
 class _TwoPlayerDisplayer extends StatelessWidget {
-  const _TwoPlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _TwoPlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -452,9 +434,7 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 
 // THREE PLAYER DISPLAYER
 class _ThreePlayerDisplayer extends HookWidget {
-  const _ThreePlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _ThreePlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -586,9 +566,7 @@ class _ThreePlayerDisplayer extends HookWidget {
 
 // FOUR PLAYER DISPLAYER
 class _FourPlayerDisplayer extends StatelessWidget {
-  const _FourPlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _FourPlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

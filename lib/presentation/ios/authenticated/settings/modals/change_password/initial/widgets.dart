@@ -2,9 +2,7 @@ part of 'initial_page.dart';
 
 // BODY
 class ChangePasswordInitialView extends StatelessWidget {
-  const ChangePasswordInitialView({
-    Key? key,
-  }) : super(key: key);
+  const ChangePasswordInitialView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

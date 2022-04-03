@@ -1,9 +1,7 @@
 part of './profile_page.dart';
 
 class ProfileView extends HookWidget {
-  const ProfileView({
-    Key? key,
-  }) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -171,9 +169,7 @@ class ProfileView extends HookWidget {
 
 // NAVBAR
 class _NameDisplayer extends StatelessWidget {
-  const _NameDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _NameDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

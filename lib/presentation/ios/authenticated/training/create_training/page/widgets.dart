@@ -2,9 +2,7 @@ part of 'create_training_page.dart';
 
 // BODY
 class _CreateTrainingWidget extends StatelessWidget {
-  const _CreateTrainingWidget({
-    Key? key,
-  }) : super(key: key);
+  const _CreateTrainingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +34,7 @@ class _CreateTrainingWidget extends StatelessWidget {
 
 // PlayerCard
 class _PlayerCard extends StatelessWidget {
-  const _PlayerCard({
-    Key? key,
-  }) : super(key: key);
+  const _PlayerCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +59,7 @@ class _PlayerCard extends StatelessWidget {
 }
 
 class _PlayerList extends StatelessWidget {
-  const _PlayerList({
-    Key? key,
-  }) : super(key: key);
+  const _PlayerList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -253,9 +247,7 @@ class _EditablePlayerItem extends StatelessWidget {
 }
 
 class _AddPlayerButton extends StatelessWidget {
-  const _AddPlayerButton({
-    Key? key,
-  }) : super(key: key);
+  const _AddPlayerButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -272,9 +264,7 @@ class _AddPlayerButton extends StatelessWidget {
 
 // ModusCard
 class _ModusCard extends StatelessWidget {
-  const _ModusCard({
-    Key? key,
-  }) : super(key: key);
+  const _ModusCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -451,9 +441,7 @@ class _OrderCard extends StatelessWidget {
 
 // TakesCard
 class _TakesCard extends StatelessWidget {
-  const _TakesCard({
-    Key? key,
-  }) : super(key: key);
+  const _TakesCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -486,9 +474,7 @@ class _TakesCard extends StatelessWidget {
 
 // PlayButton
 class _PlayButton extends StatelessWidget {
-  const _PlayButton({
-    Key? key,
-  }) : super(key: key);
+  const _PlayButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

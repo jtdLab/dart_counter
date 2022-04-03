@@ -2,9 +2,7 @@ part of 'more_modal.dart';
 
 // BODY
 class MoreView extends StatelessWidget {
-  const MoreView({
-    Key? key,
-  }) : super(key: key);
+  const MoreView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

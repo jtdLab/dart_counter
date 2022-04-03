@@ -63,9 +63,7 @@ class FilteredBlocBuilder<B extends StateStreamable<S>, S, F extends S>
 
 /**
  * class LineChart extends StatelessWidget {
-  const LineChart({
-    Key? key,
-  }) : super(key: key);
+  const LineChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +104,7 @@ class _SalesData {
 }
 
 class PieChart extends StatelessWidget {
-  const PieChart({
-    Key? key,
-  }) : super(key: key);
+  const PieChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

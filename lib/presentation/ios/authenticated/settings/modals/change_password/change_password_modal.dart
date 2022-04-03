@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/authenticated/settings/change_password/change_password_bloc.dart';
 
 class ChangePasswordModal extends StatelessWidget implements AutoRouteWrapper {
-  const ChangePasswordModal({
-    Key? key,
-  }) : super(key: key);
+  const ChangePasswordModal({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

@@ -12,9 +12,7 @@ import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class GameHistoryDetailsPage extends StatelessWidget {
-  const GameHistoryDetailsPage({
-    Key? key,
-  }) : super(key: key);
+  const GameHistoryDetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

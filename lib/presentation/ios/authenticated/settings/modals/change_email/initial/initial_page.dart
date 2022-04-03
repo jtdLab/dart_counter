@@ -8,9 +8,7 @@ import 'package:dart_counter/application/authenticated/settings/change_email/cha
 part 'widgets.dart';
 
 class ChangeEmailInitialPage extends StatelessWidget {
-  const ChangeEmailInitialPage({
-    Key? key,
-  }) : super(key: key);
+  const ChangeEmailInitialPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

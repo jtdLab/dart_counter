@@ -11,9 +11,7 @@ import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class SettingsPage extends StatelessWidget implements AutoRouteWrapper {
-  const SettingsPage({
-    Key? key,
-  }) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

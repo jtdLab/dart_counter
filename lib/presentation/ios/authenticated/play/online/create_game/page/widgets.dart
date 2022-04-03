@@ -2,9 +2,7 @@ part of 'create_online_game_page.dart';
 
 // BODY
 class _CreateOnlineGameWidget extends StatelessWidget {
-  const _CreateOnlineGameWidget({
-    Key? key,
-  }) : super(key: key);
+  const _CreateOnlineGameWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +65,7 @@ class _CreateOnlineGameWidget extends StatelessWidget {
 }
 
 class _PlayerList extends StatelessWidget {
-  const _PlayerList({
-    Key? key,
-  }) : super(key: key);
+  const _PlayerList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

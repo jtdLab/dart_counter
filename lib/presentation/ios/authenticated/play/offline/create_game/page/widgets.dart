@@ -2,9 +2,7 @@ part of 'create_offline_game_page.dart';
 
 // BODY
 class _CreateOfflineGameWidget extends StatelessWidget {
-  const _CreateOfflineGameWidget({
-    Key? key,
-  }) : super(key: key);
+  const _CreateOfflineGameWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +65,7 @@ class _CreateOfflineGameWidget extends StatelessWidget {
 }
 
 class _DartBotCard extends StatelessWidget {
-  const _DartBotCard({
-    Key? key,
-  }) : super(key: key);
+  const _DartBotCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -148,9 +144,7 @@ class _DartBotCheckBox extends StatelessWidget {
 }
 
 class _PlayerList extends StatelessWidget {
-  const _PlayerList({
-    Key? key,
-  }) : super(key: key);
+  const _PlayerList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

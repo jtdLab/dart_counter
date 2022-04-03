@@ -2,9 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class LogoDisplayer extends StatelessWidget {
-  const LogoDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const LogoDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

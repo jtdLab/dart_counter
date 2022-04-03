@@ -15,9 +15,7 @@ part 'widgets.dart';
 ///
 /// Handels which app widget is used depending on the platform the application runs on.
 class App extends StatelessWidget {
-  const App({
-    Key? key,
-  }) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

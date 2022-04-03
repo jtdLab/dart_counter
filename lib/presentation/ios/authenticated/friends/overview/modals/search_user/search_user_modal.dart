@@ -8,9 +8,7 @@ import 'package:dart_counter/application/authenticated/friends/search_user/searc
 part 'widgets.dart';
 
 class SearchUserModal extends StatelessWidget implements AutoRouteWrapper {
-  const SearchUserModal({
-    Key? key,
-  }) : super(key: key);
+  const SearchUserModal({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

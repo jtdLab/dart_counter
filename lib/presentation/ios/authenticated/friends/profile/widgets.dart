@@ -1,9 +1,7 @@
 part of 'profile_page.dart';
 
 class FriendsProfileView extends StatelessWidget {
-  const FriendsProfileView({
-    Key? key,
-  }) : super(key: key);
+  const FriendsProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +56,7 @@ class FriendsProfileView extends StatelessWidget {
 
 // NAVBAR
 class _NameDisplayer extends StatelessWidget {
-  const _NameDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _NameDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +74,7 @@ class _NameDisplayer extends StatelessWidget {
 
 // BODY
 class _CareerStatsDisplayer extends StatelessWidget {
-  const _CareerStatsDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _CareerStatsDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

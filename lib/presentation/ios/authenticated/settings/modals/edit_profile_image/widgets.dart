@@ -1,9 +1,7 @@
 part of './edit_profile_image_modal.dart';
 
 class EditProfileImageView extends StatelessWidget {
-  const EditProfileImageView({
-    Key? key,
-  }) : super(key: key);
+  const EditProfileImageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

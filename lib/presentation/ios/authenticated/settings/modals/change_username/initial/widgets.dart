@@ -1,9 +1,7 @@
 part of 'initial_page.dart';
 
 class ChangeUsernameInitialView extends StatelessWidget {
-  const ChangeUsernameInitialView({
-    Key? key,
-  }) : super(key: key);
+  const ChangeUsernameInitialView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

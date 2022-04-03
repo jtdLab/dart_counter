@@ -35,9 +35,7 @@ class StatsButton extends StatelessWidget {
 // TODO flex factors
 // TODO remove
 class _StandardInputArea extends StatelessWidget {
-  const _StandardInputArea({
-    Key? key,
-  }) : super(key: key);
+  const _StandardInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +81,7 @@ class _StandardInputArea extends StatelessWidget {
 }
 
 class _StandardKeyBoard extends StatelessWidget {
-  const _StandardKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _StandardKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -176,9 +172,7 @@ class _StandardDigitButton extends StatelessWidget {
 }
 
 class _CheckButton extends StatelessWidget {
-  const _CheckButton({
-    Key? key,
-  }) : super(key: key);
+  const _CheckButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -218,9 +212,7 @@ class _CheckButton extends StatelessWidget {
 }
 
 class _StandardEreaseButton extends StatelessWidget {
-  const _StandardEreaseButton({
-    Key? key,
-  }) : super(key: key);
+  const _StandardEreaseButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -262,9 +254,7 @@ class _DetailedInputArea extends StatelessWidget {
   static const flexTop = 1;
   static const flexBottom = 3;
 
-  const _DetailedInputArea({
-    Key? key,
-  }) : super(key: key);
+  const _DetailedInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -312,9 +302,7 @@ class _DetailedInputArea extends StatelessWidget {
 }
 
 class _DetailedKeyBoard extends StatelessWidget {
-  const _DetailedKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _DetailedKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -464,9 +452,7 @@ class _DetailedDigitButton extends StatelessWidget {
 }
 
 class _DetailedEreaseButton extends StatelessWidget {
-  const _DetailedEreaseButton({
-    Key? key,
-  }) : super(key: key);
+  const _DetailedEreaseButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -508,9 +494,7 @@ class _DetailedEreaseButton extends StatelessWidget {
 // SPEECH INPUT AREA
 // TODO flex factors
 class SpeechInputArea extends StatelessWidget {
-  const SpeechInputArea({
-    Key? key,
-  }) : super(key: key);
+  const SpeechInputArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -556,9 +540,7 @@ class SpeechInputArea extends StatelessWidget {
 }
 
 class _SpeechKeyBoard extends StatelessWidget {
-  const _SpeechKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _SpeechKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -623,9 +605,7 @@ class OpticalInputArea extends StatelessWidget {
 
 // TODO expanded not sized pls
 class _OpticalKeyBoard extends StatelessWidget {
-  const _OpticalKeyBoard({
-    Key? key,
-  }) : super(key: key);
+  const _OpticalKeyBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -639,9 +619,7 @@ class _OpticalKeyBoard extends StatelessWidget {
 
 // TODO refactor
 class _DartBoard extends StatefulWidget {
-  const _DartBoard({
-    Key? key,
-  }) : super(key: key);
+  const _DartBoard({Key? key}) : super(key: key);
 
   @override
   _DartBoardState createState() => _DartBoardState();
@@ -1412,9 +1390,7 @@ class _PlayerItemSmallFinishRecommendationDisplayer extends StatelessWidget {
 /**
  * // TODO responsive
 class _DartsDisplayer extends StatelessWidget {
-  const _DartsDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _DartsDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

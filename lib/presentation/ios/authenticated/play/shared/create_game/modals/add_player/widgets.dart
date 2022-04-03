@@ -4,9 +4,7 @@ part of 'add_player_modal.dart';
 
 // BODY
 class _AddPlayerWidget extends StatefulWidget {
-  const _AddPlayerWidget({
-    Key? key,
-  }) : super(key: key);
+  const _AddPlayerWidget({Key? key}) : super(key: key);
 
   @override
   _AddPlayerWidgetState createState() => _AddPlayerWidgetState();

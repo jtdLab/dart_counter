@@ -3,9 +3,7 @@ part of 'checkout_details_modal.dart';
 // TODO is this file located coorectly or must it be in a sperate shared folder ?? be consistent with other shared widgets
 
 class _CheckoutDetailsWidget extends StatelessWidget {
-  const _CheckoutDetailsWidget({
-    Key? key,
-  }) : super(key: key);
+  const _CheckoutDetailsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,7 @@
 import 'package:dart_counter/presentation/ios/core/core.dart';
 
 class InDoubleTrainingFlow extends StatelessWidget {
-  const InDoubleTrainingFlow({
-    Key? key,
-  }) : super(key: key);
+  const InDoubleTrainingFlow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

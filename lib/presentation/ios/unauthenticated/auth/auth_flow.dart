@@ -6,9 +6,7 @@ import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_
 
 // TODO rename to flow or all to flows to wrapper? some log navigation events of page view
 class AuthFlow extends StatefulWidget {
-  const AuthFlow({
-    Key? key,
-  }) : super(key: key);
+  const AuthFlow({Key? key}) : super(key: key);
 
   @override
   State<AuthFlow> createState() => _AuthFlowState();

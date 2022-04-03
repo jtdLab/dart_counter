@@ -31,9 +31,7 @@ class PostGameWidget extends StatelessWidget {
 }
 
 class _BackToHomeButton extends StatelessWidget {
-  const _BackToHomeButton({
-    Key? key,
-  }) : super(key: key);
+  const _BackToHomeButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

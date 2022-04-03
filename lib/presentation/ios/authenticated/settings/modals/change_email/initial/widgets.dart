@@ -2,9 +2,7 @@ part of 'initial_page.dart';
 
 // BODY
 class ChangeEmailInitialView extends StatelessWidget {
-  const ChangeEmailInitialView({
-    Key? key,
-  }) : super(key: key);
+  const ChangeEmailInitialView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

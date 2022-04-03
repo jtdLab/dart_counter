@@ -1,9 +1,7 @@
 part of './overview_page.dart';
 
 class GameHistoryOverviewView extends StatelessWidget {
-  const GameHistoryOverviewView({
-    Key? key,
-  }) : super(key: key);
+  const GameHistoryOverviewView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

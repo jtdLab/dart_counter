@@ -2,9 +2,7 @@ part of './privacy_policy_page.dart';
 
 // BODY
 class PrivacyPolicyView extends StatelessWidget {
-  const PrivacyPolicyView({
-    Key? key,
-  }) : super(key: key);
+  const PrivacyPolicyView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,7 @@ part of 'success_page.dart';
 
 // BODY
 class ChangePasswordSuccessView extends StatelessWidget {
-  const ChangePasswordSuccessView({
-    Key? key,
-  }) : super(key: key);
+  const ChangePasswordSuccessView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

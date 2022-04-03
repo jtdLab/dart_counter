@@ -15,9 +15,7 @@ import 'package:dart_counter/presentation/ios/authenticated/training/shared/in_t
 part 'widgets.dart';
 
 class InScoreTrainingPage extends StatelessWidget {
-  const InScoreTrainingPage({
-    Key? key,
-  }) : super(key: key);
+  const InScoreTrainingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

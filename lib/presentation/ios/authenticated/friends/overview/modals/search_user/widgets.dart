@@ -1,9 +1,7 @@
 part of 'search_user_modal.dart';
 
 class SearchUserView extends StatelessWidget {
-  const SearchUserView({
-    Key? key,
-  }) : super(key: key);
+  const SearchUserView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

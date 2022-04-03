@@ -8,9 +8,7 @@ import 'package:dart_counter/application/unauthenticated/forgot_password/forgot_
 part 'widgets.dart';
 
 class ForgotPasswordInitialPage extends StatelessWidget {
-  const ForgotPasswordInitialPage({
-    Key? key,
-  }) : super(key: key);
+  const ForgotPasswordInitialPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

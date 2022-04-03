@@ -20,9 +20,7 @@ import 'package:dart_counter/presentation/ios/authenticated/shared/widgets.dart'
 part 'widgets.dart';
 
 class CreateTrainingPage extends StatelessWidget {
-  const CreateTrainingPage({
-    Key? key,
-  }) : super(key: key);
+  const CreateTrainingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

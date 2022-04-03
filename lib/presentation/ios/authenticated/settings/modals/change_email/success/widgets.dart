@@ -2,9 +2,7 @@ part of 'success_page.dart';
 
 // BODY
 class ChangeEmailSuccessView extends StatelessWidget {
-  const ChangeEmailSuccessView({
-    Key? key,
-  }) : super(key: key);
+  const ChangeEmailSuccessView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

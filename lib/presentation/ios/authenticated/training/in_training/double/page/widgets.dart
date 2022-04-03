@@ -1,9 +1,7 @@
 part of 'in_double_training_page.dart';
 
 class _InDoubleTrainingWidget extends StatelessWidget {
-  const _InDoubleTrainingWidget({
-    Key? key,
-  }) : super(key: key);
+  const _InDoubleTrainingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +37,7 @@ class _InDoubleTrainingWidget extends StatelessWidget {
 
 // ONE PLAYER DISPLAYER
 class _OnePlayerDisplayer extends StatelessWidget {
-  const _OnePlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _OnePlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +80,7 @@ class _OnePlayerDisplayer extends StatelessWidget {
 
 // TWO PLAYER DISPLAYER
 class _TwoPlayerDisplayer extends StatelessWidget {
-  const _TwoPlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _TwoPlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,9 +107,7 @@ class _TwoPlayerDisplayer extends StatelessWidget {
 
 // THREE PLAYER DISPLAYER
 class _ThreePlayerDisplayer extends StatelessWidget {
-  const _ThreePlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _ThreePlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +142,7 @@ class _ThreePlayerDisplayer extends StatelessWidget {
 
 // FOUR PLAYER DISPLAYER
 class _FourPlayerDisplayer extends StatelessWidget {
-  const _FourPlayerDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _FourPlayerDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

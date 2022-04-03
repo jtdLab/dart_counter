@@ -7,9 +7,7 @@ class ForgotPasswordInitialView extends StatelessWidget {
   static const Key emailTextFieldKey = Key('email_text_field');
   static const Key confirmButtonKey = Key('confirm_button');
 
-  const ForgotPasswordInitialView({
-    Key? key,
-  }) : super(key: key);
+  const ForgotPasswordInitialView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

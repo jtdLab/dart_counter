@@ -4,9 +4,7 @@ part of 'online_stats_modal.dart';
 // TODO remove
 /**
  * class _StatsWidget extends StatelessWidget {
-  const _StatsWidget({
-    Key? key,
-  }) : super(key: key);
+  const _StatsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +21,7 @@ part of 'online_stats_modal.dart';
 
 /*
 class _TitleColumn extends StatelessWidget {
-  const _TitleColumn({
-    Key? key,
-  }) : super(key: key);
+  const _TitleColumn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

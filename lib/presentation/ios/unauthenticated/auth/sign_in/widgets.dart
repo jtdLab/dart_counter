@@ -1,9 +1,7 @@
 part of 'sign_in_page.dart';
 
 class SignInView extends StatelessWidget {
-  const SignInView({
-    Key? key,
-  }) : super(key: key);
+  const SignInView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

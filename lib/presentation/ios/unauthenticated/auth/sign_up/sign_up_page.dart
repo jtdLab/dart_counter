@@ -7,9 +7,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 part 'widgets.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({
-    Key? key,
-  }) : super(key: key);
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

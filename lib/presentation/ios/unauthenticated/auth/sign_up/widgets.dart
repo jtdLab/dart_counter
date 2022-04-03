@@ -1,9 +1,7 @@
 part of 'sign_up_page.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({
-    Key? key,
-  }) : super(key: key);
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

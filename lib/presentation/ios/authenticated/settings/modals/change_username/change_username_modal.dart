@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/authenticated/settings/change_username/change_username_bloc.dart';
 
 class ChangeUsernameModal extends StatelessWidget implements AutoRouteWrapper {
-  const ChangeUsernameModal({
-    Key? key,
-  }) : super(key: key);
+  const ChangeUsernameModal({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

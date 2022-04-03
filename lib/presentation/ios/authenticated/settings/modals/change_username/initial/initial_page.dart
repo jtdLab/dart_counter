@@ -8,9 +8,7 @@ import 'package:dart_counter/application/authenticated/settings/change_username/
 part 'widgets.dart';
 
 class ChangeUsernameInitialPage extends StatelessWidget {
-  const ChangeUsernameInitialPage({
-    Key? key,
-  }) : super(key: key);
+  const ChangeUsernameInitialPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

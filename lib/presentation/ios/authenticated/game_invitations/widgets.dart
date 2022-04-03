@@ -2,9 +2,7 @@ part of './game_invitations_page.dart';
 
 // BODY
 class GameInvitationsView extends StatelessWidget {
-  const GameInvitationsView({
-    Key? key,
-  }) : super(key: key);
+  const GameInvitationsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +67,7 @@ class GameInvitationsView extends StatelessWidget {
 }
 
 class _ReceivedGameInvitationsCard extends StatelessWidget {
-  const _ReceivedGameInvitationsCard({
-    Key? key,
-  }) : super(key: key);
+  const _ReceivedGameInvitationsCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +152,7 @@ class _ReceivedGameInvitationsItem extends StatelessWidget {
 }
 
 class _SentGameInvitationsCard extends StatelessWidget {
-  const _SentGameInvitationsCard({
-    Key? key,
-  }) : super(key: key);
+  const _SentGameInvitationsCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

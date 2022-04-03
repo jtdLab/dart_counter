@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 part 'widgets.dart';
 
 class ChangeEmailSuccessPage extends StatelessWidget {
-  const ChangeEmailSuccessPage({
-    Key? key,
-  }) : super(key: key);
+  const ChangeEmailSuccessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

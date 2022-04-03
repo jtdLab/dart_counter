@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/authenticated/friends/friends_bloc.dart';
 
 class FriendsFlow extends StatelessWidget implements AutoRouteWrapper {
-  const FriendsFlow({
-    Key? key,
-  }) : super(key: key);
+  const FriendsFlow({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

@@ -7,9 +7,7 @@ class ForgotPasswordSuccessView extends StatelessWidget {
   static const Key successIconKey = Key('success_icon');
   static const Key goToSignInButtonKey = Key('go_to_sign_in_button');
 
-  const ForgotPasswordSuccessView({
-    Key? key,
-  }) : super(key: key);
+  const ForgotPasswordSuccessView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

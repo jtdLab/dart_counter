@@ -43,9 +43,7 @@ class HomeView extends StatelessWidget {
 
 // NAVBAR
 class _SettingsButton extends StatelessWidget {
-  const _SettingsButton({
-    Key? key,
-  }) : super(key: key);
+  const _SettingsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +57,7 @@ class _SettingsButton extends StatelessWidget {
 }
 
 class _GameInvitationsButton extends StatelessWidget {
-  const _GameInvitationsButton({
-    Key? key,
-  }) : super(key: key);
+  const _GameInvitationsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +95,7 @@ class _GameInvitationsButton extends StatelessWidget {
 }
 
 class _FriendsButton extends StatelessWidget {
-  const _FriendsButton({
-    Key? key,
-  }) : super(key: key);
+  const _FriendsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -135,9 +129,7 @@ class _FriendsButton extends StatelessWidget {
 }
 
 class _StatsButton extends StatelessWidget {
-  const _StatsButton({
-    Key? key,
-  }) : super(key: key);
+  const _StatsButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -195,9 +187,7 @@ class _SuccessWidget extends StatelessWidget {
 }
 
 class _NameDisplayer extends StatelessWidget {
-  const _NameDisplayer({
-    Key? key,
-  }) : super(key: key);
+  const _NameDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -272,9 +262,7 @@ class _TrainButton extends StatelessWidget {
 }
 
 class _InstagramButton extends StatelessWidget {
-  const _InstagramButton({
-    Key? key,
-  }) : super(key: key);
+  const _InstagramButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -301,9 +289,7 @@ class _InstagramButton extends StatelessWidget {
 }
 
 class _YoutubeButton extends StatelessWidget {
-  const _YoutubeButton({
-    Key? key,
-  }) : super(key: key);
+  const _YoutubeButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

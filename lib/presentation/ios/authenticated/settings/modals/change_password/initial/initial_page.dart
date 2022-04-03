@@ -8,9 +8,7 @@ import 'package:dart_counter/application/authenticated/settings/change_password/
 part 'widgets.dart';
 
 class ChangePasswordInitialPage extends StatelessWidget {
-  const ChangePasswordInitialPage({
-    Key? key,
-  }) : super(key: key);
+  const ChangePasswordInitialPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,9 +15,7 @@ import '../../shared/widgets.dart';
 part 'widgets.dart';
 
 class FriendsProfilePage extends StatelessWidget {
-  const FriendsProfilePage({
-    Key? key,
-  }) : super(key: key);
+  const FriendsProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

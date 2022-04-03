@@ -2,9 +2,7 @@ part of 'overview_page.dart';
 
 // BODY
 class FriendsOverviewView extends StatelessWidget {
-  const FriendsOverviewView({
-    Key? key,
-  }) : super(key: key);
+  const FriendsOverviewView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +41,7 @@ class FriendsOverviewView extends StatelessWidget {
 }
 
 class _FriendRequestCard extends StatelessWidget {
-  const _FriendRequestCard({
-    Key? key,
-  }) : super(key: key);
+  const _FriendRequestCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +120,7 @@ class _FriendRequestCardItem extends StatelessWidget {
 }
 
 class _FriendsCard extends StatelessWidget {
-  const _FriendsCard({
-    Key? key,
-  }) : super(key: key);
+  const _FriendsCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

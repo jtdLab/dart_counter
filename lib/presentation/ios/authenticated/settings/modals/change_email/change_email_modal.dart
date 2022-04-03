@@ -5,9 +5,7 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/application/authenticated/settings/change_email/change_email_bloc.dart';
 
 class ChangeEmailModal extends StatelessWidget implements AutoRouteWrapper {
-  const ChangeEmailModal({
-    Key? key,
-  }) : super(key: key);
+  const ChangeEmailModal({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {

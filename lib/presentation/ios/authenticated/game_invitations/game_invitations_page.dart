@@ -13,9 +13,7 @@ import '../shared/widgets.dart';
 part 'widgets.dart';
 
 class GameInvitationsPage extends StatelessWidget implements AutoRouteWrapper {
-  const GameInvitationsPage({
-    Key? key,
-  }) : super(key: key);
+  const GameInvitationsPage({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {
