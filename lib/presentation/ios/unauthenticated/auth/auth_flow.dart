@@ -1,21 +1,20 @@
 // CORE
-
 import 'package:dart_counter/presentation/core/page_view_page_route.dart';
 import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_in_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
 
 // TODO rename to flow or all to flows to wrapper? some log navigation events of page view
-class AuthWrapper extends StatefulWidget {
-  const AuthWrapper({
+class AuthFlow extends StatefulWidget {
+  const AuthFlow({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AuthWrapper> createState() => _AuthWrapperState();
+  State<AuthFlow> createState() => _AuthFlowState();
 }
 
-class _AuthWrapperState extends State<AuthWrapper> {
+class _AuthFlowState extends State<AuthFlow> {
   late final PageController pageController;
   late final AutoRouteObserver? observer;
 

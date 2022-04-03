@@ -31,10 +31,10 @@ class _$_Router extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    AuthWrapperRoute.name: (routeData) {
+    AuthFlowRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
-          child: const AuthWrapper(),
+          child: const AuthFlow(),
           customRouteBuilder: modalParentRouteBuilder,
           opaque: true,
           barrierDismissible: false);
@@ -414,7 +414,7 @@ class _$_Router extends RootStackRouter {
         RouteConfig(UnauthenticatedFlowRoute.name,
             path: '/unauthenticated-flow',
             children: [
-              RouteConfig(AuthWrapperRoute.name,
+              RouteConfig(AuthFlowRoute.name,
                   path: '', parent: UnauthenticatedFlowRoute.name),
               RouteConfig(ForgotPasswordModalRoute.name,
                   path: 'forgot-password-modal',
@@ -678,11 +678,11 @@ class AuthenticatedFlowRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [AuthWrapper]
-class AuthWrapperRoute extends PageRouteInfo<void> {
-  const AuthWrapperRoute() : super(AuthWrapperRoute.name, path: '');
+/// [AuthFlow]
+class AuthFlowRoute extends PageRouteInfo<void> {
+  const AuthFlowRoute() : super(AuthFlowRoute.name, path: '');
 
-  static const String name = 'AuthWrapperRoute';
+  static const String name = 'AuthFlowRoute';
 }
 
 /// generated route for
