@@ -7,8 +7,6 @@ import '../../../helpers/helpers.dart';
 void main() {
   group('#ForgotPasswordModal#', () {
     // Wraps the widget under test with a testable environment
-    //
-    // and injects dependencies when needed.
     Widget wrappedUnderTest() {
       return routableWrapper(const ForgotPasswordModal(), MockRouter());
     }

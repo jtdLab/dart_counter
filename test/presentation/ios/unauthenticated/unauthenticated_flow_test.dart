@@ -6,8 +6,6 @@ import '../helpers/helpers.dart';
 void main() {
   group('#UnauthenticatedFlow#', () {
     // Wraps the widget under test with a testable environment
-    //
-    // and injects dependencies when needed.
     Widget wrappedUnderTest() {
       return routableWrapper(const UnauthenticatedFlow(), MockRouter());
     }

@@ -27,8 +27,6 @@ void main() {
     });
 
     // Wraps the widget under test with a testable environment
-    //
-    // and injects dependencies when needed.
     Widget wrappedUnderTest({
       Locale? locale,
     }) {

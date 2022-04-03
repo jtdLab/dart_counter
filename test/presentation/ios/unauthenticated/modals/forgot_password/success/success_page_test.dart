@@ -5,8 +5,6 @@ import '../../../../helpers/helpers.dart';
 void main() {
   group('#ForgotPasswordSuccessPage#', () {
     // Wraps the widget under test with a testable environment
-    //
-    // and injects dependencies when needed.
     Widget wrappedUnderTest() {
       return const ForgotPasswordSuccessPage();
     }
