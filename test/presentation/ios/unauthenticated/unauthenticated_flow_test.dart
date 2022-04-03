@@ -13,7 +13,7 @@ void main() {
     testWidgets('Render AutoRouter.', (tester) async {
       // Act
       await tester.pumpWidget(wrappedUnderTest());
-
+      
       // Assert
       expect(find.byType(AutoRouter), findsOneWidget);
     });

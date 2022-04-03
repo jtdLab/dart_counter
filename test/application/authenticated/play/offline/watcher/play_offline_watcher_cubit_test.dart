@@ -104,7 +104,8 @@ void main() {
       });
 
       tearDown(() async {
-        await getIt.reset();
+        // Reset DI-container
+await getIt.reset();
       });
     });
   });

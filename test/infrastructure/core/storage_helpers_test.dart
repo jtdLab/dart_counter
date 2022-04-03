@@ -20,6 +20,7 @@ void main() {
     authService = MockAuthService();
     storage = MockFirebaseStorage();
 
+    // Reset DI-container
     await getIt.reset();
     getIt.registerLazySingleton<IAuthService>(() => authService);
     getIt.registerLazySingleton<FirebaseStorage>(() => storage);

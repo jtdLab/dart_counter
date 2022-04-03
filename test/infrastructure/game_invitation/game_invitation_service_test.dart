@@ -37,6 +37,7 @@ void main() {
     mockSocialClient = MockSocialClient();
     mockDartClient = MockDartClient();
 
+    // Reset DI-container
     await getIt.reset();
     getIt.registerFactory<IAuthService>(() => mockAuthService);
     getIt.registerFactory<FirebaseFirestore>(() => firestore);

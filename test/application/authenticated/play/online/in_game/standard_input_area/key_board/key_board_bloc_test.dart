@@ -136,6 +136,7 @@ void main() {
       });
 
       tearDown(() async {
+        // Reset DI-container
         await getIt.reset();
       });
     });

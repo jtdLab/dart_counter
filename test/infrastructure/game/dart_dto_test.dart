@@ -17,7 +17,7 @@ void main() {
   final domains = List.generate(
     3,
     (index) => Dart(
-      type: types[index+1],
+      type: types[index + 1],
       value: value,
     ),
   );
@@ -321,7 +321,7 @@ void main() {
       final domain = dtos[i].toDomain();
 
       // Assert
-      expect(domain.type, types[i+1]);
+      expect(domain.type, types[i + 1]);
       expect(domain.value, value);
     }
   });

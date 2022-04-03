@@ -50,8 +50,8 @@ void main() {
         expect(appScope.router, router);
         expect(appScope.app, isA<android.App>());
 
-        addTearDown(() {
-          getIt.unregister(instance: router);
+        addTearDown(() async {
+          await getIt.unregister(instance: router);
         });
       },
     );
@@ -77,8 +77,8 @@ void main() {
         expect(appScope.router, router);
         expect(appScope.app, isA<ios.App>());
 
-        addTearDown(() {
-          getIt.unregister(instance: router);
+        addTearDown(() async {
+          await getIt.unregister(instance: router);
         });
       },
     );

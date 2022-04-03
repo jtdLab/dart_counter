@@ -42,6 +42,7 @@ void main() {
     storage = MockFirebaseStorage();
     mockSocialClient = MockSocialClient();
 
+    // Reset DI-container
     await getIt.reset();
     getIt.registerLazySingleton<IAuthService>(() => mockAuthService);
     getIt.registerLazySingleton<FirebaseFirestore>(() => firestore);
@@ -340,7 +341,7 @@ void main() {
         );
       });
 
-      // TODO must made testable before 
+      // TODO must made testable before
     });
 
     group('#updateUsername#', () {

@@ -39,6 +39,7 @@ void main() {
     firebaseFirestore = FakeFirebaseFirestore();
     socialClient = MockSocialClient();
 
+    // Reset DI-container
     await getIt.reset();
     getIt.registerFactory<IAuthService>(() => authService);
     getIt.registerFactory<FirebaseFirestore>(() => firebaseFirestore);
