@@ -4,7 +4,6 @@ import 'package:dart_counter/presentation/ios/core/core.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_in_page.dart';
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
 
-// TODO rename to flow or all to flows to wrapper? some log navigation events of page view
 class AuthFlow extends StatefulWidget {
   const AuthFlow({Key? key}) : super(key: key);
 

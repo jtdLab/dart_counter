@@ -17,13 +17,17 @@ void main() {
   group('#AppScope#', () {
     late PlatformRouter router;
     late PlatformApp app;
+    late AppToast appToast;
+    late AuthBloc authBloc;
 
     setUpAll(() {
       // Init dependencies + register dependencies in DI-container
       router = MockRouter();
       app = MockPlatformApp();
-      getIt.registerSingleton<AppToast>(MockAppToast());
-      getIt.registerSingleton<AuthBloc>(MockAuthBloc());
+      appToast = MockAppToast();
+      authBloc = MockAuthBloc();
+      getIt.registerSingleton<AppToast>(appToast);
+      getIt.registerSingleton<AuthBloc>(authBloc);
     });
 
     tearDownAll(() async {
@@ -39,38 +43,44 @@ void main() {
     }
 
     testWidgets(
-      'Inject the router into widget tree.',
+      'Inject the router passed via constructor into widget tree.',
       (tester) async {
         // Act
         await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
-        expect(find.byType(ListenableProvider<PlatformRouter>), findsOneWidget);
+        final context = tester.element(find.byType(MockPlatformApp));
+        expect(context.read<PlatformRouter>(), router);
       },
     );
 
     testWidgets(
-      'Inject the app toast into widget tree.',
+      'Inject the app toast that is registered inside DI-container '
+      'into widget tree.',
       (tester) async {
         // Act
         await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
-        expect(find.byType(Provider<AppToast>), findsOneWidget);
+        final context = tester.element(find.byType(MockPlatformApp));
+        expect(context.read<AppToast>(), appToast);
       },
     );
 
     testWidgets(
-      'Inject the auth bloc into widget tree.',
+      'Inject the auth bloc that is registered inside DI-container '
+      'into widget tree and add Started.',
       (tester) async {
         // Act
         await tester.pumpWidget(wrappedUnderTest());
         tester.takeException();
 
         // Assert
-        expect(find.byType(BlocProvider<AuthBloc>), findsOneWidget);
+        final context = tester.element(find.byType(MockPlatformApp));
+        expect(context.read<AuthBloc>(), authBloc);
+        verify(() => authBloc.add(const AuthEvent.started())).called(1);
       },
     );
 

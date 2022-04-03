@@ -15,8 +15,8 @@ class AppScope<T extends PlatformRouter> extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ListenableProvider<T>.value(value: router),
-        Provider.value(value: AppToast.getIt()),
+        ListenableProvider<T>(create: (context) => router),
+        Provider(create: (context) => AppToast.getIt()),
         BlocProvider(
           create: (context) => AuthBloc.getIt()..add(const AuthEvent.started()),
         ),

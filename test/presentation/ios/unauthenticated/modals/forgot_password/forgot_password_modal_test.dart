@@ -23,11 +23,11 @@ void main() {
   });
 
   group('#ForgotPasswordModal.wrappedRoute#', () {
-    // Wraps the widget under test with a testable environment
-    //
-    // and injects dependencies when needed.
-    Widget wrappedUnderTest(BuildContext context) {
-      return const ForgotPasswordModal().wrappedRoute(context);
+    // Wraps the widget under test with a testable environment.
+    Widget wrappedUnderTest() {
+      return Builder(
+        builder: (context) => const ForgotPasswordModal().wrappedRoute(context),
+      );
     }
 
     testWidgets(
@@ -38,16 +38,12 @@ void main() {
       getIt.registerSingleton<ForgotPasswordBloc>(forgotPasswordBloc);
 
       // Act
-      await tester.pumpWidget(
-        Builder(
-          builder: (context) => wrappedUnderTest(context),
-        ),
-      );
+      await tester.pumpWidget(wrappedUnderTest());
       tester.takeException();
 
       // Assert
       final context = tester.element(find.byType(ForgotPasswordModal));
-      expect(BlocProvider.of<ForgotPasswordBloc>(context), forgotPasswordBloc);
+      expect(context.read<ForgotPasswordBloc>(), forgotPasswordBloc);
     });
 
     tearDown(() async {

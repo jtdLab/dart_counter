@@ -319,3 +319,5 @@ flutter pub add golden_toolkit
  presentation/play and presentation/training route wrapper and separation of page and view is not done yet
 
      // TODO move bloc listener into the view + test in forgot password initial 
+
+     https://medium.com/flutter-community/how-to-actually-get-test-coverage-for-your-flutter-applications-f881c0ae8155
