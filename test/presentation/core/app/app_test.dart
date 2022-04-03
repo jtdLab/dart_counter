@@ -30,9 +30,9 @@ void main() {
     }
 
     testWidgets(
-      'GIVEN android router '
-      'WHEN platform is android '
-      'THEN render AppScope with the given router and the android app.',
+      'GIVEN platform is android '
+      'THEN render AppScope with the android router that is registered inside DI-container '
+      'and the android app.',
       (tester) async {
         // Arrange
         final router = android.Router();
@@ -57,9 +57,9 @@ void main() {
     );
 
     testWidgets(
-      'GIVEN ios router '
-      'WHEN platform is ios '
-      'THEN render AppScope with the given router and the ios app.',
+      'GIVEN platform is ios '
+      'THEN render AppScope with the ios router that is registered inside DI-container '
+      'and the ios app.',
       (tester) async {
         // Arrange
         final router = ios.Router();
@@ -84,7 +84,7 @@ void main() {
     );
 
     testWidgets(
-      'WHEN platform is not android or ios '
+      'GIVEN platform is not android or ios '
       'THEN throw PlatformNotSupportedError.',
       (tester) async {
         // Arrange
