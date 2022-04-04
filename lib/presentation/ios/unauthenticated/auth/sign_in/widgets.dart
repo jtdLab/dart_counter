@@ -88,7 +88,7 @@ class SignInView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _SocialSignInButton(
+                      SocialSignInButton(
                         key: signInWithFacebookButtonKey,
                         onPressed: () => _onSignInWithFacebookPressed(context),
                         child: const FaIcon(
@@ -96,7 +96,7 @@ class SignInView extends StatelessWidget {
                           size: 50,
                         ),
                       ),
-                      _SocialSignInButton(
+                      SocialSignInButton(
                         key: signInWithAppleButtonKey,
                         onPressed: () => _onSignInWithApplePressed(context),
                         child: const FaIcon(
@@ -104,7 +104,7 @@ class SignInView extends StatelessWidget {
                           size: 50,
                         ),
                       ),
-                      _SocialSignInButton(
+                      SocialSignInButton(
                         key: signInWithGoogleButtonKey,
                         onPressed: () => _onSignInWithGooglePressed(context),
                         child: const FaIcon(
@@ -173,11 +173,11 @@ class SignInView extends StatelessWidget {
   }
 }
 
-class _SocialSignInButton extends StatelessWidget {
+class SocialSignInButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget child;
 
-  const _SocialSignInButton({
+  const SocialSignInButton({
     Key? key,
     required this.onPressed,
     required this.child,
