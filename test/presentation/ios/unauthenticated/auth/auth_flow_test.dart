@@ -40,15 +40,9 @@ void main() {
         routableWrapper(
           MultiBlocProvider(
             providers: [
-              BlocProvider.value(
-                value: authBloc,
-              ),
-              BlocProvider.value(
-                value: signInBloc,
-              ),
-              BlocProvider.value(
-                value: signUpBloc,
-              ),
+              BlocProvider.value(value: authBloc),
+              BlocProvider.value(value: signInBloc),
+              BlocProvider.value(value: signUpBloc),
             ],
             child: const AuthFlow(),
           ),

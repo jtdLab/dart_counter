@@ -16,27 +16,38 @@ class SignInPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) => state.whenOrNull(
-              authenticated: () =>
-                  context.router.replace(const AuthenticatedFlowRoute()),
+            listener: (context, state) => state.mapOrNull(
+              authenticated: (_) => _onAuthenticated(context),
             ),
           ),
           BlocListener<SignInBloc, SignInState>(
-            listenWhen: (_, next) => next is SignInLoadFailure,
+            listenWhen: (_, current) => current is SignInLoadFailure,
             listener: (context, state) => state.mapOrNull(
-              loadFailure: (signInLoadFailure) {
-                signInLoadFailure.failure.whenOrNull(
-                  // TODO show server error feels not perfect
-                  serverError: () => showToast(context.l10n.errorServer),
-                  invalidEmailAndPasswordCombination: () => showToast(
-                    context.l10n.errorInvalidEmailAndPasswordCombination,
-                  ),
-                );
-              },
+              loadFailure: (failure) => _onLoadFailure(context, failure),
             ),
           ),
         ],
         child: const SignInView(),
+      ),
+    );
+  }
+
+  void _onAuthenticated(BuildContext context) {
+    context.router.replace(const AuthenticatedFlowRoute());
+  }
+
+  void _onLoadFailure(BuildContext context, SignInLoadFailure failure) {
+    failure.failure.maybeWhen(
+      // TODO show server error feels not perfect
+      serverError: () => context.showToast(
+        context.l10n.errorServer.toUpperCase(),
+      ),
+      invalidEmailAndPasswordCombination: () => context.showToast(
+        context.l10n.errorInvalidEmailAndPasswordCombination.toUpperCase(),
+      ),
+      // TODO display other errors better
+      orElse: () => context.showToast(
+        context.l10n.errorUnexpected.toUpperCase(),
       ),
     );
   }

@@ -70,6 +70,10 @@ class _$AuthFailureTearOff {
   _ServerError serverError() {
     return const _ServerError();
   }
+
+  _Unexpected unexpected() {
+    return const _Unexpected();
+  }
 }
 
 /// @nodoc
@@ -92,6 +96,7 @@ mixin _$AuthFailure {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,6 +114,7 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +132,7 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +153,7 @@ mixin _$AuthFailure {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -165,6 +173,7 @@ mixin _$AuthFailure {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -184,6 +193,7 @@ mixin _$AuthFailure {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -259,6 +269,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return emailAlreadyInUse();
   }
@@ -279,6 +290,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -299,6 +311,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -325,6 +338,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return emailAlreadyInUse(this);
   }
@@ -347,6 +361,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -369,6 +384,7 @@ class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -436,6 +452,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return usernameAlreadyInUse();
   }
@@ -456,6 +473,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return usernameAlreadyInUse?.call();
   }
@@ -476,6 +494,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (usernameAlreadyInUse != null) {
@@ -502,6 +521,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return usernameAlreadyInUse(this);
   }
@@ -524,6 +544,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return usernameAlreadyInUse?.call(this);
   }
@@ -546,6 +567,7 @@ class _$_UsernameAlreadyInUse implements _UsernameAlreadyInUse {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (usernameAlreadyInUse != null) {
@@ -612,6 +634,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidEmail();
   }
@@ -632,6 +655,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidEmail?.call();
   }
@@ -652,6 +676,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -678,6 +703,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidEmail(this);
   }
@@ -700,6 +726,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidEmail?.call(this);
   }
@@ -722,6 +749,7 @@ class _$_InvalidEmail implements _InvalidEmail {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -789,6 +817,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidUsername();
   }
@@ -809,6 +838,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidUsername?.call();
   }
@@ -829,6 +859,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidUsername != null) {
@@ -855,6 +886,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidUsername(this);
   }
@@ -877,6 +909,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidUsername?.call(this);
   }
@@ -899,6 +932,7 @@ class _$_InvalidUsername implements _InvalidUsername {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidUsername != null) {
@@ -966,6 +1000,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidOldPassword();
   }
@@ -986,6 +1021,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidOldPassword?.call();
   }
@@ -1006,6 +1042,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidOldPassword != null) {
@@ -1032,6 +1069,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidOldPassword(this);
   }
@@ -1054,6 +1092,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidOldPassword?.call(this);
   }
@@ -1076,6 +1115,7 @@ class _$_InvalidOldPassword implements _InvalidOldPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidOldPassword != null) {
@@ -1143,6 +1183,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidNewPassword();
   }
@@ -1163,6 +1204,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidNewPassword?.call();
   }
@@ -1183,6 +1225,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidNewPassword != null) {
@@ -1209,6 +1252,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidNewPassword(this);
   }
@@ -1231,6 +1275,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidNewPassword?.call(this);
   }
@@ -1253,6 +1298,7 @@ class _$_InvalidNewPassword implements _InvalidNewPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidNewPassword != null) {
@@ -1320,6 +1366,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidPassword();
   }
@@ -1340,6 +1387,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidPassword?.call();
   }
@@ -1360,6 +1408,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidPassword != null) {
@@ -1386,6 +1435,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidPassword(this);
   }
@@ -1408,6 +1458,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidPassword?.call(this);
   }
@@ -1430,6 +1481,7 @@ class _$_InvalidPassword implements _InvalidPassword {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidPassword != null) {
@@ -1502,6 +1554,7 @@ class _$_InvalidEmailAndPasswordCombination
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidEmailAndPasswordCombination();
   }
@@ -1522,6 +1575,7 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidEmailAndPasswordCombination?.call();
   }
@@ -1542,6 +1596,7 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -1568,6 +1623,7 @@ class _$_InvalidEmailAndPasswordCombination
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidEmailAndPasswordCombination(this);
   }
@@ -1590,6 +1646,7 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidEmailAndPasswordCombination?.call(this);
   }
@@ -1612,6 +1669,7 @@ class _$_InvalidEmailAndPasswordCombination
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -1686,6 +1744,7 @@ class _$_InvalidUsernameAndPasswordCombination
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidUsernameAndPasswordCombination();
   }
@@ -1706,6 +1765,7 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidUsernameAndPasswordCombination?.call();
   }
@@ -1726,6 +1786,7 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidUsernameAndPasswordCombination != null) {
@@ -1752,6 +1813,7 @@ class _$_InvalidUsernameAndPasswordCombination
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidUsernameAndPasswordCombination(this);
   }
@@ -1774,6 +1836,7 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidUsernameAndPasswordCombination?.call(this);
   }
@@ -1796,6 +1859,7 @@ class _$_InvalidUsernameAndPasswordCombination
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidUsernameAndPasswordCombination != null) {
@@ -1864,6 +1928,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return passwordsNotMatching();
   }
@@ -1884,6 +1949,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return passwordsNotMatching?.call();
   }
@@ -1904,6 +1970,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (passwordsNotMatching != null) {
@@ -1930,6 +1997,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return passwordsNotMatching(this);
   }
@@ -1952,6 +2020,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return passwordsNotMatching?.call(this);
   }
@@ -1974,6 +2043,7 @@ class _$_PasswordsNotMatching implements _PasswordsNotMatching {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (passwordsNotMatching != null) {
@@ -2041,6 +2111,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return cancelledByUser();
   }
@@ -2061,6 +2132,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return cancelledByUser?.call();
   }
@@ -2081,6 +2153,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -2107,6 +2180,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return cancelledByUser(this);
   }
@@ -2129,6 +2203,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return cancelledByUser?.call(this);
   }
@@ -2151,6 +2226,7 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -2218,6 +2294,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return invalidAccountType();
   }
@@ -2238,6 +2315,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return invalidAccountType?.call();
   }
@@ -2258,6 +2336,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (invalidAccountType != null) {
@@ -2284,6 +2363,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return invalidAccountType(this);
   }
@@ -2306,6 +2386,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return invalidAccountType?.call(this);
   }
@@ -2328,6 +2409,7 @@ class _$_InvalidAccountType implements _InvalidAccountType {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidAccountType != null) {
@@ -2394,6 +2476,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function() cancelledByUser,
     required TResult Function() invalidAccountType,
     required TResult Function() serverError,
+    required TResult Function() unexpected,
   }) {
     return serverError();
   }
@@ -2414,6 +2497,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
   }) {
     return serverError?.call();
   }
@@ -2434,6 +2518,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? invalidAccountType,
     TResult Function()? serverError,
+    TResult Function()? unexpected,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -2460,6 +2545,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_InvalidAccountType value) invalidAccountType,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
   }) {
     return serverError(this);
   }
@@ -2482,6 +2568,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
   }) {
     return serverError?.call(this);
   }
@@ -2504,6 +2591,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_InvalidAccountType value)? invalidAccountType,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -2515,4 +2603,186 @@ class _$_ServerError implements _ServerError {
 
 abstract class _ServerError implements AuthFailure {
   const factory _ServerError() = _$_ServerError;
+}
+
+/// @nodoc
+abstract class _$UnexpectedCopyWith<$Res> {
+  factory _$UnexpectedCopyWith(
+          _Unexpected value, $Res Function(_Unexpected) then) =
+      __$UnexpectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnexpectedCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$UnexpectedCopyWith<$Res> {
+  __$UnexpectedCopyWithImpl(
+      _Unexpected _value, $Res Function(_Unexpected) _then)
+      : super(_value, (v) => _then(v as _Unexpected));
+
+  @override
+  _Unexpected get _value => super._value as _Unexpected;
+}
+
+/// @nodoc
+
+class _$_Unexpected implements _Unexpected {
+  const _$_Unexpected();
+
+  @override
+  String toString() {
+    return 'AuthFailure.unexpected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unexpected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() usernameAlreadyInUse,
+    required TResult Function() invalidEmail,
+    required TResult Function() invalidUsername,
+    required TResult Function() invalidOldPassword,
+    required TResult Function() invalidNewPassword,
+    required TResult Function() invalidPassword,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() invalidUsernameAndPasswordCombination,
+    required TResult Function() passwordsNotMatching,
+    required TResult Function() cancelledByUser,
+    required TResult Function() invalidAccountType,
+    required TResult Function() serverError,
+    required TResult Function() unexpected,
+  }) {
+    return unexpected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? invalidAccountType,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidUsername,
+    TResult Function()? invalidOldPassword,
+    TResult Function()? invalidNewPassword,
+    TResult Function()? invalidPassword,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? passwordsNotMatching,
+    TResult Function()? cancelledByUser,
+    TResult Function()? invalidAccountType,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(_UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(_InvalidEmail value) invalidEmail,
+    required TResult Function(_InvalidUsername value) invalidUsername,
+    required TResult Function(_InvalidOldPassword value) invalidOldPassword,
+    required TResult Function(_InvalidNewPassword value) invalidNewPassword,
+    required TResult Function(_InvalidPassword value) invalidPassword,
+    required TResult Function(_InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(_InvalidUsernameAndPasswordCombination value)
+        invalidUsernameAndPasswordCombination,
+    required TResult Function(_PasswordsNotMatching value) passwordsNotMatching,
+    required TResult Function(_CancelledByUser value) cancelledByUser,
+    required TResult Function(_InvalidAccountType value) invalidAccountType,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
+  }) {
+    return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_InvalidAccountType value)? invalidAccountType,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+  }) {
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(_UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(_InvalidEmail value)? invalidEmail,
+    TResult Function(_InvalidUsername value)? invalidUsername,
+    TResult Function(_InvalidOldPassword value)? invalidOldPassword,
+    TResult Function(_InvalidNewPassword value)? invalidNewPassword,
+    TResult Function(_InvalidPassword value)? invalidPassword,
+    TResult Function(_InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(_InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(_PasswordsNotMatching value)? passwordsNotMatching,
+    TResult Function(_CancelledByUser value)? cancelledByUser,
+    TResult Function(_InvalidAccountType value)? invalidAccountType,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unexpected implements AuthFailure {
+  const factory _Unexpected() = _$_Unexpected;
 }

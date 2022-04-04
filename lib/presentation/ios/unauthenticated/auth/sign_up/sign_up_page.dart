@@ -16,27 +16,34 @@ class SignUpPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                authenticated: () =>
-                    context.router.replace(const AuthenticatedFlowRoute()),
-              );
-            },
+            listener: (context, state) => state.mapOrNull(
+              authenticated: (_) => _onAuthenticated(context),
+            ),
           ),
           BlocListener<SignUpBloc, SignUpState>(
-            listenWhen: (_, next) => next is SignUpLoadFailure,
-            listener: (context, state) {
-              state.mapOrNull(
-                loadFailure: (signInLoadFailure) {
-                  signInLoadFailure.failure.whenOrNull(
-                    serverError: () => showToast(context.l10n.errorServer),
-                  );
-                },
-              );
-            },
+            listenWhen: (_, current) => current is SignUpLoadFailure,
+            listener: (context, state) => state.mapOrNull(
+              loadFailure: (failure) => _onLoadFailure(context, failure),
+            ),
           ),
         ],
         child: const SignUpView(),
+      ),
+    );
+  }
+
+  void _onAuthenticated(BuildContext context) {
+    context.router.replace(const AuthenticatedFlowRoute());
+  }
+
+  void _onLoadFailure(BuildContext context, SignUpLoadFailure failure) {
+    failure.failure.maybeWhen(
+      // TODO show server error feels not perfect
+      serverError: () =>
+          context.showToast(context.l10n.errorServer.toUpperCase()),
+      // TODO display other errors better
+      orElse: () => context.showToast(
+        context.l10n.errorUnexpected.toUpperCase(),
       ),
     );
   }

@@ -1,6 +1,14 @@
 part of 'sign_up_page.dart';
 
 class SignUpView extends StatelessWidget {
+  static const Key logoKey = Key('logo');
+  static const Key emailTextFieldKey = Key('email_text_field');
+  static const Key usernameTextFieldKey = Key('username_text_field');
+  static const Key passwordTextFieldKey = Key('password_text_field');
+  static const Key passwordAgainTextFieldKey = Key('password_again_text_field');
+  static const Key signUpButtonKey = Key('sign_up_button');
+  static const Key goToSignInButtonKey = Key('go_to_sign_in_button');
+
   const SignUpView({Key? key}) : super(key: key);
 
   @override
@@ -21,27 +29,20 @@ class SignUpView extends StatelessWidget {
                 maxHeight: constraints.maxHeight + bottomInsets,
               ),
               child: BlocBuilder<SignUpBloc, SignUpState>(
-                buildWhen: (_, next) => next is SignUpInitial,
+                buildWhen: (_, current) => current is SignUpInitial,
                 builder: (context, state) {
                   return Column(
                     children: [
-                      SizedBox(
-                        height: modalLogoMarginTop(context),
-                      ),
-                      const LogoDisplayer(),
-                      SizedBox(
-                        height: modalLogoMarginBottom(context),
-                      ),
+                      SizedBox(height: modalLogoMarginTop(context)),
+                      const LogoDisplayer(key: logoKey),
+                      SizedBox(height: modalLogoMarginBottom(context)),
                       AppTextField(
+                        key: emailTextFieldKey,
                         placeholder: context.l10n.email,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
-                        onChanged: (emailString) {
-                          context.read<SignUpBloc>().add(
-                                SignUpEvent.emailChanged(newEmail: emailString),
-                              );
-                        },
+                        onChanged: (email) => _onEmailChanged(context, email),
                         valid: state.mapOrNull(
                           initial: (initial) =>
                               !initial.showErrorMessages ||
@@ -51,14 +52,12 @@ class SignUpView extends StatelessWidget {
                         errorMessage: context.l10n.errorInvalidEmailAddress,
                       ),
                       AppTextField(
+                        key: usernameTextFieldKey,
                         placeholder: context.l10n.username,
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
-                        onChanged: (usernameString) =>
-                            context.read<SignUpBloc>().add(
-                                  SignUpEvent.usernameChanged(
-                                      newUsername: usernameString),
-                                ),
+                        onChanged: (username) =>
+                            _onUsernameChanged(context, username),
                         valid: state.mapOrNull(
                           initial: (initial) =>
                               !initial.showErrorMessages ||
@@ -68,15 +67,13 @@ class SignUpView extends StatelessWidget {
                         errorMessage: context.l10n.errorInvalidUsername,
                       ),
                       AppTextField(
+                        key: passwordTextFieldKey,
                         obscureText: true,
                         placeholder: context.l10n.password,
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
-                        onChanged: (passwordString) =>
-                            context.read<SignUpBloc>().add(
-                                  SignUpEvent.passwordChanged(
-                                      newPassword: passwordString),
-                                ),
+                        onChanged: (password) =>
+                            _onPasswordChanged(context, password),
                         valid: state.mapOrNull(
                           initial: (initial) =>
                               !initial.showErrorMessages ||
@@ -86,16 +83,13 @@ class SignUpView extends StatelessWidget {
                         errorMessage: context.l10n.errorInvalidPassword,
                       ),
                       AppTextField(
+                        key: passwordAgainTextFieldKey,
                         obscureText: true,
                         placeholder: context.l10n.passwordAgain,
                         textInputAction: TextInputAction.done,
                         onEditingComplete: () => node.unfocus(),
-                        onChanged: (passwordAgainString) =>
-                            context.read<SignUpBloc>().add(
-                                  SignUpEvent.passwordAgainChanged(
-                                    newPasswordAgain: passwordAgainString,
-                                  ),
-                                ),
+                        onChanged: (passwordAgain) =>
+                            _onPasswordAgainChanged(context, passwordAgain),
                         valid: state.mapOrNull(
                           initial: (initial) =>
                               !initial.showErrorMessages ||
@@ -106,31 +100,23 @@ class SignUpView extends StatelessWidget {
                         errorMessage: context.l10n.errorPasswordsDontMatch,
                       ),
                       BlocBuilder<SignUpBloc, SignUpState>(
-                        buildWhen: (prev, next) =>
-                            prev is SignUpLoadInProgress ||
-                            next is SignUpLoadInProgress,
+                        buildWhen: (previous, current) =>
+                            previous is SignUpLoadInProgress ||
+                            current is SignUpLoadInProgress,
                         builder: (context, state) {
                           return AppPrimaryButton(
+                            key: signUpButtonKey,
                             isSubmitting: state is SignUpLoadInProgress,
-                            text: context.l10n.signIn,
-                            onPressed: () => context.read<SignUpBloc>().add(
-                                  const SignUpEvent.signUpPressed(),
-                                ),
+                            text: context.l10n.signUp,
+                            onPressed: () => _onSignUpPressed(context),
                           );
                         },
                       ),
-                      SizedBox(
-                        height: spacerSmall(context),
-                      ),
+                      SizedBox(height: spacerSmall(context)),
                       AppLinkButton(
+                        key: goToSignInButtonKey,
                         text: context.l10n.signIn,
-                        onPressed: () {
-                          context.read<PageController>().animateToPage(
-                                0,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn,
-                              );
-                        },
+                        onPressed: () => _onGotSignInPressed(context),
                       ),
                       const Spacer(),
                     ],
@@ -142,5 +128,47 @@ class SignUpView extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void _onEmailChanged(BuildContext context, String email) {
+    context.read<SignUpBloc>().add(
+          SignUpEvent.emailChanged(newEmail: email),
+        );
+  }
+
+  void _onUsernameChanged(BuildContext context, String username) {
+    context.read<SignUpBloc>().add(
+          SignUpEvent.usernameChanged(
+            newUsername: username,
+          ),
+        );
+  }
+
+  void _onPasswordChanged(BuildContext context, String password) {
+    context.read<SignUpBloc>().add(
+          SignUpEvent.passwordChanged(newPassword: password),
+        );
+  }
+
+  void _onPasswordAgainChanged(BuildContext context, String passwordAgain) {
+    context.read<SignUpBloc>().add(
+          SignUpEvent.passwordAgainChanged(
+            newPasswordAgain: passwordAgain,
+          ),
+        );
+  }
+
+  void _onSignUpPressed(BuildContext context) {
+    context.read<SignUpBloc>().add(
+          const SignUpEvent.signUpPressed(),
+        );
+  }
+
+  void _onGotSignInPressed(BuildContext context) {
+    context.read<PageController>().animateToPage(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeIn,
+        );
   }
 }

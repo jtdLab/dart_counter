@@ -22,4 +22,5 @@ class AuthFailure with _$AuthFailure {
   const factory AuthFailure.cancelledByUser() = _CancelledByUser;
   const factory AuthFailure.invalidAccountType() = _InvalidAccountType;
   const factory AuthFailure.serverError() = _ServerError;
+  const factory AuthFailure.unexpected() = _Unexpected;
 }
