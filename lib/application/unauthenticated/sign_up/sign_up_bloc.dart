@@ -21,13 +21,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     this._authService,
   ) : super(
           // Set initial state
-          SignUpState.initial(
-            email: EmailAddress.empty(),
-            username: Username.empty(),
-            password: Password.empty(),
-            passwordAgain: Password.empty(),
-            showErrorMessages: false,
-          ),
+          SignUpState.empty(),
         ) {
     // Register event handlers
     on<_EmailChanged>(_handleEmailChanged);

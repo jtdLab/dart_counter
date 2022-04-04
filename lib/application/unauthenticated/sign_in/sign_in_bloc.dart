@@ -22,10 +22,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     this._authService,
   ) : super(
           // Set initial state
-          SignInState.initial(
-            email: EmailAddress.empty(),
-            password: Password.empty(),
-          ),
+          SignInState.empty(),
         ) {
     // Register event handlers
     on<_EmailChanged>(_handleEmailChanged);

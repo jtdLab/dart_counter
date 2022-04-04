@@ -12,4 +12,10 @@ class SignInState with _$SignInState {
   const factory SignInState.loadFailure({
     required AuthFailure failure,
   }) = SignInLoadFailure;
+
+  // TODO nameing empty is not good
+  factory SignInState.empty() => SignInState.initial(
+        email: EmailAddress.empty(),
+        password: Password.empty(),
+      );
 }

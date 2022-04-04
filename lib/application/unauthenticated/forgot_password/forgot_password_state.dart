@@ -15,4 +15,10 @@ class ForgotPasswordState with _$ForgotPasswordState {
   const factory ForgotPasswordState.submitFailure({
     required AuthFailure authFailure,
   }) = ForgotPasswordSubmitFailure;
+
+  // TODO nameing empty is not good
+  factory ForgotPasswordState.empty() => ForgotPasswordState.initial(
+        email: EmailAddress.empty(),
+        showErrorMessages: false,
+      );
 }

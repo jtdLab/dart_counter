@@ -22,10 +22,7 @@ class ForgotPasswordBloc
     this._authService,
   ) : super(
           // Set initial state
-          ForgotPasswordState.initial(
-            email: EmailAddress.empty(),
-            showErrorMessages: false,
-          ),
+          ForgotPasswordState.empty(),
         ) {
     // Register event handlers
     on<_EmailChanged>(_handleEmailChanged);
