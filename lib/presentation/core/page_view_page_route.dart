@@ -3,6 +3,12 @@ import 'package:flutter/widgets.dart';
 // TODO doc only use this to make pageview navigation visible to auto router observers
 class PageViewRoute<T> extends Route {
   PageViewRoute() : super(settings: RouteSettings(name: '${T}Route'));
+
+  @override
+  bool operator ==(Object o) => o is PageViewRoute<T>;
+
+  @override
+  int get hashCode => T.hashCode;
 }
 
 // TODO if optional generics are available this can be implemented

@@ -5,6 +5,9 @@ import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_in/sign_
 import 'package:dart_counter/presentation/ios/unauthenticated/auth/sign_up/sign_up_page.dart';
 
 class AuthFlow extends StatefulWidget {
+  // Keys for widget-testing
+  static const Key pageViewKey = Key('page_view');
+
   const AuthFlow({Key? key}) : super(key: key);
 
   @override
@@ -28,6 +31,7 @@ class _AuthFlowState extends State<AuthFlow> {
     return ListenableProvider.value(
       value: pageController,
       child: PageView(
+        key: AuthFlow.pageViewKey,
         controller: pageController,
         children: const [
           SignInPage(),

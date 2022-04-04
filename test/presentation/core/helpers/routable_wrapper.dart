@@ -13,7 +13,11 @@ class MockRouteData extends Mock implements RouteData {}
 /// The [router] must be a mock and can be used to verify navigation calls.
 ///
 /// This should only be used to test pages.
-Widget routableWrapper(Widget widget, PlatformRouter router) {
+Widget routableWrapper(
+  Widget widget,
+  PlatformRouter router, [
+  AutoRouteObserver? observer,
+]) {
   assert(router is Mock);
 
   const name = 'mocked-route-name';
@@ -46,7 +50,7 @@ Widget routableWrapper(Widget widget, PlatformRouter router) {
     routeData: routeData,
     child: RouterScope(
       controller: router,
-      navigatorObservers: const [],
+      navigatorObservers: observer != null ? [observer] : [],
       inheritableObserversBuilder: () => [],
       stateHash: stateHash,
       child: StackRouterScope(
