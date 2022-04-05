@@ -45,7 +45,7 @@ void main() {
     // ptwut
     // Returns the widget under test wrapped into a testable environment
     // that provides all dependencies needed.
-    Widget wrappedUnderTest() {
+    Widget wrappedUnderTest({Locale? locale}) {
       return appWrapper(
         MultiProvider(
           providers: [
@@ -54,6 +54,7 @@ void main() {
           ],
           child: const MyPage(),
         ),
+        locale: locale,
       );
     }
 
@@ -114,33 +115,48 @@ void main() {
             whenListenTo(authBloc, const AuthState.authenticated());
           });
 
-          // ptbtc
-          testWidgets('THEN calls app toast show with msg = "abc".',
-              (tester) async {
-            // Arrange
-            when(() => appToast.show('abc')).thenReturn(null);
-
-            // Act
-            await tester.pumpWidget(wrappedUnderTest());
-
-            // Assert
-            verify(() => appToast.show('abc')).called(1);
+          final localeVariant = LocaleVariant({
+            const Locale('en'): 'confirm',
+            const Locale('de'): 'bestätigen',
           });
+
+          // ptbtc
+          testWidgets(
+            'THEN calls app toast show with msg = "abc".',
+            (tester) async {
+              final locale = localeVariant.currentValue;
+              final expectedTranslation =
+                  localeVariant.currentExpectedTranslation;
+
+              // Arrange
+              when(() => appToast.show(expectedTranslation)).thenReturn(null);
+
+              // Act
+              await tester.pumpWidget(wrappedUnderTest(locale: locale));
+
+              // Assert
+              verify(() => appToast.show(expectedTranslation)).called(1);
+            },
+            variant: localeVariant,
+          );
 
           /// ...
 
           // ptbtnc
-          testWidgets('THEN never calls app toast show with msg = "efg".',
-              (tester) async {
-            // Arrange
-            when(() => appToast.show('efg')).thenReturn(null);
+          testWidgets(
+            'THEN never calls app toast show with msg = "efg".',
+            (tester) async {
+              // Arrange
+              when(() => appToast.show('efg')).thenReturn(null);
 
-            // Act
-            await tester.pumpWidget(wrappedUnderTest());
+              // Act
+              await tester.pumpWidget(wrappedUnderTest());
 
-            // Assert
-            verifyNever(() => appToast.show('efg'));
-          });
+              // Assert
+              verifyNever(() => appToast.show('efg'));
+            },
+            variant: localeVariant,
+          );
 
           /// ...
         });
