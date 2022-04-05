@@ -8,3 +8,4 @@ export 'package:mocktail/mocktail.dart';
 export 'mocks/mocks.dart';
 export 'routable_wrapper.dart';
 export 'when_listen_to.dart';
+export 'variants.dart';
