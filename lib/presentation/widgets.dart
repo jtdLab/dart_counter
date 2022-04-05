@@ -12,8 +12,8 @@ class MyView extends StatelessWidget {
         const SizedBox(width: 100, height: 100),
         BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) => state.when(
-            authenticated: () => Text(context.l10n.confirm),
-            unauthenticated: () => Text(context.l10n.done),
+            authenticated: () => Text(context.l10n.confirm.toLowerCase()),
+            unauthenticated: () => Text(context.l10n.done.toLowerCase()),
           ),
         ),
       ],

@@ -19,8 +19,8 @@ class MyPage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) => state.whenOrNull(
-        authenticated: () => context.read<AppToast>().show(context.l10n.confirm),
-        unauthenticated: () => context.read<AppToast>().show(context.l10n.done),
+        authenticated: () => context.read<AppToast>().show(context.l10n.confirm.toLowerCase()),
+        unauthenticated: () => context.read<AppToast>().show(context.l10n.done.toLowerCase()),
       ),
       child: const MyView(),
     );
