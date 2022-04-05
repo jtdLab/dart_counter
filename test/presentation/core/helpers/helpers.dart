@@ -1,5 +1,5 @@
 export 'package:bloc_test/bloc_test.dart';
-export 'package:flutter/widgets.dart' show Locale, Widget, BuildContext;
+export 'package:flutter/widgets.dart' show Locale, Widget, BuildContext, Builder;
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_test/flutter_test.dart';
 export 'package:golden_toolkit/golden_toolkit.dart';

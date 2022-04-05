@@ -13,8 +13,7 @@ void main() {
       // Init dependencies + mock default behaviour
       router = MockRouter();
       signInBloc = MockSignInBloc();
-      // TODO
-      //whenListenTo(signInBloc, SignInState.initial(email: null, password: null));
+      whenListenTo(signInBloc, SignInState.empty());
     });
 
     // Wraps the widget under test with a testable environment.
@@ -30,6 +29,38 @@ void main() {
         locale: locale,
       );
     }
+
+    // TODO golden
+    /* testGoldens(
+        'GIVEN empty email '
+        'GIVEN showErrorMessages is false '
+        'THEN ForgotPasswordInitialPage should look correct on iPhones.',
+        (tester) async {
+      // Arrange
+      final email = EmailAddress.empty();
+      const showErrorMessages = false;
+
+      whenListenTo(
+        forgotPasswordBloc,
+        ForgotPasswordState.initial(
+          email: email,
+          showErrorMessages: showErrorMessages,
+        ),
+      );
+
+      // Act
+      final builder = DeviceBuilder()
+        ..overrideDevicesForAllScenarios(devices: iPhones)
+        ..addScenario(
+          widget: wrappedUnderTest(),
+          name: 'ForgotPasswordInitialView',
+        );
+      await tester.pumpDeviceBuilder(builder);
+
+      // Assert
+      await screenMatchesGolden(tester, 'forgot_password_initial_view_mobile');
+    });
+ */
 
     testWidgets(
       'Render logo.',

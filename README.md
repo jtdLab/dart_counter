@@ -321,3 +321,13 @@ flutter pub add golden_toolkit
      // TODO move bloc listener into the view + test in forgot password initial 
 
      https://medium.com/flutter-community/how-to-actually-get-test-coverage-for-your-flutter-applications-f881c0ae8155
+
+
+// The responsibility of a Page is
+// 1. Inject instances registered inside the DI-container into the widget tree via provider
+// 2. Listen for relevant bloc changes and perform calls via bloc listener
+// 3. Render the View.
+
+// The responsibility of a View is 
+// 1. Listen for relevant bloc states and render the proper ui via bloc builder
+// 2. Perfom calls on user input
