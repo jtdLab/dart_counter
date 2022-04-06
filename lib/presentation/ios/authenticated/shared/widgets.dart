@@ -11,7 +11,7 @@ class YouReallyWantToCancelGameDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       backgroundColor: Colors.white.withOpacity(
         0.85,
       ),

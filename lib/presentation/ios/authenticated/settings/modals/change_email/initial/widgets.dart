@@ -31,7 +31,7 @@ class ChangeEmailInitialView extends StatelessWidget {
           );
         }
       },
-      child: AppPage(
+      child: AppPageScaffold(
         onTap: () => FocusScope.of(context).unfocus(),
         child: LayoutBuilder(
           builder: (context, constraints) {

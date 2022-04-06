@@ -9,7 +9,7 @@ class GameHistoryDetailsView extends StatelessWidget {
       builder: (context, state) {
         final game = (state as GameHistoryLoadSuccess).selectedGame!;
 
-        return AppPage(
+        return AppPageScaffold(
           navigationBar: AppNavigationBar(
             leading: const BackButton(),
             middle: Text(

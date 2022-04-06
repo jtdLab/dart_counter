@@ -19,7 +19,7 @@ class PostOnlineGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       navigationBar: AppNavigationBar(
         middle: Text(
           snapshot.description().toUpperCase(),

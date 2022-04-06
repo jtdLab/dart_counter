@@ -5,7 +5,7 @@ class FriendsProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       navigationBar: const AppNavigationBar(
         leading: BackButton(),
         middle: _NameDisplayer(),

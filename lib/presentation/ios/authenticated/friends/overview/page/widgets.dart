@@ -6,7 +6,7 @@ class FriendsOverviewView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       onTap: () => FocusScope.of(context).unfocus(),
       navigationBar: AppNavigationBar(
         leading: const BackButton(),

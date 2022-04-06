@@ -5,7 +5,7 @@ class GameHistoryOverviewView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       navigationBar: AppNavigationBar(
         leading: const BackButton(),
         middle: Text(

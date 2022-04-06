@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 /// A page for the ios app.
 ///
 /// Providing layout and other utility that every page might have.
-class AppPage extends StatelessWidget {
+class AppPageScaffold extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final AppNavigationBar? navigationBar;
   final EdgeInsets? padding;
   final Widget child;
 
-  const AppPage({
+  const AppPageScaffold({
     Key? key,
     this.onTap,
     this.backgroundColor,

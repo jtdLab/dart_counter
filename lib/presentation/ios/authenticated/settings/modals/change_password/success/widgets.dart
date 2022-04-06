@@ -6,7 +6,7 @@ class ChangePasswordSuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       child: Column(
         children: [
           SizedBox(

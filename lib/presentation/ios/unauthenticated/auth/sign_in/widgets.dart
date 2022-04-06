@@ -20,7 +20,7 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
 
-    return AppPage(
+    return AppPageScaffold(
       onTap: () => node.unfocus(),
       child: LayoutBuilder(
         builder: (context, constraints) {

@@ -56,7 +56,7 @@ class CreateTrainingPage extends StatelessWidget {
           }
         }
       },
-      child: AppPage(
+      child: AppPageScaffold(
         navigationBar: AppNavigationBar(
           leading: Builder(
             builder: (context) => CancelButton(

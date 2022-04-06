@@ -19,7 +19,7 @@ class CheckoutDetailsModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: bloc,
-      child: const AppPage(
+      child: const AppPageScaffold(
         child: _CheckoutDetailsWidget(),
       ),
     );

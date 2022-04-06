@@ -9,7 +9,7 @@ class ProfileView extends HookWidget {
     // needed cause pageControllers page cant be accessed before pageview is initialized
     final pageIndex = useState(0); // TODO move this to profile bloc
 
-    return AppPage(
+    return AppPageScaffold(
       navigationBar: const AppNavigationBar(
         leading: BackButton(),
         middle: _NameDisplayer(),

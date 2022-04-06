@@ -68,7 +68,7 @@ class CreateOfflineGamePage extends StatelessWidget {
             );
           }
         },
-        child: AppPage(
+        child: AppPageScaffold(
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
             leading: Builder(

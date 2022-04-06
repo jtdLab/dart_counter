@@ -5,7 +5,7 @@ class SearchUserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       padding: modalPagePadding(context),
       onTap: () => FocusScope.of(context).unfocus(),
       child: BlocBuilder<SearchUserBloc, SearchUserState>(

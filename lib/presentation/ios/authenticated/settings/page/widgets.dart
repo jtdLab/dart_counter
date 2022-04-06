@@ -11,7 +11,7 @@ class SettingsView extends StatelessWidget {
           context.router.replace(const UnauthenticatedFlowRoute());
         }
       },
-      child: AppPage(
+      child: AppPageScaffold(
         navigationBar: AppNavigationBar(
           leading: const BackButton(),
           middle: Text(

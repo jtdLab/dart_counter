@@ -89,7 +89,7 @@ class InOnlineGamePage extends StatelessWidget {
         builder: (context, state) {
           final gameSnapshot = state.gameSnapshot;
 
-          return AppPage(
+          return AppPageScaffold(
             navigationBar: AppNavigationBar(
               leading: Builder(
                 builder: (context) => CancelButton(

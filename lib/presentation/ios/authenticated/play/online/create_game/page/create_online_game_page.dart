@@ -45,7 +45,7 @@ class CreateOnlineGamePage extends StatelessWidget {
             context.router.replace(const InOnlineGameFlowRoute());
           }
         },
-        child: AppPage(
+        child: AppPageScaffold(
           onTap: () => FocusScope.of(context).unfocus(),
           navigationBar: AppNavigationBar(
             leading: Builder(

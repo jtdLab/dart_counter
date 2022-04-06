@@ -6,7 +6,7 @@ class PrivacyPolicyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       navigationBar: AppNavigationBar(
         middle: Text(
           context.l10n.privacyPolicy.toUpperCase(),

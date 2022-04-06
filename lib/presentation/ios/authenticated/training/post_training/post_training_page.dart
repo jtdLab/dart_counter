@@ -6,7 +6,7 @@ class PostTrainingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
+    return AppPageScaffold(
       child: Center(
         child: Text(runtimeType.toString()),
       ),

@@ -37,7 +37,7 @@ class GameInvitationsView extends StatelessWidget {
       },
       builder: (context, state) {
         return state.map(
-          initial: (_) => AppPage(
+          initial: (_) => AppPageScaffold(
             navigationBar: AppNavigationBar(
               leading: const BackButton(),
               middle: Text(context.l10n.invitations.toUpperCase()),
@@ -58,7 +58,7 @@ class GameInvitationsView extends StatelessWidget {
               ),
             ),
           ),
-          loadInProgress: (_) => const AppPage(child: LoadingWidget()),
+          loadInProgress: (_) => const AppPageScaffold(child: LoadingWidget()),
           failure: (failure) => const Text('FAILURE '), // TODO
         );
       },

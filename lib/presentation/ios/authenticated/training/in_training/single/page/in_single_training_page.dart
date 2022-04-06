@@ -56,7 +56,7 @@ class InSingleTrainingPage extends StatelessWidget {
             default:
           }
         },
-        child: AppPage(
+        child: AppPageScaffold(
           navigationBar: AppNavigationBar(
             leading: Builder(
               builder: (context) => CancelButton(

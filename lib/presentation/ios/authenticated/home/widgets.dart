@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
     return BlocSelector<HomeBloc, HomeState, bool>(
       selector: (state) => state is HomeLoadSuccess,
       builder: (context, hasNavigationBar) {
-        return AppPage(
+        return AppPageScaffold(
           navigationBar: hasNavigationBar
               ? AppNavigationBar(
                   leading: const _SettingsButton(),
