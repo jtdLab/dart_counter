@@ -156,10 +156,11 @@
 		],
 		"description": "Page Test Param Group"
 	  }, 
+	  // TODO instance in desc could be same as in code
 	  "Page Test Bloc Test Calls": {
 		"prefix": "ptbtc",
 		"body": [
-		  "testWidgets('THEN calls ${1:instance} ${2:method} with ${3:params}.', (tester) async {",
+		  "testWidgets('THEN calls ${1:method} method of ${2:instance} with ${3:params}.', (tester) async {",
 		  "  // Arrange",
 		  "  when(() => ${4:instance}.${5:method}($6)).${7|thenReturn(),thenAnswer((_) async => ),thenAnswer((_) => )|};",
 		  "",
@@ -172,10 +173,32 @@
 		],
 		"description": "Page Test Bloc Test Calls"
 	  }, 
+	  "Page Test Bloc Test Calls Localized": {
+		"prefix": "ptbtcl",
+		"body": [
+		  "testWidgetsLocalized('THEN calls ${1:method} method of ${2:instance} with ${3:params}.',",
+		  "  (tester, locale, expectedTranslation) async {",
+		  "    // Arrange",
+		  "    when(() => ${4:instance}.${5:method}(${6:expectedTranslation})).${7|thenReturn(),thenAnswer((_) async => ),thenAnswer((_) => )|};",
+		  "",
+		  "    // Act",
+		  "    await tester.pumpWidget(wrappedUnderTest(locale:locale));",
+		  "",
+		  "    // Assert",
+		  "    verify(() => ${4:instance}.${5:method}(${6:expectedTranslation})).called(1);",
+		  "  },",
+		  "  expectedTranslations: ExpectedTranslations(",
+		  "    en: '$8',",
+		  "    de: '$9',",
+		  "  ),",
+		  ");",
+		],
+		"description": "Page Test Bloc Test Calls Localized"
+	  }, 
 	  "Page Test Bloc Test Never Calls": {
 		"prefix": "ptbtnc",
 		"body": [
-		 "testWidgets('THEN never calls ${1:instance} ${2:method} with ${3:params}.', (tester) async {",
+		 "testWidgets('THEN never calls ${1:method} method of ${2:instance} with ${3:params}.', (tester) async {",
 		 "  // Arrange",
 		 "  when(() => ${4:instance}.${5:method}($6)).${7|thenReturn(),thenAnswer((_) async => ),thenAnswer((_) => )|};",
 		 "",

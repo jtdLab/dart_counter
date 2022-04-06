@@ -16,6 +16,7 @@ import 'ios/helpers/helpers.dart';
 // Page Test Bloc Group Setup ->  ptbgs
 // Page Test Param Group ->  ptpg
 // Page Test Bloc Test Calls ->  ptbtc
+// Page Test Bloc Test Calls Localized ->  ptbtcl
 // Page Test Bloc Test Never Calls ->  ptbtnc
 // Page Test Renders View -> ptrv
 
@@ -114,19 +115,23 @@ void main() {
             whenListenTo(authBloc, const AuthState.authenticated());
           });
 
-          final localeVariant = LocaleVariant({
-            const Locale('en'): 'confirm',
-            const Locale('de'): 'bestätigen',
+          // ptbtc
+          testWidgets('THEN calls show method of app toast with "bestätigen".',
+              (tester) async {
+            // Arrange
+            when(() => appToast.show('bestätigen')).thenReturn(null);
+
+            // Act
+            await tester.pumpWidget(wrappedUnderTest());
+
+            // Assert
+            verify(() => appToast.show('bestätigen')).called(1);
           });
 
-          // ptbtc
-          testWidgets(
-            'THEN calls app toast show with msg = "abc".',
-            (tester) async {
-              final locale = localeVariant.currentValue;
-              final expectedTranslation =
-                  localeVariant.currentExpectedTranslation;
-
+          // ptbtcl
+          testWidgetsLocalized(
+            'THEN calls show method of app toast with correct localized message.',
+            (tester, locale, expectedTranslation) async {
               // Arrange
               when(() => appToast.show(expectedTranslation)).thenReturn(null);
 
@@ -136,7 +141,10 @@ void main() {
               // Assert
               verify(() => appToast.show(expectedTranslation)).called(1);
             },
-            variant: localeVariant,
+            expectedTranslations: ExpectedTranslations(
+              en: 'confirm',
+              de: 'bestätigen',
+            ),
           );
 
           /// ...
@@ -154,7 +162,6 @@ void main() {
               // Assert
               verifyNever(() => appToast.show('efg'));
             },
-            variant: localeVariant,
           );
 
           /// ...
