@@ -4,7 +4,6 @@ import 'package:dart_counter/presentation/core/app_toast.dart';
 import 'package:dart_counter/presentation/my_page.dart';
 import 'package:dart_counter/presentation/widgets.dart';
 import 'package:provider/provider.dart';
-import 'core/helpers/helpers.dart';
 import 'ios/helpers/helpers.dart';
 
 // Snippets
@@ -62,7 +61,7 @@ void main() {
     group('Injects', () {
       setUp(() {
         // Register dependency in DI-container
-        // pgird
+        // ptird
         getIt.registerSingleton<AuthBloc>(authBloc);
 
         /// ...
@@ -86,7 +85,7 @@ void main() {
         );
       }
 
-      // pgit
+      // ptit
       testWidgets(
         'the instance of AuthBloc that is registered inside DI-container '
         'into the widget tree.',
